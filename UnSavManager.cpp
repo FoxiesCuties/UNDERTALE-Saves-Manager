@@ -125,11 +125,11 @@ void UnSavManager::loadBackupSaves()
 
     QDir storDir (mSetgsDialog->storageSaves());
 
-    QStringList strList = storDir.entryList(QDir::NoDotAndDotDot|QDir::AllDirs);
-
-    for(uint i = 0; i<strList.count(); i++)
+    foreach (QString folder, storDir.entryList(QDir::NoDotAndDotDot|QDir::AllDirs))
     {
-        QSettings *settings = new QSettings(storDir.path()+"/"+strList.at(i)+"/undertale.ini", QSettings::IniFormat);
+        mSavListLeft->setSaveFolder(mSavListLeft->count(), folder);
+
+        QSettings *settings = new QSettings(storDir.path()+"/"+folder+"/undertale.ini", QSettings::IniFormat);
 
         //Check if ini contains values
         if( settings->contains("Name") && settings->contains("Love") &&
@@ -213,7 +213,7 @@ bool UnSavManager::alreadyExist(QString from, QString dest)
 //Slots
 void UnSavManager::moveRight()
 {
-    QString fromString = mSetgsDialog->storageSaves()+"/UNDERTALE_"+QString::number(mSavListLeft->currentSaveID()+1);
+    QString fromString = mSetgsDialog->storageSaves()+"/"+mSavListLeft->currentSaveFolder();
     QString destString = mSetgsDialog->currentSave();
 
     bool saveExist = QFile::exists(mSetgsDialog->currentSave()+"/undertale.ini");

@@ -16,6 +16,8 @@ public:
     void createSettings();
 
     int currentSaveID();
+    QString currentSaveFolder();
+    void setSaveFolder(int lID, QString lFolder);
 
     void clearAll();
     void addSave(UnProfile *save);
@@ -25,9 +27,10 @@ public:
 
 private:
 
-    QButtonGroup                *mSavesGroup;
     QList<QAbstractButton*>     mSavesList;
     QList<UnProfile *>          mSavesList2;
+    QHash<int, QString>         mSavesFolder;
+    QButtonGroup                *mSavesGroup;
 };
 
 #endif // SAVELISTWIDGET_HPP

@@ -19,6 +19,14 @@ int SaveListWidget::currentSaveID()
 {
     return mSavesGroup->checkedId();
 }
+QString SaveListWidget::currentSaveFolder()
+{
+    return mSavesFolder.value(mSavesGroup->checkedId());
+}
+void SaveListWidget::setSaveFolder(int lID, QString lFolder)
+{
+    mSavesFolder.insert(lID, lFolder);
+}
 
 void SaveListWidget::clearAll()
 {
