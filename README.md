@@ -18,5 +18,5 @@ That really help me for naming saveroom number
 This site is awesome lots of ressources that helped me
 * http://rawr.ws/undertale
 
-Thank to Dreamslike/Dmonstar for betatesting and minor bug tracking
+Thank to Dreamslike for betatesting and minor bug tracking
 * http://steamcommunity.com/profiles/76561198008639743/
