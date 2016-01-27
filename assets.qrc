@@ -1,13 +1,7 @@
 <RCC>
     <qresource prefix="/imgs">
         <file alias="splash">assets/splash.png</file>
-        <file alias="set0">assets/set.png</file>
-        <file alias="set1">assets/set2.png</file>
         <file alias="ban">assets/banner.png</file>
-        <file alias="toL0">assets/toL0.png</file>
-        <file alias="toL1">assets/toL1.png</file>
-        <file alias="toR0">assets/toR0.png</file>
-        <file alias="toR1">assets/toR1.png</file>
         <file alias="bLoad">assets/BtnLoad.png</file>
         <file alias="bSave">assets/BtnSave.png</file>
         <file alias="bSet">assets/BtnSet.png</file>
