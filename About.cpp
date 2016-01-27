@@ -85,7 +85,7 @@ void About::createSettings()
 //Slots
 void About::openGitHubProject()
 {
-    QDesktopServices::openUrl(QUrl("https://github.com/FoxiesCuties/UNDERTALE-SavesManager", QUrl::StrictMode));
+    QDesktopServices::openUrl(QUrl("https://github.com/FoxiesCuties/UNDERTALE-Saves-Manager", QUrl::StrictMode));
 }
 
 //Events
