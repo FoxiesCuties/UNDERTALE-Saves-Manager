@@ -1,0 +1,42 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file alias="splash">assets/splash.png</file>
+        <file alias="set0">assets/set.png</file>
+        <file alias="set1">assets/set2.png</file>
+        <file alias="ban">assets/banner.png</file>
+        <file alias="toL0">assets/toL0.png</file>
+        <file alias="toL1">assets/toL1.png</file>
+        <file alias="toR0">assets/toR0.png</file>
+        <file alias="toR1">assets/toR1.png</file>
+        <file alias="bLoad">assets/BtnLoad.png</file>
+        <file alias="bSave">assets/BtnSave.png</file>
+        <file alias="bSet">assets/BtnSet.png</file>
+        <file alias="clo0">assets/close0.png</file>
+        <file alias="clo1">assets/close1.png</file>
+        <file alias="min0">assets/min0.png</file>
+        <file alias="min1">assets/min1.png</file>
+        <file alias="bLoad1">assets/BtnLoad1.png</file>
+        <file alias="bSave1">assets/BtnSave1.png</file>
+        <file alias="bSet1">assets/BtnSet1.png</file>
+        <file alias="toriel">assets/toriel.png</file>
+        <file alias="abt0">assets/about0.png</file>
+        <file alias="abt1">assets/about1.png</file>
+        <file alias="bLch">assets/BtnLaunch.png</file>
+        <file alias="bLch1">assets/BtnLaunch1.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file alias="DTM">assets/DTM-Mono.otf</file>
+    </qresource>
+    <qresource prefix="/themes">
+        <file alias="thmD">assets/default.qss</file>
+    </qresource>
+    <qresource prefix="/imgs/settings">
+        <file alias="setBan">assets/settings/setBan.png</file>
+        <file alias="setClo0">assets/settings/setClo0.png</file>
+        <file alias="setClo1">assets/settings/setClo1.png</file>
+    </qresource>
+    <qresource prefix="/imgs/about">
+        <file alias="abtWtm">assets/about/back.png</file>
+        <file alias="abtGit">assets/about/github.png</file>
+    </qresource>
+</RCC>

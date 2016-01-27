@@ -1,0 +1,277 @@
+/* SECTION_Header */
+#Widget_Parent
+{
+    background: #111;
+}
+
+#Button_About
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/abt0');
+}
+#Button_About:hover
+{
+    background-image: url(':imgs/abt1');
+}
+
+#Button_Minimize
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/min0');
+}
+#Button_Minimize:hover
+{
+    background-image: url(':imgs/min1');
+}
+
+#Button_Close
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/clo0');
+}
+#Button_Close:hover
+{
+    background-image: url(':imgs/clo1');
+}
+
+#Label_Banner
+{
+    background: transparent;
+}
+
+#Button_Banner
+{
+    border: none;
+}
+/* EndSECTION_Header */
+
+/* SECTION_Center */
+#ListWidget_Saves
+{
+    border: none;
+    background: #222;
+}
+#ListWidget_Saves QLabel
+{
+    color: white;
+}
+#ListWidget_Saves QPushButton QLabel[Title="1"]/*CF HTML*/
+{
+    font-family: "Determination Mono";
+    font-size: 18pt;
+    font-weight: bold;
+}
+#ListWidget_Saves QPushButton QLabel[Title="2"]/*CF HTML*/
+{
+    font-family: "Determination Mono";
+    font-size: 13pt;
+    font-weight: bold;
+}
+#ListWidget_Saves QPushButton
+{
+    background: black;
+    border: 5px solid #e61;
+}
+#ListWidget_Saves QPushButton:hover
+{
+    background: black;
+    border: 5px solid #ff1;
+}
+#ListWidget_Saves QPushButton:checked
+{
+    background: black;
+    border: 5px solid #fff;
+}
+/* EndSECTION_Center */
+
+/* SECTION_ActionsButttons */
+#Button_LOAD
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bLoad');
+}
+#Button_LOAD:hover
+{
+    background-image: url(':imgs/bLoad1');
+}
+
+#Button_SAVE
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bSave');
+}
+#Button_SAVE:hover
+{
+    background-image: url(':imgs/bSave1');
+}
+
+#Button_SETTINGS
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bSet');
+}
+#Button_SETTINGS:hover
+{
+    background-image: url(':imgs/bSet1');
+}
+
+#Button_LAUNCH
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bLch');
+}
+#Button_LAUNCH:hover
+{
+    background-image: url(':imgs/bLch1');
+}
+/* EndSECTION_ActionsButttons */
+
+/* SECTION_Externals_Dialogs */
+#Dialog_MessBox
+{
+    background: black;
+    border: 5px solid white;
+}
+#Dialog_MessBox QTextEdit
+{
+    background: black;
+    border: none;
+    font-family: "Determination Mono";
+    color: white;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+#Dialog_About
+{
+    background: #111;
+    border: 3px solid white;
+    background-image: url(':imgs/about/abtWtm');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+#Dialog_About QLabel
+{
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 10pt;
+    color: white;
+    font-weight: normal;
+}
+#Dialog_About #Button_About_Github
+{
+    border: none;
+    height: 70px;
+    width: 70px;
+    background-image: url(':imgs/about/abtGit');
+}
+#Dialog_About #Button_About_Title
+{
+    border: none;
+    background: #050505;
+}
+#Dialog_About #Label_About_Title
+{
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 10pt;
+}
+#Dialog_About #Label_About_Header
+{
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 15pt;
+}
+#Dialog_About #Button_About_TipLabel
+{
+    font-family: "Arial";
+    color: white;
+    font-size: 9pt;
+    font-weight: bold;
+}
+#Dialog_About #Button_About_Close
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/settings/setClo0');
+}
+#Dialog_About #Button_About_Close:hover
+{
+    background-image: url(':imgs/settings/setClo1');
+}
+
+#Dialog_Settings
+{
+    background: #111;
+    border: 3px solid white;
+}
+#Dialog_Settings QLineEdit
+{
+    height: 20px;
+    background: black;
+    border: none;
+    font-family: "Determination Mono";
+    color: white;
+    font-size: 10pt;
+}
+#Dialog_Settings #Button_Settings_Title
+{
+    border: none;
+    background: #050505;
+}
+#Dialog_Settings #Label_Settings_Title
+{
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 10pt;
+}
+#Dialog_Settings #Label_Settings_Tip
+{
+    font-family: "Arial";
+    color: white;
+    font-size: 9pt;
+    font-weight: bold;
+}
+#Dialog_Settings #Button_Settings_Close
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/settings/setClo0');
+}
+#Dialog_Settings #Button_Settings_Close:hover
+{
+    background-image: url(':imgs/settings/setClo1');
+}
+#Dialog_Settings #Button_Settings_FileDialog
+{
+    padding: 0px;
+    height: 13px;
+    width: 35px;
+    padding-bottom: 7px;
+    border: none;
+    background: #000;
+    color: white;
+    font-weight: bold;
+    font-size: 12pt;
+}
+#Dialog_Settings #Button_Settings_FileDialog:hover
+{
+    color: yellow;
+}
+/* EndSECTION_Externals_Dialogs */
