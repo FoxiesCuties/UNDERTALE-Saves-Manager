@@ -17,10 +17,11 @@ public:
     void createSettings();
 
     int currentSaveID();
+
     QString currentSaveFolder();
     QString saveFolder(int lID);
-    void setSaveFolder(int lID, QString lFolder);
 
+    void setSaveFolder(int lID, QString lFolder);
     void clearAll();
     void addSave(UnProfile *save);
     void loadSave(QAbstractButton *save);
@@ -37,7 +38,7 @@ signals:
 
 private:
 
-    QList<UnProfile *>          mSavesList2;
+    QList<UnProfile *>          mProfileSavesList;
     QHash<int, QString>         mSavesFolder;
     QButtonGroup                *mSavesGroup;
 };

@@ -36,46 +36,46 @@ void SaveListWidget::clearAll()
 {
     this->clear();
 
-    mSavesList2.clear();
+    mProfileSavesList.clear();
 }
 void SaveListWidget::addSave(UnProfile *save)
 {
-    UnProfile *s = new UnProfile;
-        s->setName(save->name());
-        s->setLove(save->love());
-        s->setTime(save->time());
-        s->setRoom(save->room());
-        s->setIdentifier(mSavesList2.count());
+    UnProfile *aProfile = new UnProfile;
+        aProfile->setName(save->name());
+        aProfile->setLove(save->love());
+        aProfile->setTime(save->time());
+        aProfile->setRoom(save->room());
+        aProfile->setIdentifier(mProfileSavesList.count());
 
-        connect(s, SIGNAL(deleteSaveID(int)), this, SLOT(delSaveFolder(int)));
+        connect(aProfile, SIGNAL(deleteSaveID(int)), this, SLOT(delSaveFolder(int)));
 
-    mSavesList2.append(s);
+    mProfileSavesList.append(aProfile);
 
-    mSavesGroup->addButton(mSavesList2.last(), mSavesList2.length()-1);
+    mSavesGroup->addButton(mProfileSavesList.last(), mProfileSavesList.length()-1);
 
     QListWidgetItem *item = new QListWidgetItem;
-        item->setSizeHint(QSize(item->sizeHint().width(), mSavesList2.last()->height()+2));
+        item->setSizeHint(QSize(item->sizeHint().width(), mProfileSavesList.last()->height()+2));
 
     addItem(item);
-    setItemWidget(item, mSavesList2.last());
+    setItemWidget(item, mProfileSavesList.last());
 }
 void SaveListWidget::loadSave(QAbstractButton *save)
 {
     this->clear();
-    mSavesList2.clear();
+    mProfileSavesList.clear();
 
-    UnProfile *h = qobject_cast<UnProfile *>(save);
+    UnProfile *tempProfile = qobject_cast<UnProfile *>(save);
 
-    UnProfile *s = new UnProfile;
-        s->setName(h->name());
-        s->setLove(h->love());
-        s->setTime(h->time());
-        s->setRoom(h->room());
+    UnProfile *lProfile = new UnProfile;
+        lProfile->setName(tempProfile->name());
+        lProfile->setLove(tempProfile->love());
+        lProfile->setTime(tempProfile->time());
+        lProfile->setRoom(tempProfile->room());
 
-    mSavesList2.append(s);
+    mProfileSavesList.append(lProfile);
 
     QListWidgetItem *item = new QListWidgetItem;
-        item->setSizeHint(QSize(item->sizeHint().width(), mSavesList2.last()->height()+2));
+        item->setSizeHint(QSize(item->sizeHint().width(), mProfileSavesList.last()->height()+2));
 
     addItem(item);
     setItemWidget(item, s);

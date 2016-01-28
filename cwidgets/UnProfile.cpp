@@ -211,7 +211,6 @@ QVariant UnProfile::room()
     return mRoomVariant;
 }
 
-
 //Slots
 void UnProfile::deleteSave()
 {
