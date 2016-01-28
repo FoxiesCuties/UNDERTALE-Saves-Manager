@@ -7,6 +7,7 @@
 
 class SaveListWidget : public QListWidget
 {
+    Q_OBJECT
 
 public:
 
@@ -17,6 +18,7 @@ public:
 
     int currentSaveID();
     QString currentSaveFolder();
+    QString saveFolder(int lID);
     void setSaveFolder(int lID, QString lFolder);
 
     void clearAll();
@@ -25,9 +27,16 @@ public:
 
     QAbstractButton * currentSave();
 
+private slots:
+
+    void delSaveFolder(int);
+
+signals:
+
+    void saveFolderDelete(QString);
+
 private:
 
-    QList<QAbstractButton*>     mSavesList;
     QList<UnProfile *>          mSavesList2;
     QHash<int, QString>         mSavesFolder;
     QButtonGroup                *mSavesGroup;

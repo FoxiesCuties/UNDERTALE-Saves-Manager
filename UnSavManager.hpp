@@ -39,6 +39,7 @@ public slots:
     void moveLeft();
     void minimiseManager();
     void launchGame();
+    void deleteSave(QString folder);
 
 private:
 

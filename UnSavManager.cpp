@@ -50,6 +50,8 @@ void UnSavManager::createConnexions()
     connect(mLoadButton,    SIGNAL(clicked()),  this,           SLOT(moveRight()));
     connect(mStigButton,    SIGNAL(clicked()),  mSetgsDialog,   SLOT(exec()));
     connect(mLachButton,    SIGNAL(clicked()),  this,           SLOT(launchGame()));
+
+    connect(mSavListLeft,   SIGNAL(saveFolderDelete(QString)),  this,   SLOT(deleteSave(QString)));
 }
 void UnSavManager::createInterface()
 {
@@ -322,5 +324,28 @@ void UnSavManager::launchGame()
         mMesgsDialog->exec();
     } else {
         mGameProcess->start(mSetgsDialog->gameDirectory());
+    }
+}
+void UnSavManager::deleteSave(QString folder)
+{
+    if (!folder.isEmpty()) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/toriel"));
+        mMesgsDialog->setDialogSize(QSize(640, 140));
+        mMesgsDialog->setType(MessageDialog::BoxType::Choice);
+        mMesgsDialog->setDialogText("* This awesome save will be removed.\n\n"
+                                    "* Are you really sure you want do this ?\n\n"
+                                    "  Y for Yes / N for No");
+        mMesgsDialog->exec();
+
+        if (mMesgsDialog->isAccepted()) {
+            QDir dir(mSetgsDialog->storageSaves()+"/"+folder);
+
+            if (dir.removeRecursively()) {
+                mSavListRight->clearAll();
+            }
+
+            loadBackupSaves();
+            loadCurrentSave();
+        }
     }
 }

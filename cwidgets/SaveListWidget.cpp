@@ -23,6 +23,10 @@ QString SaveListWidget::currentSaveFolder()
 {
     return mSavesFolder.value(mSavesGroup->checkedId());
 }
+QString SaveListWidget::saveFolder(int lID)
+{
+    return mSavesFolder.value(lID);
+}
 void SaveListWidget::setSaveFolder(int lID, QString lFolder)
 {
     mSavesFolder.insert(lID, lFolder);
@@ -41,6 +45,9 @@ void SaveListWidget::addSave(UnProfile *save)
         s->setLove(save->love());
         s->setTime(save->time());
         s->setRoom(save->room());
+        s->setIdentifier(mSavesList2.count());
+
+        connect(s, SIGNAL(deleteSaveID(int)), this, SLOT(delSaveFolder(int)));
 
     mSavesList2.append(s);
 
@@ -77,4 +84,10 @@ void SaveListWidget::loadSave(QAbstractButton *save)
 QAbstractButton * SaveListWidget::currentSave()
 {
     return mSavesGroup->button(mSavesGroup->checkedId());
+}
+
+//Slots
+void SaveListWidget::delSaveFolder(int id)
+{
+    emit saveFolderDelete(saveFolder(id));
 }

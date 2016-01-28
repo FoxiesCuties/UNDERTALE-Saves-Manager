@@ -3,6 +3,7 @@
 UnProfile::UnProfile()
 {
     createObjects();
+    createConnexions();
     createInterface();
     createSettings();
 }
@@ -13,14 +14,20 @@ void UnProfile::createObjects()
     mLoveValue      = new QLabel;
     mTimeValue      = new QLabel;
     mRoomValue      = new QLabel;
+    mDeleteBut      = new QPushButton;
     mProfileGrid    = new QGridLayout;
+}
+void UnProfile::createConnexions()
+{
+    connect(mDeleteBut, SIGNAL(clicked()), this, SLOT(deleteSave()));
 }
 void UnProfile::createInterface()
 {
-    mProfileGrid->addWidget(mNameValue, 0,0,1,2, Qt::AlignLeft);
-    mProfileGrid->addWidget(mLoveValue, 0,2,1,1, Qt::AlignLeft);
-    mProfileGrid->addWidget(mTimeValue, 0,3,1,1, Qt::AlignRight);
-    mProfileGrid->addWidget(mRoomValue, 2,0,1,4, Qt::AlignLeft);
+    mProfileGrid->addWidget(mNameValue, 0,0,1,2, Qt::AlignLeft  | Qt::AlignTop);
+    mProfileGrid->addWidget(mLoveValue, 0,2,1,1, Qt::AlignLeft  | Qt::AlignTop);
+    mProfileGrid->addWidget(mTimeValue, 0,3,1,1, Qt::AlignRight | Qt::AlignTop);
+    mProfileGrid->addWidget(mRoomValue, 2,0,1,4, Qt::AlignLeft  | Qt::AlignBottom);
+    mProfileGrid->addWidget(mDeleteBut, 2,3,1,1, Qt::AlignRight | Qt::AlignBottom);
 }
 void UnProfile::createSettings()
 {
@@ -34,10 +41,15 @@ void UnProfile::createSettings()
     this->setFixedHeight(90);
     this->setCheckable(true);
     this->setLayout(mProfileGrid);
-    this->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    this->setContentsMargins(6,0,6,6);
+    this->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored);
 }
 
 //Setters
+void UnProfile::setIdentifier(int id)
+{
+    mSaveIdInt = id;
+}
 void UnProfile::setName(QVariant name)
 {
     mNameVariant = name;
@@ -178,6 +190,10 @@ void UnProfile::setRoom(QVariant room)
 }
 
 //Getters
+int UnProfile::identifier()
+{
+    return mSaveIdInt;
+}
 QVariant UnProfile::name()
 {
     return mNameVariant;
@@ -193,4 +209,11 @@ QVariant UnProfile::time()
 QVariant UnProfile::room()
 {
     return mRoomVariant;
+}
+
+
+//Slots
+void UnProfile::deleteSave()
+{
+    emit deleteSaveID(identifier());
 }

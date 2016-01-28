@@ -57,6 +57,21 @@
     border: none;
     background: #222;
 }
+#ListWidget_Saves QPushButton QPushButton
+{
+    border: none;
+    height: 20px;
+    width: 20px;
+    background: transparent;
+    background-image: url(':imgs/bDel0');
+}
+#ListWidget_Saves QPushButton QPushButton:hover
+{
+    border: none;
+    height: 20px;
+    width: 20px;
+    background-image: url(':imgs/bDel1');
+}
 #ListWidget_Saves QLabel
 {
     color: white;

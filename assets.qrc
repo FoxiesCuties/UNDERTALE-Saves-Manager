@@ -17,6 +17,8 @@
         <file alias="abt1">assets/about1.png</file>
         <file alias="bLch">assets/BtnLaunch.png</file>
         <file alias="bLch1">assets/BtnLaunch1.png</file>
+        <file alias="bDel0">assets/BtnDelete0.png</file>
+        <file alias="bDel1">assets/BtnDelete1.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file alias="DTM">assets/DTM-Mono.otf</file>
