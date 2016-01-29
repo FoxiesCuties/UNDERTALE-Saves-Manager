@@ -19,6 +19,13 @@ void ProgressiveText::createConnexions()
 }
 
 //Methods
+bool ProgressiveText::isFinish()
+{
+    if(mCharCount == 0)
+        return true;
+    else
+        return false;
+}
 void ProgressiveText::setProgressiveText(QString text)
 {
     mString = text;

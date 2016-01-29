@@ -15,7 +15,7 @@ public:
     void createObjects();
     void createConnexions();
 
-    void setText();
+    bool isFinish();
     void setProgressiveText(QString text);
 
 public slots:

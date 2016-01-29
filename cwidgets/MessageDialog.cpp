@@ -56,18 +56,20 @@ void MessageDialog::setDialogPixmap(QPixmap pixmap)
 //Events
 void MessageDialog::keyPressEvent(QKeyEvent *event)
 {
-    if (mType == BoxType::Choice) {
-        if (event->key() == Qt::Key_Y) {
-            mValue = true;
-            close();
-        }
-        if (event->key() == Qt::Key_N) {
-            mValue = false;
-            close();
-        }
-    } else if (mType == BoxType::Confirm) {
-        if (event->key() == Qt::Key_Return) {
-            close();
+    if (mMessageTextEdit->isFinish()) {
+        if (mType == BoxType::Choice) {
+            if (event->key() == Qt::Key_Y) {
+                mValue = true;
+                close();
+            }
+            if (event->key() == Qt::Key_N) {
+                mValue = false;
+                close();
+            }
+        } else if (mType == BoxType::Confirm) {
+            if (event->key() == Qt::Key_Return) {
+                close();
+            }
         }
     }
 }
