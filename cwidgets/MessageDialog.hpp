@@ -4,6 +4,7 @@
 #include <QtWidgets>
 
 #include "cwidgets/QHSpace.hpp"
+#include "cwidgets/ProgressiveText.hpp"
 
 class MessageDialog : public QDialog
 {
@@ -32,12 +33,12 @@ public:
     
 private:
 
-    BoxType     mType;
-    bool        mValue;
+    BoxType         mType;
+    bool            mValue;
 
-    QHBoxLayout *mMessageHBox;
-    QLabel      *mMessageLabel;
-    QTextEdit   *mMessageTextEdit;
+    QLabel          *mMessageLabel;
+    ProgressiveText *mMessageTextEdit;
+    QHBoxLayout     *mMessageHBox;
 };
 
 #endif // MESSAGEDIALOG_HPP

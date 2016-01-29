@@ -11,7 +11,7 @@ MessageDialog::MessageDialog(QWidget *parent) : QDialog(parent)
 void MessageDialog::createObjects()
 {
     mMessageLabel       = new QLabel;
-    mMessageTextEdit    = new QTextEdit;
+    mMessageTextEdit    = new ProgressiveText;
     mMessageHBox        = new QHBoxLayout;
 }
 void MessageDialog::createInterface()
@@ -46,7 +46,7 @@ void MessageDialog::setDialogSize(QSize size)
 }
 void MessageDialog::setDialogText(QString text)
 {
-    mMessageTextEdit->setText(text);
+    mMessageTextEdit->setProgressiveText(text);
 }
 void MessageDialog::setDialogPixmap(QPixmap pixmap)
 {

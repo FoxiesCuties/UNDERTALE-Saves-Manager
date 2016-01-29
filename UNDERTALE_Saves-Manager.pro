@@ -1,4 +1,4 @@
-QT       += core gui widgets
+QT       += core gui widgets multimedia
 
 TEMPLATE = app
 
@@ -15,6 +15,7 @@ SOURCES +=  main.cpp                        \
             cwidgets/TPushButton.cpp        \
             cwidgets/MessageDialog.cpp      \
             cwidgets/SaveListWidget.cpp     \
+            cwidgets/ProgressiveText.cpp
 
 HEADERS  += About.hpp                       \
             Settings.hpp                    \
@@ -24,6 +25,7 @@ HEADERS  += About.hpp                       \
             cwidgets/TPushButton.hpp        \
             cwidgets/MessageDialog.hpp      \
             cwidgets/SaveListWidget.hpp     \
+            cwidgets/ProgressiveText.hpp
 
 RESOURCES +=                                \
             assets.qrc

@@ -35,4 +35,7 @@
         <file alias="abtWtm">assets/about/back.png</file>
         <file alias="abtGit">assets/about/github.png</file>
     </qresource>
+    <qresource prefix="/snds">
+        <file alias="chat">assets/snds/chat.wav</file>
+    </qresource>
 </RCC>
