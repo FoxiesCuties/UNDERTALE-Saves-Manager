@@ -17,15 +17,11 @@ public:
     void createSettings();
 
     int currentSaveID();
-
     QString currentSaveFolder();
     QString saveFolder(int lID);
-
     void setSaveFolder(int lID, QString lFolder);
     void clearAll();
     void addSave(UnProfile *save);
-    void loadSave(QAbstractButton *save);
-
     QAbstractButton * currentSave();
 
 private slots:

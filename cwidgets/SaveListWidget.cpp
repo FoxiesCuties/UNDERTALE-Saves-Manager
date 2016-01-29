@@ -6,6 +6,7 @@ SaveListWidget::SaveListWidget()
     createSettings();
 }
 
+//Organisers
 void SaveListWidget::createObjects()
 {
     mSavesGroup = new QButtonGroup;
@@ -15,6 +16,7 @@ void SaveListWidget::createSettings()
     mSavesGroup->setExclusive(true);
 }
 
+//Methods
 int SaveListWidget::currentSaveID()
 {
     return mSavesGroup->checkedId();
@@ -31,7 +33,6 @@ void SaveListWidget::setSaveFolder(int lID, QString lFolder)
 {
     mSavesFolder.insert(lID, lFolder);
 }
-
 void SaveListWidget::clearAll()
 {
     this->clear();
@@ -59,28 +60,6 @@ void SaveListWidget::addSave(UnProfile *save)
     addItem(item);
     setItemWidget(item, mProfileSavesList.last());
 }
-void SaveListWidget::loadSave(QAbstractButton *save)
-{
-    this->clear();
-    mProfileSavesList.clear();
-
-    UnProfile *tempProfile = qobject_cast<UnProfile *>(save);
-
-    UnProfile *lProfile = new UnProfile;
-        lProfile->setName(tempProfile->name());
-        lProfile->setLove(tempProfile->love());
-        lProfile->setTime(tempProfile->time());
-        lProfile->setRoom(tempProfile->room());
-
-    mProfileSavesList.append(lProfile);
-
-    QListWidgetItem *item = new QListWidgetItem;
-        item->setSizeHint(QSize(item->sizeHint().width(), mProfileSavesList.last()->height()+2));
-
-    addItem(item);
-    setItemWidget(item, s);
-}
-
 QAbstractButton * SaveListWidget::currentSave()
 {
     return mSavesGroup->button(mSavesGroup->checkedId());
