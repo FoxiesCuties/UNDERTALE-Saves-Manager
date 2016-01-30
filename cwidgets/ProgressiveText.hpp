@@ -4,6 +4,8 @@
 #include <QtWidgets>
 #include <QSoundEffect>
 
+#include "Settings.hpp"
+
 class ProgressiveText : public QTextEdit
 {
     Q_OBJECT
@@ -23,6 +25,8 @@ public slots:
     void appendCharToText();
 
 private:
+
+    Settings        *mTextSettings;
 
     int             mCharCount;
     QString         mString;

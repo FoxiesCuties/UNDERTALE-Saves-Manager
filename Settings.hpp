@@ -19,6 +19,7 @@ public:
     void createObjectName();
     void createSettings();
 
+    int textSpeed();
     void initSettings();
     QString storageSaves();
     QString currentSave();
@@ -31,6 +32,7 @@ public:
 
 private slots:
 
+    void setTextSpeed(int pos);
     void setStorageSaves();
     void setCurrentSave();
     void setPathToGame();
@@ -41,6 +43,20 @@ private:
     QString         mCSSTheme;
     QString         mAppDataLocal;
 
+    //MessageBox
+    QLabel          *mSoundLab;
+    QCheckBox       *mSoundChk;
+    QLabel          *mSpeedLab;
+    QSlider         *mSpeedSld;
+    QLabel          *mSpValLab;
+    QGridLayout     *mMesBoxGrid;
+    QGroupBox       *mMesBoxGroup;
+    //End_MessageBox
+
+    //
+    QGroupBox       *mPathsGroup;
+    QVBoxLayout     *mGroupsVBox;
+    //
     QFile           *mCSSFile;
     QLabel          *mGameLab;
     QLabel          *mStorLab;

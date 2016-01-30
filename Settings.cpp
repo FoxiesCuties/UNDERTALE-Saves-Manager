@@ -12,8 +12,28 @@ Settings::Settings(QWidget *parent) : QDialog(parent)
 //Organizers
 void Settings::createObjects()
 {
-    //Declaration Only
     mCSSFile            = new QFile;
+
+    //SettingsTitle
+    mSettingsCButton    = new QPushButton;
+    mSettingsTHbox      = new QHBoxLayout;
+    mSettingsPixmap     = new QLabel;
+    mSettingsTitle      = new QLabel;
+    mTSettingsVBox      = new QVBoxLayout;
+    mSettingsTButton    = new TPushButton(this);
+    //End_SettingsTitle
+
+    //MessageBox
+    mSoundLab           = new QLabel;
+    mSoundChk           = new QCheckBox;
+    mSpeedLab           = new QLabel;
+    mSpeedSld           = new QSlider;
+    mSpValLab           = new QLabel;
+    mMesBoxGrid         = new QGridLayout;
+    mMesBoxGroup        = new QGroupBox;
+    //End_MessageBox
+
+    //PathsDefine
     mGameLab            = new QLabel;
     mGameLin            = new QLineEdit;
     mGameBut            = new QPushButton;
@@ -24,26 +44,26 @@ void Settings::createObjects()
     mExecLin            = new QLineEdit;
     mExecBut            = new QPushButton;
     mSettingsGrid       = new QGridLayout;
-    mSettingsCButton    = new QPushButton;
-    mSettingsTHbox      = new QHBoxLayout;
-    mSettingsTButton    = new TPushButton(this);
-    mSettingsVbox       = new QVBoxLayout;
-    mSettingsPixmap     = new QLabel;
-    mTSettingsVBox      = new QVBoxLayout;
-    mSettingsTitle      = new QLabel;
+    mPathsGroup         = new QGroupBox;
+    //End_PathsDefine
 
-    mAppDataLocal   = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-    mDocumentsData  = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    mCFGSettings    = new QSettings(QCoreApplication::applicationDirPath()+"/config.cfg", QSettings::IniFormat);
+    mGroupsVBox         = new QVBoxLayout;
+    mSettingsVbox       = new QVBoxLayout;
+
+    //General
+    mAppDataLocal       = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+    mDocumentsData      = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    mCFGSettings        = new QSettings(QCoreApplication::applicationDirPath()+"/config.cfg", QSettings::IniFormat);
     mCSSFile->setFileName(":themes/thmD");
     mCSSFile->open(QIODevice::ReadOnly | QIODevice::Text);
 }
 void Settings::createConnexions()
 {
-    connect(mGameBut,               SIGNAL(clicked()),  this,   SLOT(setCurrentSave()));
-    connect(mStorBut,               SIGNAL(clicked()),  this,   SLOT(setStorageSaves()));
-    connect(mExecBut,               SIGNAL(clicked()),  this,   SLOT(setPathToGame()));
-    connect(mSettingsCButton,       SIGNAL(clicked()),  this,   SLOT(close()));
+    connect(mGameBut,               SIGNAL(clicked()),          this,   SLOT(setCurrentSave()));
+    connect(mStorBut,               SIGNAL(clicked()),          this,   SLOT(setStorageSaves()));
+    connect(mExecBut,               SIGNAL(clicked()),          this,   SLOT(setPathToGame()));
+    connect(mSettingsCButton,       SIGNAL(clicked()),          this,   SLOT(close()));
+    connect(mSpeedSld,              SIGNAL(valueChanged(int)),  this,   SLOT(setTextSpeed(int)));
 }
 void Settings::createInterface()
 {
@@ -63,6 +83,27 @@ void Settings::createInterface()
     mSettingsTButton->setLayout(mTSettingsVBox);
     mSettingsTButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Ignored);
     mSettingsTButton->setFixedHeight(90);
+
+    /**/
+    mSoundLab->setText("Sound : ");
+
+    mSpeedLab->setText("Text speed : ");
+
+    mSpeedSld->setOrientation(Qt::Horizontal);
+    mSpeedSld->setRange(0, 3);
+    mSpeedSld->setFixedWidth(30);
+
+    mMesBoxGrid->addWidget(mSoundLab,0,0,1,1, Qt::AlignRight);
+    mMesBoxGrid->addWidget(mSoundChk,0,1,1,1, Qt::AlignLeft);
+    mMesBoxGrid->addWidget(mSpeedLab,1,0,1,1, Qt::AlignRight);
+    mMesBoxGrid->addWidget(mSpeedSld,1,1,1,1, Qt::AlignLeft);
+    mMesBoxGrid->addWidget(mSpValLab,1,3,1,1, Qt::AlignRight);
+
+    mMesBoxGroup->setTitle("Message Boxes");
+    mMesBoxGroup->setLayout(mMesBoxGrid);
+    mMesBoxGroup->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Minimum);
+    mMesBoxGroup->setFixedWidth(240);
+    /**/
 
     mGameLab->setText("Game save directory");
 
@@ -91,14 +132,26 @@ void Settings::createInterface()
     mSettingsGrid->addWidget(mExecLab,  4,0,1,1);
     mSettingsGrid->addWidget(mExecLin,  5,0,1,1);
     mSettingsGrid->addWidget(mExecBut,  5,1,1,1);
-    mSettingsGrid->setContentsMargins(11, 7, 11, 11);
+    mSettingsGrid->setContentsMargins(11, 15, 11, 11);
     mSettingsGrid->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
 
+    mPathsGroup->setTitle("Paths Define");
+    mPathsGroup->setLayout(mSettingsGrid);
+
+    mGroupsVBox->addWidget(mMesBoxGroup);
+    mGroupsVBox->addWidget(mPathsGroup);
+    mGroupsVBox->setContentsMargins(11,7,11,11);
+
     mSettingsVbox->addWidget(mSettingsTButton);
-    mSettingsVbox->addLayout(mSettingsGrid);
+    mSettingsVbox->addLayout(mGroupsVBox);
 }
 void Settings::createObjectName()
 {
+    mSoundLab->setObjectName("Label_Settings_Header");
+    mSoundChk->setObjectName("CheckBox_Settings");
+    mSpeedLab->setObjectName("Label_Settings_Header");
+    mSpeedSld->setObjectName("Slider_Settings");
+    mSpValLab->setObjectName("Label_Settings_Value");
     mSettingsTitle->setObjectName("Label_Settings_Title");
     mSettingsTButton->setObjectName("Button_Settings_Title");
     mSettingsCButton->setObjectName("Button_Settings_Close");
@@ -115,13 +168,16 @@ void Settings::createSettings()
     this->setContentsMargins(-8, -8, -8, -8);
     this->setLayout(mSettingsVbox);
     this->initSettings();
-    this->setFixedSize(500, 270);
+    this->setFixedSize(500, 400);
     this->setWindowTitle("UNDERTALE Save Manager - " + mSettingsTitle->text());
 }
 
 //Methods
 void Settings::initSettings()
 {
+    if (!mCFGSettings->contains("MessBoxSpeed")) {
+        mCFGSettings->setValue("MessBoxSpeed", 2);
+    }
     if (!mCFGSettings->contains("SaveFolder")) {
         mCFGSettings->setValue("SaveFolder", mAppDataLocal+"/UNDERTALE");
     }
@@ -130,9 +186,24 @@ void Settings::initSettings()
     }
 
     mCSSTheme = mCSSFile->readAll();
+    setTextSpeed(mCFGSettings->value("MessBoxSpeed").toInt());
     mGameLin->setText(currentSave());
     mStorLin->setText(storageSaves());
     mExecLin->setText(gameDirectory());
+}
+int Settings::textSpeed()
+{
+    if (mCFGSettings->value("MessBoxSpeed") == 0) {
+        return 30;
+    } else if (mCFGSettings->value("MessBoxSpeed") == 1) {
+        return 20;
+    } else if (mCFGSettings->value("MessBoxSpeed") == 2) {
+        return 10;
+    } else if (mCFGSettings->value("MessBoxSpeed") == 3) {
+        return 0;
+    } else {
+        return 20;
+    }
 }
 QString Settings::storageSaves()
 {
@@ -152,6 +223,30 @@ QString Settings::gameDirectory()
 }
 
 //Slots
+void Settings::setTextSpeed(int pos)
+{
+    mCFGSettings->setValue("MessBoxSpeed", pos);
+
+    if (mCFGSettings->value("MessBoxSpeed") == 0) {
+        mSoundChk->setEnabled(true);
+        mSpeedSld->setValue(0);
+        mSpValLab->setText("Slow");
+    } else if (mCFGSettings->value("MessBoxSpeed") == 1) {
+        mSoundChk->setEnabled(true);
+        mSpeedSld->setValue(1);
+        mSpValLab->setText("Normal");
+    } else if (mCFGSettings->value("MessBoxSpeed") == 2) {
+        mSoundChk->setEnabled(true);
+        mSpeedSld->setValue(2);
+        mSpValLab->setText("Fast");
+    } else if (mCFGSettings->value("MessBoxSpeed") == 3) {
+        mSoundChk->setEnabled(false);
+        mSpeedSld->setValue(3);
+        mSpValLab->setText("Instant");
+    } else {
+        setTextSpeed(2);
+    }
+}
 void Settings::setStorageSaves()
 {
     QString storDir = QFileDialog::getExistingDirectory(this, tr("Locate your UNDERTALE directory"));

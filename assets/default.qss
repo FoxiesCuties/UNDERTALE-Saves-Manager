@@ -235,6 +235,44 @@
     background: #111;
     border: 3px solid white;
 }
+#Dialog_Settings QGroupBox::title
+{
+    background: white;
+    color: black;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: bold;
+}
+#Dialog_Settings #Label_Settings_Header
+{
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 10pt;
+}
+#Dialog_Settings #CheckBox_Settings
+{
+    border: none;
+}
+#Dialog_Settings #CheckBox_Settings::indicator:checked
+{
+    background: green;
+}
+#Dialog_Settings #CheckBox_Settings::indicator:unchecked
+{
+    background: red;
+}
+#Dialog_Settings #Slider_Settings
+{
+
+}
+#Dialog_Settings #Label_Settings_Value
+{
+    font-family: "Arial";
+    color: white;
+    font-size: 9pt;
+}
 #Dialog_Settings QLineEdit
 {
     height: 20px;
