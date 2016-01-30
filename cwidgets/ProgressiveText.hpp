@@ -28,7 +28,10 @@ private:
 
     Settings        *mTextSettings;
 
+    bool            mSoundBool;
     int             mCharCount;
+    int             mTextSpeed;
+
     QString         mString;
     QTimer          *mCharTimer;
     QSoundEffect    *mLoopSound;

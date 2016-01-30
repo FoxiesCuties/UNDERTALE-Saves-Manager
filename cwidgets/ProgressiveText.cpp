@@ -6,7 +6,7 @@ ProgressiveText::ProgressiveText()
     createConnexions();
 
     mLoopSound->setSource(QUrl("qrc:snds/chat"));
-    mLoopSound->setLoopCount(QSoundEffect::Infinite);
+
 }
 
 //Organisers
@@ -32,15 +32,21 @@ bool ProgressiveText::isFinish()
 }
 void ProgressiveText::setProgressiveText(QString text)
 {
-    mString = text;
+    mString     = text;
+    mSoundBool  = mTextSettings->soundEnabled();
+    mTextSpeed  = mTextSettings->textSpeed();
 
-    if(mTextSettings->textSpeed() == 0)
+    if (mTextSettings->textSpeed() == 0)
     {
         this->setText(mString);
     } else {
         this->clear();
         this->appendCharToText();
-        mLoopSound->play();
+
+        if (mSoundBool) {
+            mLoopSound->setLoopCount(QSoundEffect::Infinite);
+            mLoopSound->play();
+        }
     }
 }
 
@@ -51,10 +57,10 @@ void ProgressiveText::appendCharToText()
         this->moveCursor(QTextCursor::End);
         this->insertPlainText(mString.at(mCharCount++));
 
-        mCharTimer->start(mTextSettings->textSpeed());
+        mCharTimer->start(mTextSpeed);
     } else {
         mCharTimer->stop();
         mLoopSound->setLoopCount(0);
-        mCharCount=0;
+        mCharCount = 0;
     }
 }

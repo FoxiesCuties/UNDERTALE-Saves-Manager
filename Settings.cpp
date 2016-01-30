@@ -63,6 +63,7 @@ void Settings::createConnexions()
     connect(mStorBut,               SIGNAL(clicked()),          this,   SLOT(setStorageSaves()));
     connect(mExecBut,               SIGNAL(clicked()),          this,   SLOT(setPathToGame()));
     connect(mSettingsCButton,       SIGNAL(clicked()),          this,   SLOT(close()));
+    connect(mSoundChk,              SIGNAL(toggled(bool)),      this,   SLOT(setSoundEnabled(bool)));
     connect(mSpeedSld,              SIGNAL(valueChanged(int)),  this,   SLOT(setTextSpeed(int)));
 }
 void Settings::createInterface()
@@ -173,10 +174,31 @@ void Settings::createSettings()
 }
 
 //Methods
+bool Settings::soundEnabled()
+{
+    return mCFGSettings->value("MessBoxSound").toBool();
+}
+int Settings::textSpeed()
+{
+    if (mCFGSettings->value("MessBoxSpeed").toInt() == 0) {
+        return 30;
+    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 1) {
+        return 20;
+    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 2) {
+        return 10;
+    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 3) {
+        return 0;
+    } else {
+        return 20;
+    }
+}
 void Settings::initSettings()
 {
     if (!mCFGSettings->contains("MessBoxSpeed")) {
         mCFGSettings->setValue("MessBoxSpeed", 2);
+    }
+    if (!mCFGSettings->contains("MessBoxSound")) {
+        mCFGSettings->setValue("MessBoxSound", true);
     }
     if (!mCFGSettings->contains("SaveFolder")) {
         mCFGSettings->setValue("SaveFolder", mAppDataLocal+"/UNDERTALE");
@@ -187,23 +209,10 @@ void Settings::initSettings()
 
     mCSSTheme = mCSSFile->readAll();
     setTextSpeed(mCFGSettings->value("MessBoxSpeed").toInt());
+    setSoundEnabled(mCFGSettings->value("MessBoxSound").toBool());
     mGameLin->setText(currentSave());
     mStorLin->setText(storageSaves());
     mExecLin->setText(gameDirectory());
-}
-int Settings::textSpeed()
-{
-    if (mCFGSettings->value("MessBoxSpeed") == 0) {
-        return 30;
-    } else if (mCFGSettings->value("MessBoxSpeed") == 1) {
-        return 20;
-    } else if (mCFGSettings->value("MessBoxSpeed") == 2) {
-        return 10;
-    } else if (mCFGSettings->value("MessBoxSpeed") == 3) {
-        return 0;
-    } else {
-        return 20;
-    }
 }
 QString Settings::storageSaves()
 {
@@ -223,23 +232,28 @@ QString Settings::gameDirectory()
 }
 
 //Slots
+void Settings::setSoundEnabled(bool senb)
+{
+    mCFGSettings->setValue("MessBoxSound", senb);
+    mSoundChk->setEnabled(senb);
+}
 void Settings::setTextSpeed(int pos)
 {
     mCFGSettings->setValue("MessBoxSpeed", pos);
 
-    if (mCFGSettings->value("MessBoxSpeed") == 0) {
+    if (mCFGSettings->value("MessBoxSpeed").toInt() == 0) {
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(0);
         mSpValLab->setText("Slow");
-    } else if (mCFGSettings->value("MessBoxSpeed") == 1) {
+    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 1) {
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(1);
         mSpValLab->setText("Normal");
-    } else if (mCFGSettings->value("MessBoxSpeed") == 2) {
+    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 2) {
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(2);
         mSpValLab->setText("Fast");
-    } else if (mCFGSettings->value("MessBoxSpeed") == 3) {
+    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 3) {
         mSoundChk->setEnabled(false);
         mSpeedSld->setValue(3);
         mSpValLab->setText("Instant");
