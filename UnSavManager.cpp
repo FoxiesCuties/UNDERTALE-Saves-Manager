@@ -235,7 +235,7 @@ void UnSavManager::moveRight()
         }
 
         if (saveExist && !isBackup) {//If current save 'exist' AND 'doesn't backup'
-                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/toriel"));
+                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
                 mMesgsDialog->setType(MessageDialog::BoxType::Choice);
                 mMesgsDialog->setDialogText("* This save are no backup.\n\n"
@@ -256,7 +256,7 @@ void UnSavManager::moveRight()
         }
         else {
             if (alreadyExist(fromString, destString)) {
-                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/toriel"));
+                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
                 mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
                 mMesgsDialog->setDialogText("* This save aready exist.\n\n"
@@ -293,7 +293,7 @@ void UnSavManager::moveLeft()
     }
 
     if (exist) {//If current save already exist
-            mMesgsDialog->setDialogPixmap(QPixmap(":imgs/toriel"));
+            mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
             mMesgsDialog->setDialogSize(QSize(600, 140));
             mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
             mMesgsDialog->setDialogText("* This save aready exist.\n\n"
@@ -315,7 +315,7 @@ void UnSavManager::launchGame()
 {
     if (mSetgsDialog->gameDirectory().isEmpty()) {
 
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/toriel"));
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
         mMesgsDialog->setDialogText("* Path to the game not initialised.\n\n"
@@ -329,7 +329,7 @@ void UnSavManager::launchGame()
 void UnSavManager::deleteSave(QString folder)
 {
     if (!folder.isEmpty()) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/toriel"));
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
         mMesgsDialog->setDialogSize(QSize(640, 140));
         mMesgsDialog->setType(MessageDialog::BoxType::Choice);
         mMesgsDialog->setDialogText("* This awesome save will be removed.\n\n"

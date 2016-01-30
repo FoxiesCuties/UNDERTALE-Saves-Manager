@@ -12,7 +12,6 @@
         <file alias="bLoad1">assets/BtnLoad1.png</file>
         <file alias="bSave1">assets/BtnSave1.png</file>
         <file alias="bSet1">assets/BtnSet1.png</file>
-        <file alias="toriel">assets/toriel.png</file>
         <file alias="abt0">assets/about0.png</file>
         <file alias="abt1">assets/about1.png</file>
         <file alias="bLch">assets/BtnLaunch.png</file>
@@ -37,5 +36,10 @@
     </qresource>
     <qresource prefix="/snds">
         <file alias="chat">assets/snds/chat.wav</file>
+    </qresource>
+    <qresource prefix="/imgs/avatars">
+        <file alias="flowey">assets/imgs/avatars/flowey.png</file>
+        <file alias="sans">assets/imgs/avatars/sans.png</file>
+        <file alias="toriel">assets/imgs/avatars/toriel.png</file>
     </qresource>
 </RCC>
