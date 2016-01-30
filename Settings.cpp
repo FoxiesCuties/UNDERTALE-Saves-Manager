@@ -174,53 +174,64 @@ void Settings::createSettings()
 }
 
 //Methods
-bool Settings::soundEnabled()
-{
-    return mCFGSettings->value("MessBoxSound").toBool();
-}
 int Settings::textSpeed()
 {
-    if (mCFGSettings->value("MessBoxSpeed").toInt() == 0) {
+    int gTextSpeed = mCFGSettings->value("MessageBox/TextSpeed").toInt();
+
+    switch (gTextSpeed) {
+    case 0:
         return 30;
-    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 1) {
+        break;
+    case 1:
         return 20;
-    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 2) {
+        break;
+    case 2:
         return 10;
-    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 3) {
+        break;
+    case 3:
         return 0;
-    } else {
+        break;
+    default:
         return 20;
+        break;
     }
+}
+bool Settings::soundEnabled()
+{
+    return mCFGSettings->value("MessageBox/SoundEffect").toBool();
 }
 void Settings::initSettings()
 {
-    if (!mCFGSettings->contains("MessBoxSpeed")) {
-        mCFGSettings->setValue("MessBoxSpeed", 2);
+    if (!mCFGSettings->contains("MessageBox/TextSpeed")) {
+        mCFGSettings->setValue("MessageBox/TextSpeed", 2);
     }
-    if (!mCFGSettings->contains("MessBoxSound")) {
-        mCFGSettings->setValue("MessBoxSound", true);
+
+    if (!mCFGSettings->contains("MessageBox/SoundEffect")) {
+        mCFGSettings->setValue("MessageBox/SoundEffect", true);
     }
-    if (!mCFGSettings->contains("SaveFolder")) {
-        mCFGSettings->setValue("SaveFolder", mAppDataLocal+"/UNDERTALE");
+
+    if (!mCFGSettings->contains("Paths/CurrentSave")) {
+        mCFGSettings->setValue("Paths/CurrentSave", mAppDataLocal+"/UNDERTALE");
     }
-    if (!mCFGSettings->contains("StoreFolder")) {
-        mCFGSettings->setValue("StoreFolder", mDocumentsData+"/UNDERTALE_BACKUPS");
+
+    if (!mCFGSettings->contains("Paths/BackupsSaves")) {
+        mCFGSettings->setValue("Paths/BackupsSaves", mDocumentsData+"/UNDERTALE_BACKUPS");
     }
 
     mCSSTheme = mCSSFile->readAll();
-    setTextSpeed(mCFGSettings->value("MessBoxSpeed").toInt());
-    setSoundEnabled(mCFGSettings->value("MessBoxSound").toBool());
+    setTextSpeed(mCFGSettings->value("MessageBox/TextSpeed").toInt());
+    setSoundEnabled(mCFGSettings->value("MessageBox/SoundEffect").toBool());
     mGameLin->setText(currentSave());
     mStorLin->setText(storageSaves());
     mExecLin->setText(gameDirectory());
 }
 QString Settings::storageSaves()
 {
-    return mCFGSettings->value("StoreFolder").toString();
+    return mCFGSettings->value("Paths/BackupsSaves").toString();
 }
 QString Settings::currentSave()
 {
-    return mCFGSettings->value("SaveFolder").toString();
+    return mCFGSettings->value("Paths/CurrentSave").toString();
 }
 QString Settings::currentTheme()
 {
@@ -228,38 +239,44 @@ QString Settings::currentTheme()
 }
 QString Settings::gameDirectory()
 {
-    return mCFGSettings->value("GameFolder").toString();
+    return mCFGSettings->value("Paths/GameExecutable").toString();
 }
 
 //Slots
-void Settings::setSoundEnabled(bool senb)
+void Settings::setTextSpeed(int speed)
 {
-    mCFGSettings->setValue("MessBoxSound", senb);
-    mSoundChk->setChecked(senb);
-}
-void Settings::setTextSpeed(int pos)
-{
-    mCFGSettings->setValue("MessBoxSpeed", pos);
+    mCFGSettings->setValue("MessageBox/TextSpeed", speed);
 
-    if (mCFGSettings->value("MessBoxSpeed").toInt() == 0) {
+    switch (speed) {
+    case 0:
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(0);
         mSpValLab->setText("Slow");
-    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 1) {
+        break;
+    case 1:
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(1);
         mSpValLab->setText("Normal");
-    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 2) {
+        break;
+    case 2:
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(2);
         mSpValLab->setText("Fast");
-    } else if (mCFGSettings->value("MessBoxSpeed").toInt() == 3) {
+        break;
+    case 3:
         mSoundChk->setEnabled(false);
         mSpeedSld->setValue(3);
         mSpValLab->setText("Instant");
-    } else {
+        break;
+    default:
         setTextSpeed(2);
+        break;
     }
+}
+void Settings::setSoundEnabled(bool senb)
+{
+    mCFGSettings->setValue("MessageBox/SoundEffect", senb);
+    mSoundChk->setChecked(senb);
 }
 void Settings::setStorageSaves()
 {
@@ -267,7 +284,7 @@ void Settings::setStorageSaves()
 
     if (!storDir.isEmpty()) {
         mGameLin->setText(storDir);
-        mCFGSettings->setValue("StoreFolder", storDir);
+        mCFGSettings->setValue("Paths/BackupsSaves", storDir);
     }
 }
 void Settings::setCurrentSave()
@@ -276,19 +293,19 @@ void Settings::setCurrentSave()
 
     if (!unDir.isEmpty()) {
         mGameLin->setText(unDir);
-        mCFGSettings->setValue("SaveFolder", unDir);
+        mCFGSettings->setValue("Paths/CurrentSave", unDir);
     }
 }
 void Settings::setPathToGame()
 {
-    QDir    gameDir(mCFGSettings->value("GameFolder").toString());
+    QDir    gameDir(mCFGSettings->value("Paths/GameExecutable").toString());
             gameDir.cdUp();
 
     QString gameDirStr = QFileDialog::getOpenFileName(this, tr("Locate your UNDERTALE Program directory"),gameDir.path(),"Game (UNDERTALE.exe)");
 
     if (!gameDirStr.isEmpty()) {
         mExecLin->setText(gameDirStr);
-        mCFGSettings->setValue("GameFolder", gameDirStr);
+        mCFGSettings->setValue("Paths/GameExecutable", gameDirStr);
     }
 }
 

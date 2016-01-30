@@ -19,8 +19,8 @@ public:
     void createObjectName();
     void createSettings();
 
-    bool soundEnabled();
     int textSpeed();
+    bool soundEnabled();
     void initSettings();
     QString storageSaves();
     QString currentSave();
@@ -33,8 +33,8 @@ public:
 
 private slots:
 
+    void setTextSpeed(int speed);
     void setSoundEnabled(bool senb);
-    void setTextSpeed(int pos);
     void setStorageSaves();
     void setCurrentSave();
     void setPathToGame();
