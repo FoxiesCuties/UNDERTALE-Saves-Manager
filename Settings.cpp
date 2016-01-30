@@ -235,7 +235,7 @@ QString Settings::gameDirectory()
 void Settings::setSoundEnabled(bool senb)
 {
     mCFGSettings->setValue("MessBoxSound", senb);
-    mSoundChk->setEnabled(senb);
+    mSoundChk->setChecked(senb);
 }
 void Settings::setTextSpeed(int pos)
 {
