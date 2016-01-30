@@ -6,7 +6,6 @@ Features:
  * Backup your current UNDERTALE save.
  * Load chosen backup save in 1 click.
  * Launch the game form the software.
- * File contents are saved in the URL so you can share files
 
 
 
@@ -18,5 +17,5 @@ That really help me for naming saveroom number
 This site is awesome lots of ressources that helped me
 * http://rawr.ws/undertale
 
-Thank to Dreamslike for betatesting and minor bug tracking
-* http://steamcommunity.com/profiles/76561198008639743/
+Thank to DreamsLike for betatesting and minor bug tracking
+* http://steamcommunity.com/id/DreamsLike/
