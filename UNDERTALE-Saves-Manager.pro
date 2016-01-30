@@ -4,7 +4,7 @@ TEMPLATE = app
 
 CONFIG += c++11
 
-TARGET = UNDERTALE_Saves-Manager
+TARGET = UNDERTALE-Saves-Manager
 
 SOURCES +=  main.cpp                        \
             About.cpp                       \
