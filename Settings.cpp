@@ -47,6 +47,8 @@ void Settings::createObjects()
     mPathsGroup         = new QGroupBox;
     //End_PathsDefine
 
+    mExecStm            = new QLabel;
+    mSteamChk           = new QCheckBox;
     mGroupsVBox         = new QVBoxLayout;
     mSettingsVbox       = new QVBoxLayout;
 
@@ -65,6 +67,7 @@ void Settings::createConnexions()
     connect(mSettingsCButton,       SIGNAL(clicked()),          this,   SLOT(close()));
     connect(mSoundChk,              SIGNAL(toggled(bool)),      this,   SLOT(setSoundEnabled(bool)));
     connect(mSpeedSld,              SIGNAL(valueChanged(int)),  this,   SLOT(setTextSpeed(int)));
+    connect(mSteamChk,              SIGNAL(toggled(bool)),      this,   SLOT(setSteamEnabled(bool)));
 }
 void Settings::createInterface()
 {
@@ -120,21 +123,24 @@ void Settings::createInterface()
 
     mExecLab->setText("Game executable path");
 
+    mExecStm->setText("Steam version");
+
     mExecLin->setReadOnly(true);
 
     mExecBut->setText(". . .");
 
     mSettingsGrid->addWidget(mGameLab,  0,0,1,1);
-    mSettingsGrid->addWidget(mGameLin,  1,0,1,1);
-    mSettingsGrid->addWidget(mGameBut,  1,1,1,1);
+    mSettingsGrid->addWidget(mGameLin,  1,0,1,6);
+    mSettingsGrid->addWidget(mGameBut,  1,7,1,1);
     mSettingsGrid->addWidget(mStorLab,  2,0,1,1);
-    mSettingsGrid->addWidget(mStorLin,  3,0,1,1);
-    mSettingsGrid->addWidget(mStorBut,  3,1,1,1);
+    mSettingsGrid->addWidget(mStorLin,  3,0,1,6);
+    mSettingsGrid->addWidget(mStorBut,  3,7,1,1);
     mSettingsGrid->addWidget(mExecLab,  4,0,1,1);
-    mSettingsGrid->addWidget(mExecLin,  5,0,1,1);
-    mSettingsGrid->addWidget(mExecBut,  5,1,1,1);
+    mSettingsGrid->addWidget(mSteamChk, 4,1,1,1, Qt::AlignRight);
+    mSettingsGrid->addWidget(mExecStm,  4,2,1,1, Qt::AlignLeft);
+    mSettingsGrid->addWidget(mExecLin,  5,0,1,6);
+    mSettingsGrid->addWidget(mExecBut,  5,7,1,1);
     mSettingsGrid->setContentsMargins(11, 15, 11, 11);
-    mSettingsGrid->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
 
     mPathsGroup->setTitle("Paths Define");
     mPathsGroup->setLayout(mSettingsGrid);
@@ -149,7 +155,6 @@ void Settings::createInterface()
 void Settings::createObjectName()
 {
     mSoundLab->setObjectName("Label_Settings_Header");
-    mSoundChk->setObjectName("CheckBox_Settings");
     mSpeedLab->setObjectName("Label_Settings_Header");
     mSpeedSld->setObjectName("Slider_Settings");
     mSpValLab->setObjectName("Label_Settings_Value");
@@ -162,6 +167,7 @@ void Settings::createObjectName()
     mGameLab->setObjectName("Label_Settings_Tip");
     mStorLab->setObjectName("Label_Settings_Tip");
     mExecLab->setObjectName("Label_Settings_Tip");
+    mExecStm->setObjectName("Label_Settings_Tip");
 }
 void Settings::createSettings()
 {
@@ -200,6 +206,10 @@ bool Settings::soundEnabled()
 {
     return mCFGSettings->value("MessageBox/SoundEffect").toBool();
 }
+bool Settings::steamEnabled()
+{
+    return mCFGSettings->value("Paths/SteamVersion").toBool();
+}
 void Settings::initSettings()
 {
     if (!mCFGSettings->contains("MessageBox/TextSpeed")) {
@@ -208,6 +218,10 @@ void Settings::initSettings()
 
     if (!mCFGSettings->contains("MessageBox/SoundEffect")) {
         mCFGSettings->setValue("MessageBox/SoundEffect", true);
+    }
+
+    if (!mCFGSettings->contains("Paths/SteamVersion")) {
+        mCFGSettings->setValue("Paths/SteamVersion", false);
     }
 
     if (!mCFGSettings->contains("Paths/CurrentSave")) {
@@ -221,6 +235,7 @@ void Settings::initSettings()
     mCSSTheme = mCSSFile->readAll();
     setTextSpeed(mCFGSettings->value("MessageBox/TextSpeed").toInt());
     setSoundEnabled(mCFGSettings->value("MessageBox/SoundEffect").toBool());
+    setSteamEnabled(mCFGSettings->value("Paths/SteamVersion").toBool());
     mGameLin->setText(currentSave());
     mStorLin->setText(storageSaves());
     mExecLin->setText(gameDirectory());
@@ -247,23 +262,29 @@ void Settings::setTextSpeed(int speed)
 {
     mCFGSettings->setValue("MessageBox/TextSpeed", speed);
 
+    bool soundEnabled = mCFGSettings->value("MessageBox/SoundEffect").toBool();
+
     switch (speed) {
     case 0:
+        mSoundChk->setChecked(soundEnabled);
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(0);
         mSpValLab->setText("Slow");
         break;
     case 1:
+        mSoundChk->setChecked(soundEnabled);
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(1);
         mSpValLab->setText("Normal");
         break;
     case 2:
+        mSoundChk->setChecked(soundEnabled);
         mSoundChk->setEnabled(true);
         mSpeedSld->setValue(2);
         mSpValLab->setText("Fast");
         break;
     case 3:
+        mSoundChk->setChecked(false);
         mSoundChk->setEnabled(false);
         mSpeedSld->setValue(3);
         mSpValLab->setText("Instant");
@@ -273,10 +294,15 @@ void Settings::setTextSpeed(int speed)
         break;
     }
 }
-void Settings::setSoundEnabled(bool senb)
+void Settings::setSoundEnabled(bool isEnabled)
 {
-    mCFGSettings->setValue("MessageBox/SoundEffect", senb);
-    mSoundChk->setChecked(senb);
+    mCFGSettings->setValue("MessageBox/SoundEffect", isEnabled);
+    mSoundChk->setChecked(isEnabled);
+}
+void Settings::setSteamEnabled(bool isSteam)
+{
+    mCFGSettings->setValue("Paths/SteamVersion", isSteam);
+    mSteamChk->setChecked(isSteam);
 }
 void Settings::setStorageSaves()
 {

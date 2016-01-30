@@ -313,17 +313,20 @@ void UnSavManager::minimiseManager()
 }
 void UnSavManager::launchGame()
 {
-    if (mSetgsDialog->gameDirectory().isEmpty()) {
-
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
-        mMesgsDialog->setDialogSize(QSize(600, 140));
-        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-        mMesgsDialog->setDialogText("* Path to the game not initialised.\n\n"
-                                    "* Please define it in 'SETTINGS'\n\n"
-                                    "  ENTER for closing this box");
-        mMesgsDialog->exec();
-    } else {
-        mGameProcess->start(mSetgsDialog->gameDirectory());
+    if (mSetgsDialog->steamEnabled()) {//If Steam version
+        mGameProcess->startDetached("explorer.exe", QStringList() <<"steam://rungameid/391540");
+    } else {//If DRM-Free version
+        if (mSetgsDialog->gameDirectory().isEmpty()) {
+            mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
+            mMesgsDialog->setDialogSize(QSize(600, 140));
+            mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+            mMesgsDialog->setDialogText("* Path to the game not initialised.\n\n"
+                                        "* Please define it in 'SETTINGS'\n\n"
+                                        "  ENTER for closing this box");
+            mMesgsDialog->exec();
+        } else {
+            mGameProcess->startDetached(mSetgsDialog->gameDirectory());
+        }
     }
 }
 void UnSavManager::deleteSave(QString folder)

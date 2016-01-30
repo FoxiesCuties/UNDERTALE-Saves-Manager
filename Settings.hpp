@@ -21,6 +21,7 @@ public:
 
     int textSpeed();
     bool soundEnabled();
+    bool steamEnabled();
     void initSettings();
     QString storageSaves();
     QString currentSave();
@@ -34,7 +35,8 @@ public:
 private slots:
 
     void setTextSpeed(int speed);
-    void setSoundEnabled(bool senb);
+    void setSoundEnabled(bool isEnabled);
+    void setSteamEnabled(bool isSteam);
     void setStorageSaves();
     void setCurrentSave();
     void setPathToGame();
@@ -59,6 +61,8 @@ private:
     QGroupBox       *mPathsGroup;
     QVBoxLayout     *mGroupsVBox;
     //
+    QCheckBox       *mSteamChk;
+    QLabel          *mExecStm;
     QFile           *mCSSFile;
     QLabel          *mGameLab;
     QLabel          *mStorLab;

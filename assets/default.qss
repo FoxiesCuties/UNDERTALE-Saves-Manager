@@ -251,15 +251,15 @@
     color: lightgrey;
     font-size: 10pt;
 }
-#Dialog_Settings #CheckBox_Settings
+#Dialog_Settings QCheckBox
 {
     border: none;
 }
-#Dialog_Settings #CheckBox_Settings::indicator:checked
+#Dialog_Settings QCheckBox::indicator:checked
 {
     background: green;
 }
-#Dialog_Settings #CheckBox_Settings::indicator:unchecked
+#Dialog_Settings QCheckBox::indicator:unchecked
 {
     background: red;
 }
