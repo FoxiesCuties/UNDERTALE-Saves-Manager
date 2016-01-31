@@ -2,7 +2,7 @@ QT       += core gui widgets multimedia
 
 TEMPLATE = app
 
-TRANSLATIONS = assets/i18n/UNDERTALE-SM_fr.ts \
+TRANSLATIONS = assets/i18n/fr_FR/lang.ts \
 
 CONFIG += c++11
 
