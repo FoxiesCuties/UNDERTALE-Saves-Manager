@@ -2,6 +2,8 @@ QT       += core gui widgets multimedia
 
 TEMPLATE = app
 
+TRANSLATIONS = assets/i18n/UNDERTALE-SM_fr.ts \
+
 CONFIG += c++11
 
 TARGET = UNDERTALE-Saves-Manager

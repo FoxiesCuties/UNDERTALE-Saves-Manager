@@ -15,6 +15,7 @@ public:
 
     void createObjects();
     void createConnexions();
+    void createLangCombo();
     void createInterface();
     void createObjectName();
     void createSettings();
@@ -22,7 +23,7 @@ public:
     int     textSpeed();
     bool    soundEnabled();
     bool    steamEnabled();
-    QString storageSaves();
+    QString backupSaves();
     QString currentSave();
     QString currentTheme();
     QString gameDirectory();
@@ -36,16 +37,29 @@ private slots:
     void setTextSpeed(int speed);
     void setSoundEnabled(bool isEnabled);
     void setSteamEnabled(bool isSteam);
-    void setStorageSaves();
+    void setBackupSaves();
     void setCurrentSave();
     void setPathToGame();
 
     void initSettings();
     void loadSettings();
     void saveSettings();
+    void translateUi();
+    void cancelOnClose();
+
+    void slotLanguageChanged(int index);
 
 private:
 
+    QTranslator     *mTranslator;
+    QLabel          *mThemeLabel;
+    QLabel          *mLangLabel;
+    QComboBox       *mLangCombo;
+    QGroupBox       *mMiscGroup;
+    QComboBox       *mThemeCombo;
+    QGridLayout     *mMiscGrid;
+    QHBoxLayout     *mTopGroups;
+    //
     bool            mTmpSndEnabled;
     QString         mCSSTheme;
     QString         mDocumentsData;

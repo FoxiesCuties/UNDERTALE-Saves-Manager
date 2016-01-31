@@ -125,7 +125,7 @@ void UnSavManager::loadBackupSaves()
 {
     mSavListLeft->clearAll();
 
-    QDir storDir (mSetgsDialog->storageSaves());
+    QDir storDir (mSetgsDialog->backupSaves());
 
     foreach (QString folder, storDir.entryList(QDir::NoDotAndDotDot|QDir::AllDirs))
     {
@@ -215,19 +215,19 @@ bool UnSavManager::alreadyExist(QString from, QString dest)
 //Slots
 void UnSavManager::moveRight()
 {
-    QString fromString = mSetgsDialog->storageSaves()+"/"+mSavListLeft->currentSaveFolder();
+    QString fromString = mSetgsDialog->backupSaves()+"/"+mSavListLeft->currentSaveFolder();
     QString destString = mSetgsDialog->currentSave();
 
     bool saveExist = QFile::exists(mSetgsDialog->currentSave()+"/undertale.ini");
 
     if (mSavListLeft->currentSaveID() >= 0) {
-        QDir dirF (mSetgsDialog->storageSaves());
+        QDir dirF (mSetgsDialog->backupSaves());
 
         bool isBackup = false;
 
         foreach (QString file, dirF.entryList(QDir::NoDotAndDotDot|QDir::AllDirs))
         {
-            QString curFile = mSetgsDialog->storageSaves()+"/"+file;
+            QString curFile = mSetgsDialog->backupSaves()+"/"+file;
 
             if (alreadyExist(curFile, mSetgsDialog->currentSave())) {
                 isBackup = true;
@@ -279,13 +279,13 @@ void UnSavManager::moveRight()
 }
 void UnSavManager::moveLeft()
 {
-    QDir dirF (mSetgsDialog->storageSaves());
+    QDir dirF (mSetgsDialog->backupSaves());
 
     bool exist = false;
 
     foreach (QString file, dirF.entryList(QDir::NoDotAndDotDot|QDir::AllDirs))
     {
-        QString curFile = mSetgsDialog->storageSaves()+"/"+file;
+        QString curFile = mSetgsDialog->backupSaves()+"/"+file;
 
         if (alreadyExist(curFile, mSetgsDialog->currentSave())) {
             exist = true;
@@ -302,7 +302,7 @@ void UnSavManager::moveLeft()
             mMesgsDialog->exec();
     }
     else {
-        copySave(mSetgsDialog->currentSave(), mSetgsDialog->storageSaves()+"/UNDERTALE_"+QString::number(mSavListLeft->count()+1));
+        copySave(mSetgsDialog->currentSave(), mSetgsDialog->backupSaves()+"/UNDERTALE_"+QString::number(mSavListLeft->count()+1));
 
         loadBackupSaves();
     }
@@ -341,7 +341,7 @@ void UnSavManager::deleteSave(QString folder)
         mMesgsDialog->exec();
 
         if (mMesgsDialog->isAccepted()) {
-            QDir dir(mSetgsDialog->storageSaves()+"/"+folder);
+            QDir dir(mSetgsDialog->backupSaves()+"/"+folder);
 
             if (dir.removeRecursively()) {
                 mSavListRight->clearAll();

@@ -42,4 +42,7 @@
         <file alias="sans">assets/imgs/avatars/sans.png</file>
         <file alias="toriel">assets/imgs/avatars/toriel.png</file>
     </qresource>
+    <qresource prefix="/i18n">
+        <file alias="en_US">assets/i18n/en_US/icon.png</file>
+    </qresource>
 </RCC>

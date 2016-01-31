@@ -5,6 +5,7 @@ Settings::Settings(QWidget *parent) : QDialog(parent)
     createObjects();
     createConnexions();
     createInterface();
+    createLangCombo();
     createObjectName();
     createSettings();
 }
@@ -12,7 +13,15 @@ Settings::Settings(QWidget *parent) : QDialog(parent)
 //Organizers
 void Settings::createObjects()
 {
+    mTranslator         = new QTranslator;
+    mLangCombo          = new QComboBox;
+    mThemeLabel         = new QLabel;
+    mLangLabel          = new QLabel;
+    mMiscGroup          = new QGroupBox;
     mCSSFile            = new QFile;
+    mThemeCombo         = new QComboBox;
+    mMiscGrid           = new QGridLayout;
+    mTopGroups          = new QHBoxLayout;
     //SettingsTitle
     mSettingsCButton    = new QPushButton;
     mSettingsTHbox      = new QHBoxLayout;
@@ -59,20 +68,30 @@ void Settings::createObjects()
 }
 void Settings::createConnexions()
 {
-    connect(mGameBut,               SIGNAL(clicked()),          this,   SLOT(setCurrentSave()));
-    connect(mStorBut,               SIGNAL(clicked()),          this,   SLOT(setStorageSaves()));
-    connect(mExecBut,               SIGNAL(clicked()),          this,   SLOT(setPathToGame()));
-    connect(mSettingsCButton,       SIGNAL(clicked()),          this,   SLOT(close()));
-    connect(mSoundChk,              SIGNAL(toggled(bool)),      this,   SLOT(setSoundEnabled(bool)));
-    connect(mSpeedSld,              SIGNAL(valueChanged(int)),  this,   SLOT(setTextSpeed(int)));
-    connect(mSteamChk,              SIGNAL(toggled(bool)),      this,   SLOT(setSteamEnabled(bool)));
-    connect(mApplyBut,              SIGNAL(clicked()),          this,   SLOT(saveSettings()));
-    connect(mCancelBut,             SIGNAL(clicked()),          this,   SLOT(loadSettings()));
+    connect(mGameBut,           SIGNAL(clicked()),                  this,   SLOT(setCurrentSave()));
+    connect(mStorBut,           SIGNAL(clicked()),                  this,   SLOT(setBackupSaves()));
+    connect(mExecBut,           SIGNAL(clicked()),                  this,   SLOT(setPathToGame()));
+    connect(mSettingsCButton,   SIGNAL(clicked()),                  this,   SLOT(cancelOnClose()));
+    connect(mSoundChk,          SIGNAL(toggled(bool)),              this,   SLOT(setSoundEnabled(bool)));
+    connect(mSpeedSld,          SIGNAL(valueChanged(int)),          this,   SLOT(setTextSpeed(int)));
+    connect(mSteamChk,          SIGNAL(toggled(bool)),              this,   SLOT(setSteamEnabled(bool)));
+    connect(mApplyBut,          SIGNAL(clicked()),                  this,   SLOT(saveSettings()));
+    connect(mCancelBut,         SIGNAL(clicked()),                  this,   SLOT(loadSettings()));
+    connect(mLangCombo,         SIGNAL(currentIndexChanged(int)),   this,   SLOT(slotLanguageChanged(int)));
+}
+void Settings::createLangCombo()
+{
+    mLangCombo->addItem(QIcon(":i18n/en_US"), "en_US", "en_US");//Add default value
+
+    QString i18nPath = QApplication::applicationDirPath()+"/i18n";
+    QDir i18nDir(i18nPath);
+
+    foreach (QString lang, i18nDir.entryList(QDir::NoDotAndDotDot|QDir::AllDirs)) {
+        mLangCombo->addItem(QIcon(i18nPath+"/"+lang+"/icon.png"), lang, lang);
+    }
 }
 void Settings::createInterface()
 {
-    mSettingsTitle->setText("Settings");
-
     mSettingsTHbox->addWidget(mSettingsCButton, 1, Qt::AlignRight | Qt::AlignTop);
     mSettingsTHbox->setContentsMargins(0, 22, 9, 0);
 
@@ -87,12 +106,7 @@ void Settings::createInterface()
     mSettingsTButton->setLayout(mTSettingsVBox);
     mSettingsTButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Ignored);
     mSettingsTButton->setFixedHeight(90);
-
     /**/
-    mSoundLab->setText("Sound : ");
-
-    mSpeedLab->setText("Text speed : ");
-
     mSpeedSld->setOrientation(Qt::Horizontal);
     mSpeedSld->setRange(0, 3);
     mSpeedSld->setFixedWidth(30);
@@ -103,27 +117,16 @@ void Settings::createInterface()
     mMesBoxGrid->addWidget(mSpeedSld,1,1,1,1, Qt::AlignLeft);
     mMesBoxGrid->addWidget(mSpValLab,1,3,1,1, Qt::AlignRight);
 
-    mMesBoxGroup->setTitle("Message Boxes");
     mMesBoxGroup->setLayout(mMesBoxGrid);
     mMesBoxGroup->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Minimum);
-    mMesBoxGroup->setFixedWidth(240);
     /**/
-
-    mGameLab->setText("Game save directory");
-
     mGameLin->setReadOnly(true);
 
     mGameBut->setText(". . .");
 
-    mStorLab->setText("Backup saves directory");
-
     mStorLin->setReadOnly(true);
 
     mStorBut->setText(". . .");
-
-    mExecLab->setText("Game executable path");
-
-    mExecStm->setText("Steam version");
 
     mExecLin->setReadOnly(true);
 
@@ -142,16 +145,25 @@ void Settings::createInterface()
     mSettingsGrid->addWidget(mExecBut,  5,7,1,1);
     mSettingsGrid->setContentsMargins(11, 15, 11, 11);
 
-    mPathsGroup->setTitle("Paths Define");
     mPathsGroup->setLayout(mSettingsGrid);
+    /**/
+    mThemeCombo->addItem("Native");
 
-    mGroupsVBox->addWidget(mMesBoxGroup);
+    mMiscGrid->addWidget(mLangLabel,0,0);
+    mMiscGrid->addWidget(mLangCombo,0,1);
+    mMiscGrid->addWidget(mThemeLabel,1,0);
+    mMiscGrid->addWidget(mThemeCombo,1,1);
+
+    mMiscGroup->setLayout(mMiscGrid);
+
+    mTopGroups->addWidget(mMesBoxGroup);
+    mTopGroups->addWidget(mMiscGroup);
+    mTopGroups->setSpacing(11);
+
+    mGroupsVBox->addLayout(mTopGroups);
+    /**/
     mGroupsVBox->addWidget(mPathsGroup);
     mGroupsVBox->setContentsMargins(11, 7, 11, 11);
-
-    mApplyBut->setText("APPLY");
-
-    mCancelBut->setText("CANCEL");
 
     mBotButHBox->addWidget(mApplyBut);
     mBotButHBox->addWidget(mCancelBut);
@@ -177,6 +189,8 @@ void Settings::createObjectName()
     mStorLab->setObjectName("Label_Settings_Tip");
     mExecLab->setObjectName("Label_Settings_Tip");
     mExecStm->setObjectName("Label_Settings_Tip");
+    mThemeLabel->setObjectName("Label_Settings_Tip");
+    mLangLabel->setObjectName("Label_Settings_Tip");
     mApplyBut->setObjectName("Button_Settings_Apply");
     mCancelBut->setObjectName("Button_Settings_Cancel");
 }
@@ -221,7 +235,7 @@ bool    Settings::steamEnabled()
 {
     return mCFGSettings->value("Paths/SteamVersion").toBool();
 }
-QString Settings::storageSaves()
+QString Settings::backupSaves()
 {
     return mCFGSettings->value("Paths/BackupsSaves").toString();
 }
@@ -277,9 +291,9 @@ void Settings::setSteamEnabled(bool isSteam)
 {
     mSteamChk->setChecked(isSteam);
 }
-void Settings::setStorageSaves()
+void Settings::setBackupSaves()
 {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your UNDERTALE directory"));
+    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your backup saves directory"));
 
     if (!path.isEmpty()) {
         mStorLin->setText(path);
@@ -287,7 +301,7 @@ void Settings::setStorageSaves()
 }
 void Settings::setCurrentSave()
 {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your UNDERTALE %APPDATA% directory"));
+    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your game save directory"));
 
     if (!path.isEmpty()) {
         mGameLin->setText(path);
@@ -298,7 +312,7 @@ void Settings::setPathToGame()
     QDir    gameDir(mCFGSettings->value("Paths/GameExecutable").toString());
             gameDir.cdUp();
 
-    QString path = QFileDialog::getOpenFileName(this, tr("Locate your UNDERTALE Program directory"),gameDir.path(),"Game (UNDERTALE.exe)");
+    QString path = QFileDialog::getOpenFileName(this, tr("Locate your UNDERTALE game directory"),gameDir.path(),"Game (UNDERTALE.exe)");
 
     if (!path.isEmpty()) {
         mExecLin->setText(path);
@@ -339,6 +353,8 @@ void Settings::loadSettings()
     mGameLin->setText(mCFGSettings->value("Paths/CurrentSave").toString());
     mStorLin->setText(mCFGSettings->value("Paths/BackupsSaves").toString());
     mExecLin->setText(mCFGSettings->value("Paths/GameExecutable").toString());
+
+    translateUi();
 }
 void Settings::saveSettings()
 {
@@ -348,6 +364,39 @@ void Settings::saveSettings()
     mCFGSettings->setValue("Paths/CurrentSave",         mGameLin->text());
     mCFGSettings->setValue("Paths/BackupsSaves",        mStorLin->text());
     mCFGSettings->setValue("Paths/GameExecutable",      mExecLin->text());
+}
+void Settings::translateUi()
+{
+    mSettingsTitle->setText(tr("Settings"));
+    mSoundLab->setText(tr("Sound : "));
+    mMesBoxGroup->setTitle(tr("Message Boxes"));
+    mSpeedLab->setText(tr("Text speed : "));
+    mGameLab->setText(tr("Game save directory"));
+    mStorLab->setText(tr("Backup saves directory"));
+    mExecLab->setText(tr("Game executable path"));
+    mPathsGroup->setTitle(tr("Paths Define"));
+    mExecStm->setText(tr("Steam version"));
+    mMiscGroup->setTitle(tr("Misc"));
+    mApplyBut->setText(tr("APPLY"));
+    mCancelBut->setText(tr("CANCEL"));
+    mThemeLabel->setText(tr("Theme"));
+    mLangLabel->setText(tr("Language"));
+}
+void Settings::cancelOnClose()
+{
+    this->loadSettings();
+    this->close();
+}
+void Settings::slotLanguageChanged(int index)
+{
+    QString i18nPath = QApplication::applicationDirPath()+"/i18n/";
+    QString langFile = mLangCombo->itemData(index).toString()+"/lang.qm";
+
+    mTranslator->load(i18nPath+langFile);
+
+    qApp->installTranslator(mTranslator);
+
+    translateUi();
 }
 
 //Events
