@@ -13,7 +13,6 @@ Settings::Settings(QWidget *parent) : QDialog(parent)
 void Settings::createObjects()
 {
     mCSSFile            = new QFile;
-
     //SettingsTitle
     mSettingsCButton    = new QPushButton;
     mSettingsTHbox      = new QHBoxLayout;
@@ -22,7 +21,6 @@ void Settings::createObjects()
     mTSettingsVBox      = new QVBoxLayout;
     mSettingsTButton    = new TPushButton(this);
     //End_SettingsTitle
-
     //MessageBox
     mSoundLab           = new QLabel;
     mSoundChk           = new QCheckBox;
@@ -32,9 +30,10 @@ void Settings::createObjects()
     mMesBoxGrid         = new QGridLayout;
     mMesBoxGroup        = new QGroupBox;
     //End_MessageBox
-
     //PathsDefine
     mGameLab            = new QLabel;
+    mExecStm            = new QLabel;
+    mSteamChk           = new QCheckBox;
     mGameLin            = new QLineEdit;
     mGameBut            = new QPushButton;
     mStorLab            = new QLabel;
@@ -46,12 +45,11 @@ void Settings::createObjects()
     mSettingsGrid       = new QGridLayout;
     mPathsGroup         = new QGroupBox;
     //End_PathsDefine
-
-    mExecStm            = new QLabel;
-    mSteamChk           = new QCheckBox;
     mGroupsVBox         = new QVBoxLayout;
+    mApplyBut           = new QPushButton;
+    mCancelBut          = new QPushButton;
+    mBotButHBox         = new QHBoxLayout;
     mSettingsVbox       = new QVBoxLayout;
-
     //General
     mAppDataLocal       = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
     mDocumentsData      = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
@@ -68,6 +66,8 @@ void Settings::createConnexions()
     connect(mSoundChk,              SIGNAL(toggled(bool)),      this,   SLOT(setSoundEnabled(bool)));
     connect(mSpeedSld,              SIGNAL(valueChanged(int)),  this,   SLOT(setTextSpeed(int)));
     connect(mSteamChk,              SIGNAL(toggled(bool)),      this,   SLOT(setSteamEnabled(bool)));
+    connect(mApplyBut,              SIGNAL(clicked()),          this,   SLOT(saveSettings()));
+    connect(mCancelBut,             SIGNAL(clicked()),          this,   SLOT(loadSettings()));
 }
 void Settings::createInterface()
 {
@@ -147,10 +147,19 @@ void Settings::createInterface()
 
     mGroupsVBox->addWidget(mMesBoxGroup);
     mGroupsVBox->addWidget(mPathsGroup);
-    mGroupsVBox->setContentsMargins(11,7,11,11);
+    mGroupsVBox->setContentsMargins(11, 7, 11, 11);
+
+    mApplyBut->setText("APPLY");
+
+    mCancelBut->setText("CANCEL");
+
+    mBotButHBox->addWidget(mApplyBut);
+    mBotButHBox->addWidget(mCancelBut);
+    mBotButHBox->setContentsMargins(11,0,11,11);
 
     mSettingsVbox->addWidget(mSettingsTButton);
     mSettingsVbox->addLayout(mGroupsVBox);
+    mSettingsVbox->addLayout(mBotButHBox);
 }
 void Settings::createObjectName()
 {
@@ -168,6 +177,8 @@ void Settings::createObjectName()
     mStorLab->setObjectName("Label_Settings_Tip");
     mExecLab->setObjectName("Label_Settings_Tip");
     mExecStm->setObjectName("Label_Settings_Tip");
+    mApplyBut->setObjectName("Button_Settings_Apply");
+    mCancelBut->setObjectName("Button_Settings_Cancel");
 }
 void Settings::createSettings()
 {
@@ -175,12 +186,12 @@ void Settings::createSettings()
     this->setContentsMargins(-8, -8, -8, -8);
     this->setLayout(mSettingsVbox);
     this->initSettings();
-    this->setFixedSize(500, 400);
+    this->setFixedSize(500, 450);
     this->setWindowTitle("UNDERTALE Save Manager - " + mSettingsTitle->text());
 }
 
 //Methods
-int Settings::textSpeed()
+int     Settings::textSpeed()
 {
     int gTextSpeed = mCFGSettings->value("MessageBox/TextSpeed").toInt();
 
@@ -202,14 +213,98 @@ int Settings::textSpeed()
         break;
     }
 }
-bool Settings::soundEnabled()
+bool    Settings::soundEnabled()
 {
     return mCFGSettings->value("MessageBox/SoundEffect").toBool();
 }
-bool Settings::steamEnabled()
+bool    Settings::steamEnabled()
 {
     return mCFGSettings->value("Paths/SteamVersion").toBool();
 }
+QString Settings::storageSaves()
+{
+    return mCFGSettings->value("Paths/BackupsSaves").toString();
+}
+QString Settings::currentSave()
+{
+    return mCFGSettings->value("Paths/CurrentSave").toString();
+}
+QString Settings::currentTheme()
+{
+    return mCSSTheme;
+}
+QString Settings::gameDirectory()
+{
+    return mCFGSettings->value("Paths/GameExecutable").toString();
+}
+
+//Slots
+void Settings::setTextSpeed(int speed)
+{
+    switch (speed) {
+    case 0:
+        mSoundChk->setChecked(mTmpSndEnabled);
+        mSoundChk->setEnabled(true);
+        mSpValLab->setText("Slow");
+        break;
+    case 1:
+        mSoundChk->setChecked(mTmpSndEnabled);
+        mSoundChk->setEnabled(true);
+        mSpValLab->setText("Normal");
+        break;
+    case 2:
+        mSoundChk->setChecked(mTmpSndEnabled);
+        mSoundChk->setEnabled(true);
+        mSpValLab->setText("Fast");
+        break;
+    case 3:
+        mSoundChk->setChecked(false);
+        mSoundChk->setEnabled(false);
+        mSpValLab->setText("Instant");
+        break;
+    default:
+        setTextSpeed(2);
+        break;
+    }
+}
+void Settings::setSoundEnabled(bool isEnabled)
+{
+    if(mSpeedSld->value() != 3) {//Prevent statut erasing
+        mTmpSndEnabled = isEnabled;
+    }
+}
+void Settings::setSteamEnabled(bool isSteam)
+{
+    mSteamChk->setChecked(isSteam);
+}
+void Settings::setStorageSaves()
+{
+    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your UNDERTALE directory"));
+
+    if (!path.isEmpty()) {
+        mStorLin->setText(path);
+    }
+}
+void Settings::setCurrentSave()
+{
+    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your UNDERTALE %APPDATA% directory"));
+
+    if (!path.isEmpty()) {
+        mGameLin->setText(path);
+    }
+}
+void Settings::setPathToGame()
+{
+    QDir    gameDir(mCFGSettings->value("Paths/GameExecutable").toString());
+            gameDir.cdUp();
+
+    QString path = QFileDialog::getOpenFileName(this, tr("Locate your UNDERTALE Program directory"),gameDir.path(),"Game (UNDERTALE.exe)");
+
+    if (!path.isEmpty()) {
+        mExecLin->setText(path);
+    }
+}
+
 void Settings::initSettings()
 {
     if (!mCFGSettings->contains("MessageBox/TextSpeed")) {
@@ -232,107 +327,27 @@ void Settings::initSettings()
         mCFGSettings->setValue("Paths/BackupsSaves", mDocumentsData+"/UNDERTALE_BACKUPS");
     }
 
+    loadSettings();
+}
+void Settings::loadSettings()
+{
     mCSSTheme = mCSSFile->readAll();
-    setTextSpeed(mCFGSettings->value("MessageBox/TextSpeed").toInt());
-    setSoundEnabled(mCFGSettings->value("MessageBox/SoundEffect").toBool());
-    setSteamEnabled(mCFGSettings->value("Paths/SteamVersion").toBool());
-    mGameLin->setText(currentSave());
-    mStorLin->setText(storageSaves());
-    mExecLin->setText(gameDirectory());
-}
-QString Settings::storageSaves()
-{
-    return mCFGSettings->value("Paths/BackupsSaves").toString();
-}
-QString Settings::currentSave()
-{
-    return mCFGSettings->value("Paths/CurrentSave").toString();
-}
-QString Settings::currentTheme()
-{
-    return mCSSTheme;
-}
-QString Settings::gameDirectory()
-{
-    return mCFGSettings->value("Paths/GameExecutable").toString();
-}
 
-//Slots
-void Settings::setTextSpeed(int speed)
-{
-    mCFGSettings->setValue("MessageBox/TextSpeed", speed);
-
-    bool soundEnabled = mCFGSettings->value("MessageBox/SoundEffect").toBool();
-
-    switch (speed) {
-    case 0:
-        mSoundChk->setChecked(soundEnabled);
-        mSoundChk->setEnabled(true);
-        mSpeedSld->setValue(0);
-        mSpValLab->setText("Slow");
-        break;
-    case 1:
-        mSoundChk->setChecked(soundEnabled);
-        mSoundChk->setEnabled(true);
-        mSpeedSld->setValue(1);
-        mSpValLab->setText("Normal");
-        break;
-    case 2:
-        mSoundChk->setChecked(soundEnabled);
-        mSoundChk->setEnabled(true);
-        mSpeedSld->setValue(2);
-        mSpValLab->setText("Fast");
-        break;
-    case 3:
-        mSoundChk->setChecked(false);
-        mSoundChk->setEnabled(false);
-        mSpeedSld->setValue(3);
-        mSpValLab->setText("Instant");
-        break;
-    default:
-        setTextSpeed(2);
-        break;
-    }
+    mSpeedSld->setValue(mCFGSettings->value("MessageBox/TextSpeed").toInt());
+    mSoundChk->setChecked(mCFGSettings->value("MessageBox/SoundEffect").toBool());
+    mSteamChk->setChecked(mCFGSettings->value("Paths/SteamVersion").toBool());
+    mGameLin->setText(mCFGSettings->value("Paths/CurrentSave").toString());
+    mStorLin->setText(mCFGSettings->value("Paths/BackupsSaves").toString());
+    mExecLin->setText(mCFGSettings->value("Paths/GameExecutable").toString());
 }
-void Settings::setSoundEnabled(bool isEnabled)
+void Settings::saveSettings()
 {
-    mCFGSettings->setValue("MessageBox/SoundEffect", isEnabled);
-    mSoundChk->setChecked(isEnabled);
-}
-void Settings::setSteamEnabled(bool isSteam)
-{
-    mCFGSettings->setValue("Paths/SteamVersion", isSteam);
-    mSteamChk->setChecked(isSteam);
-}
-void Settings::setStorageSaves()
-{
-    QString storDir = QFileDialog::getExistingDirectory(this, tr("Locate your UNDERTALE directory"));
-
-    if (!storDir.isEmpty()) {
-        mGameLin->setText(storDir);
-        mCFGSettings->setValue("Paths/BackupsSaves", storDir);
-    }
-}
-void Settings::setCurrentSave()
-{
-    QString unDir = QFileDialog::getExistingDirectory(this, tr("Locate your UNDERTALE %APPDATA% directory"));
-
-    if (!unDir.isEmpty()) {
-        mGameLin->setText(unDir);
-        mCFGSettings->setValue("Paths/CurrentSave", unDir);
-    }
-}
-void Settings::setPathToGame()
-{
-    QDir    gameDir(mCFGSettings->value("Paths/GameExecutable").toString());
-            gameDir.cdUp();
-
-    QString gameDirStr = QFileDialog::getOpenFileName(this, tr("Locate your UNDERTALE Program directory"),gameDir.path(),"Game (UNDERTALE.exe)");
-
-    if (!gameDirStr.isEmpty()) {
-        mExecLin->setText(gameDirStr);
-        mCFGSettings->setValue("Paths/GameExecutable", gameDirStr);
-    }
+    mCFGSettings->setValue("MessageBox/TextSpeed",      mSpeedSld->value());
+    mCFGSettings->setValue("MessageBox/SoundEffect",    mSoundChk->isChecked());
+    mCFGSettings->setValue("Paths/SteamVersion",        mSteamChk->isChecked());
+    mCFGSettings->setValue("Paths/CurrentSave",         mGameLin->text());
+    mCFGSettings->setValue("Paths/BackupsSaves",        mStorLin->text());
+    mCFGSettings->setValue("Paths/GameExecutable",      mExecLin->text());
 }
 
 //Events

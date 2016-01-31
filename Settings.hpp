@@ -19,10 +19,9 @@ public:
     void createObjectName();
     void createSettings();
 
-    int textSpeed();
-    bool soundEnabled();
-    bool steamEnabled();
-    void initSettings();
+    int     textSpeed();
+    bool    soundEnabled();
+    bool    steamEnabled();
     QString storageSaves();
     QString currentSave();
     QString currentTheme();
@@ -41,12 +40,16 @@ private slots:
     void setCurrentSave();
     void setPathToGame();
 
+    void initSettings();
+    void loadSettings();
+    void saveSettings();
+
 private:
 
-    QString         mDocumentsData;
+    bool            mTmpSndEnabled;
     QString         mCSSTheme;
+    QString         mDocumentsData;
     QString         mAppDataLocal;
-
     //MessageBox
     QLabel          *mSoundLab;
     QCheckBox       *mSoundChk;
@@ -56,11 +59,8 @@ private:
     QGridLayout     *mMesBoxGrid;
     QGroupBox       *mMesBoxGroup;
     //End_MessageBox
-
-    //
     QGroupBox       *mPathsGroup;
     QVBoxLayout     *mGroupsVBox;
-    //
     QCheckBox       *mSteamChk;
     QLabel          *mExecStm;
     QFile           *mCSSFile;
@@ -80,6 +80,9 @@ private:
     TPushButton     *mSettingsTButton;
     QVBoxLayout     *mSettingsVbox;
     QLabel          *mSettingsPixmap;
+    QPushButton     *mApplyBut;
+    QPushButton     *mCancelBut;
+    QHBoxLayout     *mBotButHBox;
     QVBoxLayout     *mTSettingsVBox;
     QLabel          *mSettingsTitle;
 };

@@ -257,11 +257,19 @@
 }
 #Dialog_Settings QCheckBox::indicator:checked
 {
-    background: green;
+    background: #263;
+}
+#Dialog_Settings QCheckBox::indicator:checked:hover
+{
+    background: #283;
 }
 #Dialog_Settings QCheckBox::indicator:unchecked
 {
-    background: red;
+    background: #623;
+}
+#Dialog_Settings QCheckBox::indicator:unchecked:hover
+{
+    background: #823;
 }
 #Dialog_Settings #Slider_Settings
 {
@@ -326,5 +334,33 @@
 #Dialog_Settings #Button_Settings_FileDialog:hover
 {
     color: yellow;
+}
+#Dialog_Settings #Button_Settings_Apply
+{
+    margin-left: 100px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    background: #263;
+    height: 25px;
+}
+#Dialog_Settings #Button_Settings_Apply:hover
+{
+    border: none;
+    background: #283;
+}
+#Dialog_Settings #Button_Settings_Cancel
+{
+    margin-right: 100px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    background: #623;
+    height: 25px;
+}
+#Dialog_Settings #Button_Settings_Cancel:hover
+{
+    border: none;
+    background: #823;
 }
 /* EndSECTION_Externals_Dialogs */
