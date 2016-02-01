@@ -303,28 +303,39 @@ void UnSavManager::moveLeft()
 
     bool exist = false;
 
-    foreach (QString file, dirF.entryList(QDir::NoDotAndDotDot|QDir::AllDirs))
-    {
-        QString curFile = mSetgsDialog->backupSaves()+"/"+file;
+    if (mSavListRight->count() == 1) {//Prevent empty backup folder creation
 
-        if (alreadyExist(curFile, mSetgsDialog->currentSave())) {
-            exist = true;
+        foreach (QString file, dirF.entryList(QDir::NoDotAndDotDot|QDir::AllDirs))
+        {
+            QString curFile = mSetgsDialog->backupSaves()+"/"+file;
+
+            if (alreadyExist(curFile, mSetgsDialog->currentSave())) {
+                exist = true;
+            }
         }
-    }
 
-    if (exist) {//If current save already exist
-            mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
-            mMesgsDialog->setDialogSize(QSize(600, 140));
-            mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-            mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
-                                            "* You can't backup this save\n\n"
-                                            "  ENTER for closing this box"));
-            mMesgsDialog->exec();
-    }
-    else {
-        copySave(mSetgsDialog->currentSave(), mSetgsDialog->backupSaves()+"/UNDERTALE_"+QString::number(mSavListLeft->count()+1));
+        if (exist) {//If current save already exist
+                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
+                mMesgsDialog->setDialogSize(QSize(600, 140));
+                mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+                mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
+                                                "* You can't backup this save\n\n"
+                                                "  ENTER for closing this box"));
+                mMesgsDialog->exec();
+        } else {
+            copySave(mSetgsDialog->currentSave(), mSetgsDialog->backupSaves()+"/UNDERTALE_"+QString::number(mSavListLeft->count()+1));
 
-        loadBackupSaves();
+            loadBackupSaves();
+        }
+
+    } else {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
+        mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+        mMesgsDialog->setDialogText( tr("* None current save to backup.\n\n"
+                                        "* You can't backup nothing\n\n"
+                                        "  ENTER for closing this box"));
+        mMesgsDialog->exec();
     }
 }
 void UnSavManager::minimiseManager()

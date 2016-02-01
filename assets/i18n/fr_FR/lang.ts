@@ -4,87 +4,92 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../../../Settings.cpp" line="300"/>
+        <location filename="../../../Settings.cpp" line="97"/>
+        <source>Default</source>
+        <translation>Défaut</translation>
+    </message>
+    <message>
+        <location filename="../../../Settings.cpp" line="312"/>
         <source>Locate your backup saves directory</source>
         <translation>Localiser le dossier de stockage des sauvegardes</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="308"/>
+        <location filename="../../../Settings.cpp" line="320"/>
         <source>Locate your game save directory</source>
         <translation>Localiser le dossier de sauvegarde du jeu</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="319"/>
+        <location filename="../../../Settings.cpp" line="331"/>
         <source>Locate your UNDERTALE game directory</source>
         <translation>Localiser l&apos;executable du jeu</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="400"/>
+        <location filename="../../../Settings.cpp" line="424"/>
         <source>Settings</source>
         <translation>Options</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="401"/>
+        <location filename="../../../Settings.cpp" line="425"/>
         <source>Sound : </source>
         <translation>Son :</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="402"/>
+        <location filename="../../../Settings.cpp" line="426"/>
         <source>Message Boxes</source>
         <translation>Boite de Messages</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="403"/>
+        <location filename="../../../Settings.cpp" line="427"/>
         <source>Text speed : </source>
         <translation>Vit. texte :</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="404"/>
+        <location filename="../../../Settings.cpp" line="428"/>
         <source>Game save directory</source>
         <translation>Dossier de sauvegarde actuel</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="405"/>
+        <location filename="../../../Settings.cpp" line="429"/>
         <source>Backup saves directory</source>
         <translation>Dossier de stockage des sauvgardes</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="406"/>
+        <location filename="../../../Settings.cpp" line="430"/>
         <source>Game executable path</source>
         <translation>Dossier de l&apos;executable du jeu</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="407"/>
+        <location filename="../../../Settings.cpp" line="431"/>
         <source>Paths Define</source>
         <translation>Dossiers</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="408"/>
+        <location filename="../../../Settings.cpp" line="432"/>
         <source>Steam version</source>
         <translation>Version Steam</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="409"/>
+        <location filename="../../../Settings.cpp" line="433"/>
         <source>Misc</source>
         <translation>Divers</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="410"/>
+        <location filename="../../../Settings.cpp" line="434"/>
         <source>APPLY</source>
         <translation>APPLIQUER</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="411"/>
+        <location filename="../../../Settings.cpp" line="435"/>
         <source>CANCEL</source>
         <translation>ANNULER</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="412"/>
+        <location filename="../../../Settings.cpp" line="436"/>
         <source>Theme</source>
         <translation>Thème</translation>
     </message>
     <message>
-        <location filename="../../../Settings.cpp" line="413"/>
+        <location filename="../../../Settings.cpp" line="437"/>
         <source>Language</source>
         <translation>Langage</translation>
     </message>
@@ -92,7 +97,7 @@
 <context>
     <name>UnSavManager</name>
     <message>
-        <location filename="../../../UnSavManager.cpp" line="258"/>
+        <location filename="../../../UnSavManager.cpp" line="261"/>
         <source>* This save are no backup.
 
 * Do you really want replacing ?
@@ -105,7 +110,7 @@
   Y pour accepter / N pour refuser</translation>
     </message>
     <message>
-        <location filename="../../../UnSavManager.cpp" line="279"/>
+        <location filename="../../../UnSavManager.cpp" line="282"/>
         <source>* This save aready exist.
 
 * You can&apos;t load this save
@@ -118,7 +123,7 @@
   ENTRER pour fermer ce dialogue</translation>
     </message>
     <message>
-        <location filename="../../../UnSavManager.cpp" line="316"/>
+        <location filename="../../../UnSavManager.cpp" line="321"/>
         <source>* This save aready exist.
 
 * You can&apos;t backup this save
@@ -131,7 +136,20 @@
   ENTRER pour fermer ce dialogue</translation>
     </message>
     <message>
-        <location filename="../../../UnSavManager.cpp" line="340"/>
+        <location filename="../../../UnSavManager.cpp" line="335"/>
+        <source>* None current save to backup.
+
+* You can&apos;t backup nothing
+
+  ENTER for closing this box</source>
+        <translation>* Il n&apos;y a aucune sauvegarde.
+
+* Impossible de ne rien archiver.
+
+  ENTRER pour fermer ce dialogue</translation>
+    </message>
+    <message>
+        <location filename="../../../UnSavManager.cpp" line="354"/>
         <source>* Path to the game not initialised.
 
 * Please define it in &apos;SETTINGS&apos;
@@ -144,7 +162,7 @@
   ENTRER pour fermer ce dialogue</translation>
     </message>
     <message>
-        <location filename="../../../UnSavManager.cpp" line="355"/>
+        <location filename="../../../UnSavManager.cpp" line="369"/>
         <source>* This awesome save will be removed.
 
 * Are you really sure you want do this ?
