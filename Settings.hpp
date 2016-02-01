@@ -26,6 +26,7 @@ public:
     QString backupSaves();
     QString currentSave();
     QString currentTheme();
+    QString currentLang();
     QString gameDirectory();
 
     //Events
@@ -47,9 +48,14 @@ private slots:
     void translateUi();
     void cancelOnClose();
 
+    void loadTranslator();
+
     void slotLanguageChanged(int index);
 
 private:
+
+    QString         mCurrentLang;
+    QString         mCurrentTranslator;
 
     QTranslator     *mTranslator;
     QLabel          *mThemeLabel;

@@ -44,5 +44,16 @@
     </qresource>
     <qresource prefix="/i18n">
         <file alias="en_US">assets/i18n/en_US/icon.png</file>
+        <file alias="en_US_QM">assets/i18n/en_US/lang.qm</file>
+    </qresource>
+    <qresource prefix="/imgs" lang="fr_FR">
+        <file alias="bLch">assets/imgs/fr_FR/BtnLaunch.png</file>
+        <file alias="bLch1">assets/imgs/fr_FR/BtnLaunch1.png</file>
+        <file alias="bLoad">assets/imgs/fr_FR/BtnLoad.png</file>
+        <file alias="bLoad1">assets/imgs/fr_FR/BtnLoad1.png</file>
+        <file alias="bSave">assets/imgs/fr_FR/BtnSave.png</file>
+        <file alias="bSave1">assets/imgs/fr_FR/BtnSave1.png</file>
+        <file alias="bSet">assets/imgs/fr_FR/BtnSet.png</file>
+        <file alias="bSet1">assets/imgs/fr_FR/BtnSet1.png</file>
     </qresource>
 </RCC>

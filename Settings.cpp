@@ -63,8 +63,8 @@ void Settings::createObjects()
     mAppDataLocal       = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
     mDocumentsData      = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     mCFGSettings        = new QSettings(QCoreApplication::applicationDirPath()+"/config.cfg", QSettings::IniFormat);
+
     mCSSFile->setFileName(":themes/thmD");
-    mCSSFile->open(QIODevice::ReadOnly | QIODevice::Text);
 }
 void Settings::createConnexions()
 {
@@ -247,6 +247,10 @@ QString Settings::currentTheme()
 {
     return mCSSTheme;
 }
+QString Settings::currentLang()
+{
+    return mCurrentLang;
+}
 QString Settings::gameDirectory()
 {
     return mCFGSettings->value("Paths/GameExecutable").toString();
@@ -283,7 +287,7 @@ void Settings::setTextSpeed(int speed)
 }
 void Settings::setSoundEnabled(bool isEnabled)
 {
-    if(mSpeedSld->value() != 3) {//Prevent statut erasing
+    if (mSpeedSld->value() != 3) {//Prevent statut erasing
         mTmpSndEnabled = isEnabled;
     }
 }
@@ -341,11 +345,23 @@ void Settings::initSettings()
         mCFGSettings->setValue("Paths/BackupsSaves", mDocumentsData+"/UNDERTALE_BACKUPS");
     }
 
+    if (!mCFGSettings->contains("Miscs/Language")) {
+        mCFGSettings->setValue("Miscs/Language", QLocale::system().name());
+    }
+
+    mCurrentLang = mCFGSettings->value("Miscs/Language").toString();
+
+    mCurrentTranslator = QApplication::applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+
+    loadTranslator();
     loadSettings();
 }
 void Settings::loadSettings()
 {
-    mCSSTheme = mCSSFile->readAll();
+    if (!mCSSFile->isOpen()) {
+        mCSSFile->open(QIODevice::ReadOnly | QIODevice::Text);
+        mCSSTheme = mCSSFile->readAll();
+    }
 
     mSpeedSld->setValue(mCFGSettings->value("MessageBox/TextSpeed").toInt());
     mSoundChk->setChecked(mCFGSettings->value("MessageBox/SoundEffect").toBool());
@@ -353,9 +369,19 @@ void Settings::loadSettings()
     mGameLin->setText(mCFGSettings->value("Paths/CurrentSave").toString());
     mStorLin->setText(mCFGSettings->value("Paths/BackupsSaves").toString());
     mExecLin->setText(mCFGSettings->value("Paths/GameExecutable").toString());
+    mLangCombo->setCurrentIndex(mLangCombo->findText(mCFGSettings->value("Miscs/Language").toString()));
 
     translateUi();
 }
+void Settings::loadTranslator()
+{
+    qApp->removeTranslator(mTranslator);
+
+    if (mTranslator->load(mCurrentTranslator)) {
+        qApp->installTranslator(mTranslator);
+    }
+}
+
 void Settings::saveSettings()
 {
     mCFGSettings->setValue("MessageBox/TextSpeed",      mSpeedSld->value());
@@ -364,6 +390,10 @@ void Settings::saveSettings()
     mCFGSettings->setValue("Paths/CurrentSave",         mGameLin->text());
     mCFGSettings->setValue("Paths/BackupsSaves",        mStorLin->text());
     mCFGSettings->setValue("Paths/GameExecutable",      mExecLin->text());
+    mCFGSettings->setValue("Miscs/Language",            mLangCombo->currentText());
+
+    loadTranslator();
+    translateUi();
 }
 void Settings::translateUi()
 {
@@ -389,14 +419,13 @@ void Settings::cancelOnClose()
 }
 void Settings::slotLanguageChanged(int index)
 {
-    QString i18nPath = QApplication::applicationDirPath()+"/i18n/";
-    QString langFile = mLangCombo->itemData(index).toString()+"/lang.qm";
+    mCurrentLang = mLangCombo->itemData(index).toString();
 
-    mTranslator->load(i18nPath+langFile);
-
-    qApp->installTranslator(mTranslator);
-
-    translateUi();
+    if (mCurrentLang == "en_US") {
+        mCurrentTranslator = ":i18n/en_US_QM";
+    } else {
+        mCurrentTranslator = QApplication::applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+    }
 }
 
 //Events

@@ -118,6 +118,9 @@ void UnSavManager::createSettings()
     this->setWindowTitle("UNDERTALE Save Manager");
     this->setWindowFlags(Qt::FramelessWindowHint);
     qApp->setStyleSheet(mSetgsDialog->currentTheme());
+
+    QLocale locale = QLocale(mSetgsDialog->currentLang());
+    QLocale::setDefault(locale);
 }
 
 //Methods
@@ -212,6 +215,20 @@ bool UnSavManager::alreadyExist(QString from, QString dest)
     }
 }
 
+void UnSavManager::changeEvent(QEvent *event)
+{
+    if(event != 0)
+    {
+        if(event->type() == QEvent::LanguageChange)
+        {
+            QLocale locale = QLocale(mSetgsDialog->currentLang());
+            QLocale::setDefault(locale);
+
+            qApp->setStyleSheet(mSetgsDialog->currentTheme());
+        }
+    }
+}
+
 //Slots
 void UnSavManager::moveRight()
 {
@@ -238,9 +255,9 @@ void UnSavManager::moveRight()
                 mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
                 mMesgsDialog->setType(MessageDialog::BoxType::Choice);
-                mMesgsDialog->setDialogText("* This save are no backup.\n\n"
-                                            "* Do you really want replacing ?\n\n"
-                                            "  Y for Yes / N for No");
+                mMesgsDialog->setDialogText( tr("* This save are no backup.\n\n"
+                                                "* Do you really want replacing ?\n\n"
+                                                "  Y for Yes / N for No"));
                 mMesgsDialog->exec();
 
                 if (mMesgsDialog->isAccepted()) {
@@ -259,9 +276,9 @@ void UnSavManager::moveRight()
                 mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
                 mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-                mMesgsDialog->setDialogText("* This save aready exist.\n\n"
-                                            "* You can't load this save\n\n"
-                                            "  ENTER for closing this box");
+                mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
+                                                "* You can't load this save\n\n"
+                                                "  ENTER for closing this box"));
                 mMesgsDialog->exec();
             } else {
                 QDir dir(mSetgsDialog->currentSave());
@@ -296,9 +313,9 @@ void UnSavManager::moveLeft()
             mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
             mMesgsDialog->setDialogSize(QSize(600, 140));
             mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-            mMesgsDialog->setDialogText("* This save aready exist.\n\n"
-                                        "* You can't backup this save\n\n"
-                                        "  ENTER for closing this box");
+            mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
+                                            "* You can't backup this save\n\n"
+                                            "  ENTER for closing this box"));
             mMesgsDialog->exec();
     }
     else {
@@ -320,9 +337,9 @@ void UnSavManager::launchGame()
             mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
             mMesgsDialog->setDialogSize(QSize(600, 140));
             mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-            mMesgsDialog->setDialogText("* Path to the game not initialised.\n\n"
-                                        "* Please define it in 'SETTINGS'\n\n"
-                                        "  ENTER for closing this box");
+            mMesgsDialog->setDialogText( tr("* Path to the game not initialised.\n\n"
+                                            "* Please define it in 'SETTINGS'\n\n"
+                                            "  ENTER for closing this box"));
             mMesgsDialog->exec();
         } else {
             mGameProcess->startDetached(mSetgsDialog->gameDirectory());
@@ -335,9 +352,9 @@ void UnSavManager::deleteSave(QString folder)
         mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
         mMesgsDialog->setDialogSize(QSize(640, 140));
         mMesgsDialog->setType(MessageDialog::BoxType::Choice);
-        mMesgsDialog->setDialogText("* This awesome save will be removed.\n\n"
-                                    "* Are you really sure you want do this ?\n\n"
-                                    "  Y for Yes / N for No");
+        mMesgsDialog->setDialogText( tr("* This awesome save will be removed.\n\n"
+                                        "* Are you really sure you want do this ?\n\n"
+                                        "  Y for Yes / N for No"));
         mMesgsDialog->exec();
 
         if (mMesgsDialog->isAccepted()) {

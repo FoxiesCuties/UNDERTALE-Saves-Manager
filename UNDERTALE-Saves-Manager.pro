@@ -2,7 +2,8 @@ QT       += core gui widgets multimedia
 
 TEMPLATE = app
 
-TRANSLATIONS = assets/i18n/fr_FR/lang.ts \
+TRANSLATIONS =  assets/i18n/fr_FR/lang.ts \
+                assets/i18n/en_US/lang.ts \
 
 CONFIG += c++11
 

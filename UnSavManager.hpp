@@ -33,6 +33,9 @@ public:
     bool copySave(QString from, QString dest);
     bool alreadyExist(QString from, QString dest);
 
+    //Events
+    void changeEvent(QEvent *event);
+
 public slots:
 
     void moveRight();
