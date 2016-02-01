@@ -52,6 +52,7 @@ void UnSavManager::createConnexions()
     connect(mLachButton,    SIGNAL(clicked()),  this,           SLOT(launchGame()));
 
     connect(mSavListLeft,   SIGNAL(saveFolderDelete(QString)),  this,   SLOT(deleteSave(QString)));
+    connect(mSavListRight,  SIGNAL(saveFolderDelete(QString)),  this,   SLOT(deleteSave(QString)));
 }
 void UnSavManager::createInterface()
 {
@@ -153,6 +154,8 @@ void UnSavManager::loadBackupSaves()
 void UnSavManager::loadCurrentSave()
 {
     mSavListRight->clearAll();
+
+    mSavListRight->setSaveFolder(mSavListRight->count(), mSetgsDialog->currentSave());
 
     QSettings  *setting = new QSettings(mSetgsDialog->currentSave()+"/undertale.ini", QSettings::IniFormat);
 
@@ -358,14 +361,15 @@ void UnSavManager::deleteSave(QString folder)
         mMesgsDialog->exec();
 
         if (mMesgsDialog->isAccepted()) {
-            QDir dir(mSetgsDialog->backupSaves()+"/"+folder);
-
-            if (dir.removeRecursively()) {
-                mSavListRight->clearAll();
+            if (folder == mSetgsDialog->currentSave()) {
+                QDir dir(mSetgsDialog->currentSave());
+                    dir.removeRecursively();
+                    loadCurrentSave();
+            } else {
+                QDir dir(mSetgsDialog->backupSaves()+"/"+folder);
+                    dir.removeRecursively();
+                    loadBackupSaves();
             }
-
-            loadBackupSaves();
-            loadCurrentSave();
         }
     }
 }
