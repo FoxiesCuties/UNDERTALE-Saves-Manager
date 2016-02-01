@@ -6,6 +6,7 @@ Settings::Settings(QWidget *parent) : QDialog(parent)
     createConnexions();
     createInterface();
     createLangCombo();
+    createThemCombo();
     createObjectName();
     createSettings();
 }
@@ -78,6 +79,7 @@ void Settings::createConnexions()
     connect(mApplyBut,          SIGNAL(clicked()),                  this,   SLOT(saveSettings()));
     connect(mCancelBut,         SIGNAL(clicked()),                  this,   SLOT(loadSettings()));
     connect(mLangCombo,         SIGNAL(currentIndexChanged(int)),   this,   SLOT(slotLanguageChanged(int)));
+    connect(mThemeCombo,        SIGNAL(currentIndexChanged(int)),   this,   SLOT(slotThemeChanged(int)));
 }
 void Settings::createLangCombo()
 {
@@ -88,6 +90,17 @@ void Settings::createLangCombo()
 
     foreach (QString lang, i18nDir.entryList(QDir::NoDotAndDotDot|QDir::AllDirs)) {
         mLangCombo->addItem(QIcon(i18nPath+"/"+lang+"/icon.png"), lang, lang);
+    }
+}
+void Settings::createThemCombo()
+{
+    mThemeCombo->addItem(tr("Default"), "native");//Add default value
+
+    QString themePath = QApplication::applicationDirPath()+"/themes";
+    QDir themeDir(themePath);
+
+    foreach (QString them, themeDir.entryList(QDir::Files)) {
+        mThemeCombo->addItem(them.section(".",0,0), them);
     }
 }
 void Settings::createInterface()
@@ -147,7 +160,6 @@ void Settings::createInterface()
 
     mPathsGroup->setLayout(mSettingsGrid);
     /**/
-    mThemeCombo->addItem("Native");
 
     mMiscGrid->addWidget(mLangLabel,0,0);
     mMiscGrid->addWidget(mLangCombo,0,1);
@@ -349,11 +361,16 @@ void Settings::initSettings()
         mCFGSettings->setValue("Miscs/Language", QLocale::system().name());
     }
 
+    if (!mCFGSettings->contains("Miscs/Theme")) {
+        mCFGSettings->setValue("Miscs/Theme", "native");
+    }
+
     mCurrentLang = mCFGSettings->value("Miscs/Language").toString();
 
     mCurrentTranslator = QApplication::applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
 
     loadTranslator();
+    loadTheme();
     loadSettings();
 }
 void Settings::loadSettings()
@@ -370,6 +387,7 @@ void Settings::loadSettings()
     mStorLin->setText(mCFGSettings->value("Paths/BackupsSaves").toString());
     mExecLin->setText(mCFGSettings->value("Paths/GameExecutable").toString());
     mLangCombo->setCurrentIndex(mLangCombo->findText(mCFGSettings->value("Miscs/Language").toString()));
+    mThemeCombo->setCurrentIndex(mThemeCombo->findData(mCFGSettings->value("Miscs/Theme").toString()));
 
     translateUi();
 }
@@ -381,6 +399,10 @@ void Settings::loadTranslator()
         qApp->installTranslator(mTranslator);
     }
 }
+void Settings::loadTheme()
+{
+    qApp->setStyleSheet(mCSSTheme);
+}
 
 void Settings::saveSettings()
 {
@@ -391,8 +413,10 @@ void Settings::saveSettings()
     mCFGSettings->setValue("Paths/BackupsSaves",        mStorLin->text());
     mCFGSettings->setValue("Paths/GameExecutable",      mExecLin->text());
     mCFGSettings->setValue("Miscs/Language",            mLangCombo->currentText());
+    mCFGSettings->setValue("Miscs/Theme",               mThemeCombo->currentData());
 
     loadTranslator();
+    loadTheme();
     translateUi();
 }
 void Settings::translateUi()
@@ -421,10 +445,26 @@ void Settings::slotLanguageChanged(int index)
 {
     mCurrentLang = mLangCombo->itemData(index).toString();
 
-    if (mCurrentLang == "en_US") {
+    if (mLangCombo->currentIndex() == 0) {
         mCurrentTranslator = ":i18n/en_US_QM";
     } else {
         mCurrentTranslator = QApplication::applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+    }
+}
+void Settings::slotThemeChanged(int index)
+{
+    QString str = mThemeCombo->itemData(index).toString();
+
+    mCSSFile->close();
+
+    if (mThemeCombo->currentIndex() == 0) {
+        mCSSFile->setFileName(":themes/thmD");
+    } else {
+        mCSSFile->setFileName(QCoreApplication::applicationDirPath()+"/themes/"+str);
+    }
+
+    if(mCSSFile->open(QIODevice::ReadOnly | QIODevice::Text)) {
+        mCSSTheme = mCSSFile->readAll();
     }
 }
 

@@ -16,6 +16,7 @@ public:
     void createObjects();
     void createConnexions();
     void createLangCombo();
+    void createThemCombo();
     void createInterface();
     void createObjectName();
     void createSettings();
@@ -49,8 +50,10 @@ private slots:
     void cancelOnClose();
 
     void loadTranslator();
+    void loadTheme();
 
     void slotLanguageChanged(int index);
+    void slotThemeChanged(int index);
 
 private:
 
