@@ -361,12 +361,12 @@ void UnSavManager::deleteSave(QString folder)
 
         if (mMesgsDialog->isAccepted()) {
             if (folder == mSetgsDialog->currentSave()) {
-                QDir dir(mSetgsDialog->currentSave());
-                    dir.removeRecursively();
+                QDir currentSave(mSetgsDialog->currentSave());
+                    currentSave.removeRecursively();
                     loadCurrentSave();
             } else {
-                QDir dir(mSetgsDialog->backupSaves()+"/"+folder);
-                    dir.removeRecursively();
+                QDir backupSaves(mSetgsDialog->backupSaves()+"/"+folder);
+                    backupSaves.removeRecursively();
                     loadBackupSaves();
             }
         }
