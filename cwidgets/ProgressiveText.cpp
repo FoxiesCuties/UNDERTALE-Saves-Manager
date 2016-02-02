@@ -4,9 +4,6 @@ ProgressiveText::ProgressiveText()
 {
     createObjects();
     createConnexions();
-
-    mLoopSound->setSource(QUrl("qrc:snds/chat"));
-
 }
 
 //Organisers
@@ -15,7 +12,6 @@ void ProgressiveText::createObjects()
     mCharCount      = 0;
     mLoopSound      = new QSoundEffect;
     mCharTimer      = new QTimer;
-    mTextSettings   = new Settings;
 }
 void ProgressiveText::createConnexions()
 {
@@ -30,14 +26,12 @@ bool ProgressiveText::isFinish()
     else
         return false;
 }
-void ProgressiveText::setProgressiveText(QString text)
+void ProgressiveText::setProgressiveText(QString text, int speed)
 {
     mString     = text;
-    mSoundBool  = mTextSettings->soundEnabled();
-    mTextSpeed  = mTextSettings->textSpeed();
+    mTextSpeed  = speed;
 
-    if (mTextSettings->textSpeed() == 0)
-    {
+    if (mTextSpeed == 0) {
         this->setText(mString);
     } else {
         this->clear();
@@ -48,6 +42,11 @@ void ProgressiveText::setProgressiveText(QString text)
             mLoopSound->play();
         }
     }
+}
+void ProgressiveText::setSoundSource(QUrl url, bool play)
+{
+    mLoopSound->setSource(url);
+    mSoundBool = play;
 }
 
 //Slots

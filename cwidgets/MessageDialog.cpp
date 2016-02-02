@@ -44,9 +44,13 @@ void MessageDialog::setDialogSize(QSize size)
 {
     this->setFixedSize(size);
 }
-void MessageDialog::setDialogText(QString text)
+void MessageDialog::setDialogText(QString text, int speed)
 {
-    mMessageTextEdit->setProgressiveText(text);
+    mMessageTextEdit->setProgressiveText(text, speed);
+}
+void MessageDialog::setDialogSound(QUrl url, bool play)
+{
+    mMessageTextEdit->setSoundSource(url, play);
 }
 void MessageDialog::setDialogPixmap(QPixmap pixmap)
 {

@@ -22,7 +22,8 @@ public:
 
     bool isAccepted();
     void setDialogSize(QSize size);
-    void setDialogText(QString text);
+    void setDialogText(QString text, int speed);
+    void setDialogSound(QUrl url, bool play);
     void setDialogPixmap(QPixmap pixmap);
 
     void setType(BoxType type);

@@ -242,9 +242,10 @@ void UnSavManager::moveRight()
                 mMesgsDialog->setDialogSize(QSize(600, 140));
                 mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
                 mMesgsDialog->setType(MessageDialog::BoxType::Choice);
+                mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
                 mMesgsDialog->setDialogText( tr("* This save are no backup.\n\n"
                                                 "* Do you really want replacing ?\n\n"
-                                                "  Y for Yes / N for No"));
+                                                "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
                 mMesgsDialog->exec();
 
                 if (mMesgsDialog->isAccepted()) {
@@ -263,9 +264,10 @@ void UnSavManager::moveRight()
                 mMesgsDialog->setDialogSize(QSize(600, 140));
                 mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
                 mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+                mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
                 mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
                                                 "* You can't load this save\n\n"
-                                                "  ENTER for closing this box"));
+                                                "  ENTER for closing this box"), mSetgsDialog->textSpeed());
                 mMesgsDialog->exec();
             } else {
                 QDir dir(mSetgsDialog->currentSave());
@@ -303,9 +305,10 @@ void UnSavManager::moveLeft()
                 mMesgsDialog->setDialogSize(QSize(600, 140));
                 mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
                 mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+                mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
                 mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
                                                 "* You can't backup this save\n\n"
-                                                "  ENTER for closing this box"));
+                                                "  ENTER for closing this box"), mSetgsDialog->textSpeed());
                 mMesgsDialog->exec();
         } else {
             copySave(mSetgsDialog->currentSave(), mSetgsDialog->backupSaves()+"/UNDERTALE_"+QString::number(mSavListLeft->count()+1));
@@ -318,9 +321,10 @@ void UnSavManager::moveLeft()
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* None current save to backup.\n\n"
                                         "* You can't backup nothing\n\n"
-                                        "  ENTER for closing this box"));
+                                        "  ENTER for closing this box"), mSetgsDialog->textSpeed());
         mMesgsDialog->exec();
     }
 }
@@ -338,9 +342,10 @@ void UnSavManager::launchGame()
             mMesgsDialog->setDialogSize(QSize(600, 140));
             mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
             mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+            mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
             mMesgsDialog->setDialogText( tr("* Path to the game not initialised.\n\n"
                                             "* Please define it in 'SETTINGS'\n\n"
-                                            "  ENTER for closing this box"));
+                                            "  ENTER for closing this box"), mSetgsDialog->textSpeed());
             mMesgsDialog->exec();
         } else {
             mGameProcess->startDetached(mSetgsDialog->gameDirectory());
@@ -354,9 +359,10 @@ void UnSavManager::deleteSave(QString folder)
         mMesgsDialog->setDialogSize(QSize(640, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Choice);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* This awesome save will be removed.\n\n"
                                         "* Are you really sure you want do this ?\n\n"
-                                        "  Y for Yes / N for No"));
+                                        "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
         mMesgsDialog->exec();
 
         if (mMesgsDialog->isAccepted()) {

@@ -18,15 +18,14 @@ public:
     void createConnexions();
 
     bool isFinish();
-    void setProgressiveText(QString text);
+    void setProgressiveText(QString text, int speed);
+    void setSoundSource(QUrl url, bool play);
 
 public slots:
 
     void appendCharToText();
 
 private:
-
-    Settings        *mTextSettings;
 
     bool            mSoundBool;
     int             mCharCount;
