@@ -42,17 +42,15 @@ void UnSavManager::createObjects()
 }
 void UnSavManager::createConnexions()
 {
-    connect(mAbtButton,     SIGNAL(clicked()),  mAboutDialog,   SLOT(exec()));
-    connect(mMinButton,     SIGNAL(clicked()),  this,           SLOT(minimiseManager()));
-    connect(mClozButton,    SIGNAL(clicked()),  this,           SLOT(close()));
-
-    connect(mSaveButton,    SIGNAL(clicked()),  this,           SLOT(moveLeft()));
-    connect(mLoadButton,    SIGNAL(clicked()),  this,           SLOT(moveRight()));
-    connect(mStigButton,    SIGNAL(clicked()),  mSetgsDialog,   SLOT(exec()));
-    connect(mLachButton,    SIGNAL(clicked()),  this,           SLOT(launchGame()));
-
-    connect(mSavListLeft,   SIGNAL(saveFolderDelete(QString)),  this,   SLOT(deleteSave(QString)));
-    connect(mSavListRight,  SIGNAL(saveFolderDelete(QString)),  this,   SLOT(deleteSave(QString)));
+    connect(mAbtButton,     SIGNAL(clicked()),                  mAboutDialog,   SLOT(exec()));
+    connect(mMinButton,     SIGNAL(clicked()),                  this,           SLOT(minimiseManager()));
+    connect(mClozButton,    SIGNAL(clicked()),                  this,           SLOT(close()));
+    connect(mSaveButton,    SIGNAL(clicked()),                  this,           SLOT(moveLeft()));
+    connect(mLoadButton,    SIGNAL(clicked()),                  this,           SLOT(moveRight()));
+    connect(mStigButton,    SIGNAL(clicked()),                  mSetgsDialog,   SLOT(exec()));
+    connect(mLachButton,    SIGNAL(clicked()),                  this,           SLOT(launchGame()));
+    connect(mSavListLeft,   SIGNAL(saveFolderDelete(QString)),  this,           SLOT(deleteSave(QString)));
+    connect(mSavListRight,  SIGNAL(saveFolderDelete(QString)),  this,           SLOT(deleteSave(QString)));
 }
 void UnSavManager::createInterface()
 {
@@ -212,23 +210,8 @@ bool UnSavManager::alreadyExist(QString from, QString dest)
 
     if (destHash.toHex() == fromHash.toHex()) {
         return true;
-    }
-    else {
+    } else {
         return false;
-    }
-}
-
-void UnSavManager::changeEvent(QEvent *event)
-{
-    if(event != 0)
-    {
-        if(event->type() == QEvent::LanguageChange)
-        {
-            QLocale locale = QLocale(mSetgsDialog->currentLang());
-            QLocale::setDefault(locale);
-
-            qApp->setStyleSheet(mSetgsDialog->currentTheme());
-        }
     }
 }
 
@@ -274,8 +257,7 @@ void UnSavManager::moveRight()
                     copySave(fromString, destString);
                     loadCurrentSave();
                 }
-        }
-        else {
+        } else {
             if (alreadyExist(fromString, destString)) {
                 mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
@@ -387,6 +369,19 @@ void UnSavManager::deleteSave(QString folder)
                     dir.removeRecursively();
                     loadBackupSaves();
             }
+        }
+    }
+}
+
+//Events
+void UnSavManager::changeEvent(QEvent *event)
+{
+    if (event != 0) {
+        if (event->type() == QEvent::LanguageChange) {
+            QLocale locale = QLocale(mSetgsDialog->currentLang());
+            QLocale::setDefault(locale);
+
+            qApp->setStyleSheet(mSetgsDialog->currentTheme());
         }
     }
 }
