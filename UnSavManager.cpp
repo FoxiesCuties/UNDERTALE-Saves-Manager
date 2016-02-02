@@ -257,6 +257,7 @@ void UnSavManager::moveRight()
         if (saveExist && !isBackup) {//If current save 'exist' AND 'doesn't backup'
                 mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
+                mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
                 mMesgsDialog->setType(MessageDialog::BoxType::Choice);
                 mMesgsDialog->setDialogText( tr("* This save are no backup.\n\n"
                                                 "* Do you really want replacing ?\n\n"
@@ -278,6 +279,7 @@ void UnSavManager::moveRight()
             if (alreadyExist(fromString, destString)) {
                 mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
+                mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
                 mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
                 mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
                                                 "* You can't load this save\n\n"
@@ -317,6 +319,7 @@ void UnSavManager::moveLeft()
         if (exist) {//If current save already exist
                 mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
                 mMesgsDialog->setDialogSize(QSize(600, 140));
+                mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
                 mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
                 mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
                                                 "* You can't backup this save\n\n"
@@ -331,6 +334,7 @@ void UnSavManager::moveLeft()
     } else {
         mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
         mMesgsDialog->setDialogText( tr("* None current save to backup.\n\n"
                                         "* You can't backup nothing\n\n"
@@ -350,6 +354,7 @@ void UnSavManager::launchGame()
         if (mSetgsDialog->gameDirectory().isEmpty()) {
             mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
             mMesgsDialog->setDialogSize(QSize(600, 140));
+            mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
             mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
             mMesgsDialog->setDialogText( tr("* Path to the game not initialised.\n\n"
                                             "* Please define it in 'SETTINGS'\n\n"
@@ -365,6 +370,7 @@ void UnSavManager::deleteSave(QString folder)
     if (!folder.isEmpty()) {
         mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
         mMesgsDialog->setDialogSize(QSize(640, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Choice);
         mMesgsDialog->setDialogText( tr("* This awesome save will be removed.\n\n"
                                         "* Are you really sure you want do this ?\n\n"
