@@ -2,6 +2,8 @@ QT       += core gui widgets multimedia
 
 TEMPLATE = app
 
+RC_ICONS = toriel.ico
+
 TRANSLATIONS =  assets/i18n/fr_FR/lang.ts \
                 assets/i18n/en_US/lang.ts \
 
