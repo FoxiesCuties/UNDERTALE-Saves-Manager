@@ -3,6 +3,8 @@
 
 #include <QtWidgets>
 
+#include "cwidgets/SaveDetails.hpp"
+
 class UnProfile : public QPushButton
 {
     Q_OBJECT
@@ -30,6 +32,10 @@ public:
     QVariant time();
     QVariant room();
 
+    //Events
+    void mouseDoubleClickEvent(QMouseEvent *event);
+
+
 private slots:
 
     void deleteSave();
@@ -42,6 +48,7 @@ private:
 
     //Variables
     int             mSaveIdInt;
+    int             mRoomNumber;
     QVariant        mNameVariant;
     QVariant        mLoveVariant;
     QVariant        mTimeVariant;
@@ -54,6 +61,7 @@ private:
     QLabel          *mRoomValue;
     QPushButton     *mDeleteBut;
     QGridLayout     *mProfileGrid;
+    SaveDetails     *mSaveDetails;
 };
 
 #endif // UNPROFILE_HPP

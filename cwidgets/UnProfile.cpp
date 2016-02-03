@@ -16,6 +16,8 @@ void UnProfile::createObjects()
     mRoomValue      = new QLabel;
     mDeleteBut      = new QPushButton;
     mProfileGrid    = new QGridLayout;
+
+    mSaveDetails    = new SaveDetails;
 }
 void UnProfile::createConnexions()
 {
@@ -87,11 +89,10 @@ void UnProfile::setTime(QVariant frms)
 void UnProfile::setRoom(QVariant room)
 {
     mRoomVariant = room;
-
-    int rNum = mRoomVariant.toString().section(".",0,0).toInt();
+    mRoomNumber = mRoomVariant.toString().section(".", 0, 0).toInt();
 
     //Convert room number to room name
-    switch (rNum) {
+    switch (mRoomNumber) {
         case 6:
             mRoomValue->setText("Ruins - Entrance");
                 break;
@@ -208,6 +209,15 @@ QVariant UnProfile::time()
 QVariant UnProfile::room()
 {
     return mRoomVariant;
+}
+
+//Events
+void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        mSaveDetails->setRoomNumber(mRoomNumber);
+        mSaveDetails->exec();
+    }
 }
 
 //Slots
