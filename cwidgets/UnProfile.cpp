@@ -91,8 +91,7 @@ void UnProfile::setRoom(QVariant room)
     int rNum = mRoomVariant.toString().section(".",0,0).toInt();
 
     //Convert room number to room name
-    switch (rNum)
-    {
+    switch (rNum) {
         case 6:
             mRoomValue->setText("Ruins - Entrance");
                 break;

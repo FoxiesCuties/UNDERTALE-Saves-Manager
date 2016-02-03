@@ -63,32 +63,31 @@ void Settings::createObjects()
     //General
     mAppDataLocal       = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
     mDocumentsData      = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    mCFGSettings        = new QSettings(QCoreApplication::applicationDirPath()+"/config.cfg", QSettings::IniFormat);
-
+    mCFGSettings        = new QSettings(qApp->applicationDirPath()+"/config.cfg", QSettings::IniFormat);
     mCSSFile->setFileName(":themes/thmD");
 }
 void Settings::createConnexions()
 {
-    connect(mGameBut,           SIGNAL(clicked()),                  this,   SLOT(setCurrentSave()));
-    connect(mStorBut,           SIGNAL(clicked()),                  this,   SLOT(setBackupSaves()));
-    connect(mExecBut,           SIGNAL(clicked()),                  this,   SLOT(setPathToGame()));
-    connect(mSettingsCButton,   SIGNAL(clicked()),                  this,   SLOT(cancelOnClose()));
-    connect(mSoundChk,          SIGNAL(toggled(bool)),              this,   SLOT(setSoundEnabled(bool)));
-    connect(mSpeedSld,          SIGNAL(valueChanged(int)),          this,   SLOT(setTextSpeed(int)));
-    connect(mSteamChk,          SIGNAL(toggled(bool)),              this,   SLOT(setSteamEnabled(bool)));
-    connect(mApplyBut,          SIGNAL(clicked()),                  this,   SLOT(saveSettings()));
-    connect(mCancelBut,         SIGNAL(clicked()),                  this,   SLOT(loadSettings()));
-    connect(mLangCombo,         SIGNAL(currentIndexChanged(int)),   this,   SLOT(slotLanguageChanged(int)));
-    connect(mThemeCombo,        SIGNAL(currentIndexChanged(int)),   this,   SLOT(slotThemeChanged(int)));
+    connect(mGameBut,           SIGNAL(clicked()),          this,   SLOT(setCurrentSave()));
+    connect(mStorBut,           SIGNAL(clicked()),          this,   SLOT(setBackupSaves()));
+    connect(mExecBut,           SIGNAL(clicked()),          this,   SLOT(setPathToGame()));
+    connect(mSettingsCButton,   SIGNAL(clicked()),          this,   SLOT(cancelOnClose()));
+    connect(mSoundChk,          SIGNAL(toggled(bool)),      this,   SLOT(setSoundEnabled(bool)));
+    connect(mSpeedSld,          SIGNAL(valueChanged(int)),  this,   SLOT(setTextSpeed(int)));
+    connect(mSteamChk,          SIGNAL(toggled(bool)),      this,   SLOT(setSteamEnabled(bool)));
+    connect(mApplyBut,          SIGNAL(clicked()),          this,   SLOT(saveSettings()));
+    connect(mCancelBut,         SIGNAL(clicked()),          this,   SLOT(loadSettings()));
+    connect(mLangCombo,         SIGNAL(activated(int)),     this,   SLOT(slotLanguageChanged(int)));
+    connect(mThemeCombo,        SIGNAL(activated(int)),     this,   SLOT(slotThemeChanged(int)));
 }
 void Settings::createLangCombo()
 {
-    mLangCombo->addItem(QIcon(":i18n/en_US"), "en_US", "en_US");//Add default value
+    mLangCombo->addItem(QIcon(":i18n/en_US"), "en_US", "");//Add default value
 
-    QString i18nPath = QApplication::applicationDirPath()+"/i18n";
+    QString i18nPath = qApp->applicationDirPath()+"/i18n";
     QDir i18nDir(i18nPath);
 
-    foreach (QString lang, i18nDir.entryList(QDir::NoDotAndDotDot|QDir::AllDirs)) {
+    foreach (QString lang, i18nDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
         mLangCombo->addItem(QIcon(i18nPath+"/"+lang+"/icon.png"), lang, lang);
     }
 }
@@ -96,11 +95,10 @@ void Settings::createThemCombo()
 {
     mThemeCombo->addItem(tr("Default"), "native");//Add default value
 
-    QString themePath = QApplication::applicationDirPath()+"/themes";
-    QDir themeDir(themePath);
+    QDir themeDir(qApp->applicationDirPath()+"/themes");
 
     foreach (QString them, themeDir.entryList(QDir::Files)) {
-        mThemeCombo->addItem(them.section(".",0,0), them);
+        mThemeCombo->addItem(them.section(".", 0, 0), them);
     }
 }
 void Settings::createInterface()
@@ -119,20 +117,20 @@ void Settings::createInterface()
     mSettingsTButton->setLayout(mTSettingsVBox);
     mSettingsTButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Ignored);
     mSettingsTButton->setFixedHeight(90);
-    /**/
+
     mSpeedSld->setOrientation(Qt::Horizontal);
     mSpeedSld->setRange(0, 3);
     mSpeedSld->setFixedWidth(30);
 
-    mMesBoxGrid->addWidget(mSoundLab,0,0,1,1, Qt::AlignRight);
-    mMesBoxGrid->addWidget(mSoundChk,0,1,1,1, Qt::AlignLeft);
-    mMesBoxGrid->addWidget(mSpeedLab,1,0,1,1, Qt::AlignRight);
-    mMesBoxGrid->addWidget(mSpeedSld,1,1,1,1, Qt::AlignLeft);
-    mMesBoxGrid->addWidget(mSpValLab,1,3,1,1, Qt::AlignRight);
+    mMesBoxGrid->addWidget(mSoundLab, 0, 0, 1, 1, Qt::AlignRight);
+    mMesBoxGrid->addWidget(mSoundChk, 0, 1, 1, 1, Qt::AlignLeft);
+    mMesBoxGrid->addWidget(mSpeedLab, 1, 0, 1, 1, Qt::AlignRight);
+    mMesBoxGrid->addWidget(mSpeedSld, 1, 1, 1, 1, Qt::AlignLeft);
+    mMesBoxGrid->addWidget(mSpValLab, 1, 3, 1, 1, Qt::AlignRight);
 
     mMesBoxGroup->setLayout(mMesBoxGrid);
     mMesBoxGroup->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Minimum);
-    /**/
+
     mGameLin->setReadOnly(true);
 
     mGameBut->setText(". . .");
@@ -145,26 +143,25 @@ void Settings::createInterface()
 
     mExecBut->setText(". . .");
 
-    mSettingsGrid->addWidget(mGameLab,  0,0,1,1);
-    mSettingsGrid->addWidget(mGameLin,  1,0,1,6);
-    mSettingsGrid->addWidget(mGameBut,  1,7,1,1);
-    mSettingsGrid->addWidget(mStorLab,  2,0,1,1);
-    mSettingsGrid->addWidget(mStorLin,  3,0,1,6);
-    mSettingsGrid->addWidget(mStorBut,  3,7,1,1);
-    mSettingsGrid->addWidget(mExecLab,  4,0,1,1);
-    mSettingsGrid->addWidget(mSteamChk, 4,1,1,1, Qt::AlignRight);
-    mSettingsGrid->addWidget(mExecStm,  4,2,1,1, Qt::AlignLeft);
-    mSettingsGrid->addWidget(mExecLin,  5,0,1,6);
-    mSettingsGrid->addWidget(mExecBut,  5,7,1,1);
+    mSettingsGrid->addWidget(mGameLab,  0, 0, 1, 1);
+    mSettingsGrid->addWidget(mGameLin,  1, 0, 1, 6);
+    mSettingsGrid->addWidget(mGameBut,  1, 7, 1, 1);
+    mSettingsGrid->addWidget(mStorLab,  2, 0, 1, 1);
+    mSettingsGrid->addWidget(mStorLin,  3, 0, 1, 6);
+    mSettingsGrid->addWidget(mStorBut,  3, 7, 1, 1);
+    mSettingsGrid->addWidget(mExecLab,  4, 0, 1, 1);
+    mSettingsGrid->addWidget(mSteamChk, 4, 1, 1, 1, Qt::AlignRight);
+    mSettingsGrid->addWidget(mExecStm,  4, 2, 1, 1, Qt::AlignLeft);
+    mSettingsGrid->addWidget(mExecLin,  5, 0, 1, 6);
+    mSettingsGrid->addWidget(mExecBut,  5, 7, 1, 1);
     mSettingsGrid->setContentsMargins(11, 15, 11, 11);
 
     mPathsGroup->setLayout(mSettingsGrid);
-    /**/
 
-    mMiscGrid->addWidget(mLangLabel,0,0);
-    mMiscGrid->addWidget(mLangCombo,0,1);
-    mMiscGrid->addWidget(mThemeLabel,1,0);
-    mMiscGrid->addWidget(mThemeCombo,1,1);
+    mMiscGrid->addWidget(mLangLabel, 0, 0);
+    mMiscGrid->addWidget(mLangCombo, 0, 1);
+    mMiscGrid->addWidget(mThemeLabel, 1, 0);
+    mMiscGrid->addWidget(mThemeCombo, 1, 1);
 
     mMiscGroup->setLayout(mMiscGrid);
 
@@ -173,13 +170,12 @@ void Settings::createInterface()
     mTopGroups->setSpacing(11);
 
     mGroupsVBox->addLayout(mTopGroups);
-    /**/
     mGroupsVBox->addWidget(mPathsGroup);
     mGroupsVBox->setContentsMargins(11, 7, 11, 11);
 
     mBotButHBox->addWidget(mApplyBut);
     mBotButHBox->addWidget(mCancelBut);
-    mBotButHBox->setContentsMargins(11,0,11,11);
+    mBotButHBox->setContentsMargins(11, 0, 11, 11);
 
     mSettingsVbox->addWidget(mSettingsTButton);
     mSettingsVbox->addLayout(mGroupsVBox);
@@ -367,7 +363,7 @@ void Settings::initSettings()
 
     mCurrentLang = mCFGSettings->value("Miscs/Language").toString();
 
-    mCurrentTranslator = QApplication::applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+    mCurrentTranslator = qApp->applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
 
     loadTranslator();
     loadTheme();
@@ -446,9 +442,9 @@ void Settings::slotLanguageChanged(int index)
     mCurrentLang = mLangCombo->itemData(index).toString();
 
     if (mLangCombo->currentIndex() == 0) {
-        mCurrentTranslator = ":i18n/en_US_QM";
+        mCurrentTranslator = "";
     } else {
-        mCurrentTranslator = QApplication::applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+        mCurrentTranslator = qApp->applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
     }
 }
 void Settings::slotThemeChanged(int index)
@@ -460,7 +456,7 @@ void Settings::slotThemeChanged(int index)
     if (mThemeCombo->currentIndex() == 0) {
         mCSSFile->setFileName(":themes/thmD");
     } else {
-        mCSSFile->setFileName(QCoreApplication::applicationDirPath()+"/themes/"+str);
+        mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+str);
     }
 
     if(mCSSFile->open(QIODevice::ReadOnly | QIODevice::Text)) {

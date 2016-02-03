@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     screen.setPixmap(splashScreen(QPixmap(":imgs/splash"), "Alpha"));
     screen.show();
 
-    QObject().thread()->sleep(2);//Fake thread for wait 2 secondes
+    QObject().thread()->sleep(2);//Fake thread for display SplashScreen
 
     screen.hide();
 

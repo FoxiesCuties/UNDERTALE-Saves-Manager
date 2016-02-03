@@ -62,7 +62,7 @@ void About::createInterface()
     mAboutVBox->setAlignment(Qt::AlignTop);
 
     mAboutVbox->addWidget(mAboutTButton, 1, Qt::AlignTop);
-    mAboutVbox->addLayout(mAboutVBox,0);
+    mAboutVbox->addLayout(mAboutVBox, 0);
 }
 void About::createObjectName()
 {

@@ -129,7 +129,7 @@ void UnSavManager::loadBackupSaves()
 
     QDir storDir (mSetgsDialog->backupSaves());
 
-    foreach (QString folder, storDir.entryList(QDir::NoDotAndDotDot|QDir::AllDirs))
+    foreach (QString folder, storDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs))
     {
         mSavListLeft->setSaveFolder(mSavListLeft->count(), folder);
 
