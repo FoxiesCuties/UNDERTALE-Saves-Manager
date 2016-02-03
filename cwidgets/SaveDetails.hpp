@@ -20,7 +20,6 @@ public slots:
 
 private:
 
-    QString         mAstPath;
     QPixmap         mRoomPixmap;
     QLabel          *mRoomPixLab;
     QHBoxLayout     *mDetailsHbox;

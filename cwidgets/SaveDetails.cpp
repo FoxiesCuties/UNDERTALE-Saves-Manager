@@ -15,7 +15,6 @@ void SaveDetails::createObjects()
     mDetailsHbox    = new QHBoxLayout;
     mRoomPixLab     = new QLabel;
     mDetailsGrid    = new QGridLayout;
-    mAstPath        = qApp->applicationDirPath()+"/assets/imgs/pixmaps/rooms/";
 }
 void SaveDetails::createInterface()
 {
@@ -27,7 +26,7 @@ void SaveDetails::createInterface()
     mDetailsGrid->addWidget(mGameTypeLab, 0, 0, 1, 1);
     mDetailsGrid->addWidget(mGameTypeVal, 0, 1, 1, 1);
     mDetailsGrid->addWidget(mGameGoldLab, 1, 0, 1, 1);
-    mDetailsGrid->addWidget(mGameGoldVal, 1, 1, 0, 0);
+    mDetailsGrid->addWidget(mGameGoldVal, 1, 1, 1, 1);
 
     mDetailsHbox->addWidget(mRoomPixLab);
     mDetailsHbox->addLayout(mDetailsGrid);
@@ -36,6 +35,10 @@ void SaveDetails::createInterface()
     this->setStyleSheet("QDialog{background: black;}");
 
     mRoomPixLab->setStyleSheet("border: 3px solid white;");
+
+    mGameTypeLab->setStyleSheet("color: white;");
+    mGameTypeVal->setStyleSheet("color: white;");
+    mGameGoldLab->setStyleSheet("color: white;");
     mGameGoldVal->setStyleSheet("color: white;");
 }
 
