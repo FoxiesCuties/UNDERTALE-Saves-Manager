@@ -46,6 +46,7 @@ void SaveListWidget::addSave(UnProfile *save)
         aProfile->setLove(save->love());
         aProfile->setTime(save->time());
         aProfile->setRoom(save->room());
+        aProfile->setFile0(save->file0());
         aProfile->setIdentifier(mProfileSavesList.count());
 
         connect(aProfile, SIGNAL(deleteSaveID(int)), this, SLOT(delSaveFolder(int)));

@@ -144,6 +144,7 @@ void UnSavManager::loadBackupSaves()
                 profile->setLove(settings->value("Love"));
                 profile->setTime(settings->value("Time"));
                 profile->setRoom(settings->value("Room"));
+                profile->setFile0(storDir.path()+"/"+folder+"/file0");
 
             mSavListLeft->addSave(profile);
         }

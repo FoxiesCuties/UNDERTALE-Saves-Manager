@@ -16,7 +16,6 @@ void UnProfile::createObjects()
     mRoomValue      = new QLabel;
     mDeleteBut      = new QPushButton;
     mProfileGrid    = new QGridLayout;
-
     mSaveDetails    = new SaveDetails;
 }
 void UnProfile::createConnexions()
@@ -88,8 +87,8 @@ void UnProfile::setTime(QVariant frms)
 }
 void UnProfile::setRoom(QVariant room)
 {
-    mRoomVariant = room;
-    mRoomNumber = mRoomVariant.toString().section(".", 0, 0).toInt();
+    mRoomVariant    = room;
+    mRoomNumber     = mRoomVariant.toString().section(".", 0, 0).toInt();
 
     //Convert room number to room name
     switch (mRoomNumber) {
@@ -188,6 +187,10 @@ void UnProfile::setRoom(QVariant room)
                 break;
     }
 }
+void UnProfile::setFile0(QVariant file)
+{
+    mFile0Variant = file;
+}
 
 //Getters
 int UnProfile::identifier()
@@ -210,11 +213,181 @@ QVariant UnProfile::room()
 {
     return mRoomVariant;
 }
+QVariant UnProfile::file0()
+{
+    return mFile0Variant;
+}
+
+//TODO Move to SaveDetails
+QVariant UnProfile::getValue(QString file, int line)
+{
+        QFile pfile(file);
+        if (!pfile.open(QIODevice::ReadOnly | QIODevice::Text))
+           return "";
+
+        QTextStream in(&pfile);
+
+        for(int p=1; p<=line; p++)
+        {
+            if (p == line) {
+
+                QVariant tmp = in.readLine();
+
+                pfile.flush();
+                pfile.close();
+
+                return tmp;
+            } else {
+                in.readLine();
+            }
+        }
+}
+QVariant UnProfile::getNxExp(int lvl, int cexp)
+{
+    switch (lvl) {
+    case 1:
+        return QString::number(10-cexp);
+        break;
+    case 2:
+        return QString::number(30-cexp);
+        break;
+    case 3:
+        return QString::number(70-cexp);
+        break;
+    case 4:
+        return QString::number(120-cexp);
+        break;
+    case 5:
+        return QString::number(200-cexp);
+        break;
+    case 6:
+        return QString::number(300-cexp);
+        break;
+    case 7:
+        return QString::number(500-cexp);
+        break;
+    case 8:
+        return QString::number(800-cexp);
+        break;
+    case 9:
+        return QString::number(1200-cexp);
+        break;
+    case 10:
+        return QString::number(1700-cexp);
+        break;
+    case 11:
+        return QString::number(2500-cexp);
+        break;
+    case 12:
+        return QString::number(3500-cexp);
+        break;
+    case 13:
+        return QString::number(5000-cexp);
+        break;
+    case 14:
+        return QString::number(7000-cexp);
+        break;
+    case 15:
+        return QString::number(10000-cexp);
+        break;
+    case 16:
+        return QString::number(15000-cexp);
+        break;
+    case 17:
+        return QString::number(25000-cexp);
+        break;
+    case 18:
+        return QString::number(50000-cexp);
+        break;
+    case 19:
+        return QString::number(99999-cexp);
+        break;
+    default:
+        break;
+    }
+}
+QVariant UnProfile::getWeapon(int idWeapon)
+{
+    switch (idWeapon) {
+    case 3:
+        return "Stick";
+        break;
+    case 13:
+        return "Toy Knife";
+        break;
+    case 14:
+        return "Tough Glove";
+        break;
+    case 45:
+        return "Torn Notebook";
+        break;
+    case 47:
+        return "Burnt Pan";
+        break;
+    case 49:
+        return "Empty Gun";
+        break;
+    case 51:
+        return "Worn Dagger";
+        break;
+    case 52:
+        return "Real Knife";
+        break;
+    default:
+        break;
+    }
+}
+QVariant UnProfile::getArmor(int idArmor)
+{
+    switch (idArmor) {
+    case 4:
+        return "Bandage";
+        break;
+    case 12:
+        return "Faded Ribbon";
+        break;
+    case 15:
+        return "Manly Bandanna";
+        break;
+    case 24:
+        return "Old Tutu";
+        break;
+    case 44:
+        return "Butty Glasses";
+        break;
+    case 46:
+        return "Stained Apron";
+        break;
+    case 48:
+        return "Cowboy Hat";
+        break;
+    case 50:
+        return "Heart Locket";
+        break;
+    case 53:
+        return "The Locket";
+        break;
+    case 64:
+        return "Temy Armor";
+        break;
+    default:
+        break;
+    }
+}
 
 //Events
 void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
+        mSaveDetails->setGameNameVal("\""+getValue( file0().toString(), 1 ).toString()+"\"");
+        mSaveDetails->setGameLoveVal(getValue( file0().toString(), 2 ).toString());
+        mSaveDetails->setGameHealthVal(getValue( file0().toString(), 3 ).toString());
+        mSaveDetails->setGameExpVal(getValue( file0().toString(), 10 ).toString());
+        mSaveDetails->setGameNExpVal(getNxExp(getValue(file0().toString(),2).toInt(), getValue( file0().toString(), 10 ).toInt()).toString());
+        mSaveDetails->setGameWeapVal(getWeapon(getValue( file0().toString(), 29 ).toInt()).toString());
+        mSaveDetails->setGameArmrVal(getArmor(getValue( file0().toString(), 30 ).toInt()).toString());
+        mSaveDetails->setGameGoldVal(getValue( file0().toString(), 11 ).toString());
+        //------------------------
         mSaveDetails->setRoomNumber(mRoomNumber);
         mSaveDetails->exec();
     }

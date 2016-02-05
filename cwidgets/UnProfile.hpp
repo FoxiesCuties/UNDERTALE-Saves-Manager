@@ -24,6 +24,7 @@ public:
     void setLove(QVariant love);
     void setTime(QVariant frms);
     void setRoom(QVariant room);
+    void setFile0(QVariant file);
 
     //Getters
     int identifier();
@@ -31,6 +32,13 @@ public:
     QVariant love();
     QVariant time();
     QVariant room();
+    QVariant file0();
+
+    //TODO Move to SaveDetails
+    QVariant getValue(QString file, int line);
+    QVariant getNxExp(int lvl, int cexp);
+    QVariant getWeapon(int idWeapon);
+    QVariant getArmor(int idArmor);
 
     //Events
     void mouseDoubleClickEvent(QMouseEvent *event);
@@ -45,6 +53,8 @@ signals:
     void deleteSaveID(int);
 
 private:
+
+    QVariant        mFile0Variant;
 
     //Variables
     int             mSaveIdInt;
