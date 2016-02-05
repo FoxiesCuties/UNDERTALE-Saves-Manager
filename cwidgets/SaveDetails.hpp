@@ -28,12 +28,15 @@ public slots:
     void setGameLoveVal(QString val);
     void setGameHealthVal(QString val);
     void setGameAtkVal(QString val);
+    void setGameBnxAtkVal(QString val);
     void setGameExpVal(QString val);
     void setGameDefVal(QString val);
+    void setGameBnxDefVal(QString val);
     void setGameNExpVal(QString val);
     void setGameWeapVal(QString val);
     void setGameArmrVal(QString val);
     void setGameGoldVal(QString val);
+    void setGameKillVal(QString val);
 
 private:
 
@@ -45,12 +48,16 @@ private:
     QLabel          *mGameLoveVal;
     QLabel          *mGameHealthVal;
     QLabel          *mGameAtkVal;
+    QLabel          *mGameBnxAtkVal;
     QLabel          *mGameExpVal;
     QLabel          *mGameDefVal;
+    QLabel          *mGameBnxDefVal;
     QLabel          *mGameNExpVal;
     QLabel          *mGameWeapVal;
     QLabel          *mGameArmrVal;
     QLabel          *mGameGoldVal;
+    QLabel          *mGameKillLab;
+    QLabel          *mGameKillVal;
     QLabel          *mRoomPixLab;
     QHBoxLayout     *mNameHBox;
     QHBoxLayout     *mLoveHBox;

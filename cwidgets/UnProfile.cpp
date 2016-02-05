@@ -302,73 +302,264 @@ QVariant UnProfile::getNxExp(int lvl, int cexp)
     case 19:
         return QString::number(99999-cexp);
         break;
+    case 20:
+        return QString::number(0);
+        break;
     default:
         break;
     }
 }
-QVariant UnProfile::getWeapon(int idWeapon)
+
+QList<QVariant> UnProfile::getWeapon(int idWeapon)
 {
+    QList<QVariant> lst;
+
     switch (idWeapon) {
     case 3:
-        return "Stick";
+        lst.clear();
+        lst.append("Stick");
+        lst.append("0");
+        return lst;
         break;
     case 13:
-        return "Toy Knife";
+        lst.clear();
+        lst.append("Toy Knife");
+        lst.append("3");
+        return lst;
         break;
     case 14:
-        return "Tough Glove";
+        lst.clear();
+        lst.append("Tough Glove");
+        lst.append("5");
+        return lst;
         break;
     case 45:
-        return "Torn Notebook";
+        lst.clear();
+        lst.append("Torn Notebook");
+        lst.append("2");
+        return lst;
         break;
     case 47:
-        return "Burnt Pan";
+        lst.clear();
+        lst.append("Burnt Pan");
+        lst.append("10");
+        return lst;
         break;
     case 49:
-        return "Empty Gun";
+        lst.clear();
+        lst.append("Empty Gun");
+        lst.append("12");
+        return lst;
         break;
     case 51:
-        return "Worn Dagger";
+        lst.clear();
+        lst.append("Worn Dagger");
+        lst.append("15");
+        return lst;
         break;
     case 52:
-        return "Real Knife";
+        lst.clear();
+        lst.append("Real Knife");
+        lst.append("99");
+        return lst;
         break;
     default:
         break;
     }
 }
-QVariant UnProfile::getArmor(int idArmor)
+QList<QVariant> UnProfile::getArmor(int idArmor)
 {
+    QList<QVariant> lst;
+
     switch (idArmor) {
     case 4:
-        return "Bandage";
+        lst.clear();
+        lst.append("Bandage");
+        lst.append("0");
+        return lst;
         break;
     case 12:
-        return "Faded Ribbon";
+        lst.clear();
+        lst.append("Faded Ribbon");
+        lst.append("3");
+        return lst;
         break;
     case 15:
-        return "Manly Bandanna";
+        lst.clear();
+        lst.append("Manly Bandanna");
+        lst.append("7");
+        return lst;
         break;
     case 24:
-        return "Old Tutu";
+        lst.clear();
+        lst.append("Old Tutu");
+        lst.append("10");
+        return lst;
         break;
     case 44:
-        return "Butty Glasses";
+        lst.clear();
+        lst.append("Butty Glasses");
+        lst.append("6");
+        return lst;
         break;
     case 46:
-        return "Stained Apron";
+        lst.clear();
+        lst.append("Stained Apron");
+        lst.append("11");
+        return lst;
         break;
     case 48:
-        return "Cowboy Hat";
+        lst.clear();
+        lst.append("Cowboy Hat");
+        lst.append("12");
+        return lst;
         break;
     case 50:
-        return "Heart Locket";
+        lst.clear();
+        lst.append("Heart Locket");
+        lst.append("15");
+        return lst;
         break;
     case 53:
-        return "The Locket";
+        lst.clear();
+        lst.append("The Locket");
+        lst.append("99");
+        return lst;
         break;
     case 64:
-        return "Temy Armor";
+        lst.clear();
+        lst.append("Temy Armor");
+        lst.append("20");
+        return lst;
+        break;
+    default:
+        break;
+    }
+}
+QList<QVariant> UnProfile::getStats(int lvlChar)
+{
+    QList<QVariant> lst;
+
+    switch (lvlChar) {
+    case 1:
+        lst.clear();
+        lst.append("0");
+        lst.append("0");
+        return lst;
+        break;
+    case 2:
+        lst.clear();
+        lst.append("2");
+        lst.append("0");
+        return lst;
+        break;
+    case 3:
+        lst.clear();
+        lst.append("4");
+        lst.append("0");
+        return lst;
+        break;
+    case 4:
+        lst.clear();
+        lst.append("6");
+        lst.append("0");
+        return lst;
+        break;
+    case 5:
+        lst.clear();
+        lst.append("8");
+        lst.append("1");
+        return lst;
+        break;
+    case 6:
+        lst.clear();
+        lst.append("10");
+        lst.append("1");
+        return lst;
+        break;
+    case 7:
+        lst.clear();
+        lst.append("12");
+        lst.append("1");
+        return lst;
+        break;
+    case 8:
+        lst.clear();
+        lst.append("14");
+        lst.append("1");
+        return lst;
+        break;
+    case 9:
+        lst.clear();
+        lst.append("16");
+        lst.append("2");
+        return lst;
+        break;
+    case 10:
+        lst.clear();
+        lst.append("18");
+        lst.append("2");
+        return lst;
+        break;
+    case 11:
+        lst.clear();
+        lst.append("20");
+        lst.append("2");
+        return lst;
+        break;
+    case 12:
+        lst.clear();
+        lst.append("22");
+        lst.append("2");
+        return lst;
+        break;
+    case 13:
+        lst.clear();
+        lst.append("24");
+        lst.append("3");
+        return lst;
+        break;
+    case 14:
+        lst.clear();
+        lst.append("26");
+        lst.append("3");
+        return lst;
+        break;
+    case 15:
+        lst.clear();
+        lst.append("28");
+        lst.append("3");
+        return lst;
+        break;
+    case 16:
+        lst.clear();
+        lst.append("30");
+        lst.append("3");
+        return lst;
+        break;
+    case 17:
+        lst.clear();
+        lst.append("32");
+        lst.append("4");
+        return lst;
+        break;
+    case 18:
+        lst.clear();
+        lst.append("34");
+        lst.append("4");
+        return lst;
+        break;
+    case 19:
+        lst.clear();
+        lst.append("36");
+        lst.append("4");
+        return lst;
+        break;
+    case 20:
+        lst.clear();
+        lst.append("38");
+        lst.append("4");
+        return lst;
         break;
     default:
         break;
@@ -382,11 +573,17 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
         mSaveDetails->setGameNameVal("\""+getValue( file0().toString(), 1 ).toString()+"\"");
         mSaveDetails->setGameLoveVal(getValue( file0().toString(), 2 ).toString());
         mSaveDetails->setGameHealthVal(getValue( file0().toString(), 3 ).toString());
+        mSaveDetails->setGameAtkVal(getStats(getValue( file0().toString(), 2 ).toInt()).at(0).toString());
+        mSaveDetails->setGameBnxAtkVal(getWeapon(getValue( file0().toString(), 29 ).toInt()).at(1).toString());
         mSaveDetails->setGameExpVal(getValue( file0().toString(), 10 ).toString());
+        mSaveDetails->setGameDefVal(getStats(getValue( file0().toString(), 2 ).toInt()).at(1).toString());
+        mSaveDetails->setGameBnxDefVal(getArmor(getValue( file0().toString(), 30 ).toInt()).at(1).toString());
         mSaveDetails->setGameNExpVal(getNxExp(getValue(file0().toString(),2).toInt(), getValue( file0().toString(), 10 ).toInt()).toString());
-        mSaveDetails->setGameWeapVal(getWeapon(getValue( file0().toString(), 29 ).toInt()).toString());
-        mSaveDetails->setGameArmrVal(getArmor(getValue( file0().toString(), 30 ).toInt()).toString());
+        //mSaveDetails->setGameWeapVal(getWeapon(getValue( file0().toString(), 29 ).toInt()).toString());
+        mSaveDetails->setGameWeapVal(getWeapon(getValue( file0().toString(), 29 ).toInt()).at(0).toString());
+        mSaveDetails->setGameArmrVal(getArmor(getValue( file0().toString(), 30 ).toInt()).at(0).toString());
         mSaveDetails->setGameGoldVal(getValue( file0().toString(), 11 ).toString());
+        mSaveDetails->setGameKillVal(getValue( file0().toString(), 12 ).toString());
         //------------------------
         mSaveDetails->setRoomNumber(mRoomNumber);
         mSaveDetails->exec();

@@ -14,12 +14,16 @@ void SaveDetails::createObjects()
     mGameLoveVal    = new QLabel;
     mGameHealthVal  = new QLabel;
     mGameAtkVal     = new QLabel;
+    mGameBnxAtkVal  = new QLabel;
     mGameExpVal     = new QLabel;
     mGameDefVal     = new QLabel;
+    mGameBnxDefVal  = new QLabel;
     mGameNExpVal    = new QLabel;
     mGameWeapVal    = new QLabel;
     mGameArmrVal    = new QLabel;
     mGameGoldVal    = new QLabel;
+    mGameKillLab    = new QLabel;
+    mGameKillVal    = new QLabel;
     mRoomPixLab     = new QLabel;
     mNameHBox       = new QHBoxLayout;
     mLoveHBox       = new QHBoxLayout;
@@ -40,25 +44,28 @@ void SaveDetails::createConnexions()
 void SaveDetails::createInterface()
 {
     mNameHBox->addWidget(mGameNameVal);
+    mNameHBox->addWidget(mDetCloseBut,1,Qt::AlignRight);
     mNameHBox->setAlignment(Qt::AlignTop);
 
-    mLoveHBox->addWidget(new QLabel("LV"));
+    mLoveHBox->addWidget(new QLabel("LV "));
     mLoveHBox->addWidget(mGameLoveVal,1);
     mLoveHBox->setAlignment(Qt::AlignBottom);
 
-    mHPHBox->addWidget(new QLabel("HP"));
+    mHPHBox->addWidget(new QLabel("HP "));
     mHPHBox->addWidget(mGameHealthVal,1);
     mHPHBox->setAlignment(Qt::AlignTop);
 
-    mAtExpHBox->addWidget(new QLabel("AT"));
-    mAtExpHBox->addWidget(mGameAtkVal,1);
-    mAtExpHBox->addWidget(new QLabel("EXP :"),0,Qt::AlignRight);
+    mAtExpHBox->addWidget(new QLabel("AT "));
+    mAtExpHBox->addWidget(mGameAtkVal);
+    mAtExpHBox->addWidget(mGameBnxAtkVal);
+    mAtExpHBox->addWidget(new QLabel("   EXP:"),0,Qt::AlignRight);
     mAtExpHBox->addWidget(mGameExpVal,1);
     mAtExpHBox->setAlignment(Qt::AlignBottom);
 
-    mDfNxtHBox->addWidget(new QLabel("DF"));
-    mDfNxtHBox->addWidget(mGameDefVal,1);
-    mDfNxtHBox->addWidget(new QLabel("NEXT:"),0,Qt::AlignRight);
+    mDfNxtHBox->addWidget(new QLabel("DF "));
+    mDfNxtHBox->addWidget(mGameDefVal);
+    mDfNxtHBox->addWidget(mGameBnxDefVal);
+    mDfNxtHBox->addWidget(new QLabel("    NEXT:"),0,Qt::AlignRight);
     mDfNxtHBox->addWidget(mGameNExpVal,1);
     mDfNxtHBox->setAlignment(Qt::AlignTop);
 
@@ -66,13 +73,14 @@ void SaveDetails::createInterface()
     mWeapHBox->addWidget(mGameWeapVal,1);
     mWeapHBox->setAlignment(Qt::AlignBottom);
 
-    mArmorHBox->addWidget(new QLabel("ARMOR :"));
+    mArmorHBox->addWidget(new QLabel("ARMOR:"));
     mArmorHBox->addWidget(mGameArmrVal,1);
     mArmorHBox->setAlignment(Qt::AlignTop);
 
     mGoldHBox->addWidget(new QLabel("GOLD:"));
     mGoldHBox->addWidget(mGameGoldVal,1);
-    mGoldHBox->addWidget(mDetCloseBut,1,Qt::AlignRight);
+    mGoldHBox->addWidget(mGameKillLab);
+    mGoldHBox->addWidget(mGameKillVal,1);
 
     mDetailsVbox->addLayout(mNameHBox,0);
     mDetailsVbox->addLayout(mLoveHBox,0);
@@ -83,10 +91,12 @@ void SaveDetails::createInterface()
     mDetailsVbox->addLayout(mArmorHBox,0);
     mDetailsVbox->addLayout(mGoldHBox);
     mDetailsVbox->setContentsMargins(5,0,0,0);
+    mDetailsVbox->setSpacing(0);
 
     mDetailsHbox->addWidget(mRoomPixLab);
     mDetailsHbox->addLayout(mDetailsVbox);
 
+    mGameKillLab->setText("  KILLS:");
     mDetCloseBut->setText("CLOSE");
 
     mRoomPixLab->setStyleSheet("border: 1px solid #8ec8fa;"
@@ -138,11 +148,17 @@ void SaveDetails::setGameLoveVal(QString val)
 }
 void SaveDetails::setGameHealthVal(QString val)
 {
-    mGameHealthVal->setText(val+"/ "+val);
+    QString charHP = val.section(" ",0,0);//WIP tiny hack for remove space.
+
+    mGameHealthVal->setText(charHP+"/"+charHP);
 }
 void SaveDetails::setGameAtkVal(QString val)
 {
     mGameAtkVal->setText(val);
+}
+void SaveDetails::setGameBnxAtkVal(QString val)
+{
+    mGameBnxAtkVal->setText("("+val+")");
 }
 void SaveDetails::setGameExpVal(QString val)
 {
@@ -151,6 +167,10 @@ void SaveDetails::setGameExpVal(QString val)
 void SaveDetails::setGameDefVal(QString val)
 {
     mGameDefVal->setText(val);
+}
+void SaveDetails::setGameBnxDefVal(QString val)
+{
+    mGameBnxDefVal->setText("("+val+")");
 }
 void SaveDetails::setGameNExpVal(QString val)
 {
@@ -167,6 +187,15 @@ void SaveDetails::setGameArmrVal(QString val)
 void SaveDetails::setGameGoldVal(QString val)
 {
     mGameGoldVal->setText(val);
+}
+void SaveDetails::setGameKillVal(QString val)
+{
+    if(val.toInt() > 0){
+        mGameKillLab->show();
+        mGameKillVal->setText(val);
+    } else {
+        mGameKillLab->hide();
+    }
 }
 
 //Events

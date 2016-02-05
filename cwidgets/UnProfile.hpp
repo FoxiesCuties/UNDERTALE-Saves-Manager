@@ -37,8 +37,9 @@ public:
     //TODO Move to SaveDetails
     QVariant getValue(QString file, int line);
     QVariant getNxExp(int lvl, int cexp);
-    QVariant getWeapon(int idWeapon);
-    QVariant getArmor(int idArmor);
+    QList<QVariant> getWeapon(int idWeapon);
+    QList<QVariant> getArmor(int idArmor);
+    QList<QVariant> getStats(int lvlChar);
 
     //Events
     void mouseDoubleClickEvent(QMouseEvent *event);
