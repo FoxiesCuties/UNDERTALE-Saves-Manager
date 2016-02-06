@@ -239,7 +239,8 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
         mSaveDetails->setGameArmrVal(mSaveFile0->charArmor());
         mSaveDetails->setGameGoldVal(mSaveFile0->charGold());
         mSaveDetails->setGameKillVal(mSaveFile0->charGold());
-        //------------------------
+        //Get geometry center of UnSavManager
+        mSaveDetails->setPoint(parentWidget()->parentWidget()->parentWidget()->geometry().center());
         mSaveDetails->setRoomNumber(mRoomNumber);
         mSaveDetails->exec();
     }

@@ -135,7 +135,7 @@ void SaveDetails::setRoomNumber(int room)
 }
 void SaveDetails::setPoint(QPoint point)
 {
-    //move(point - rect().center());
+    move(point - rect().center());
 }
 
 void SaveDetails::setGameNameVal(QString val)
