@@ -4,6 +4,7 @@
 #include <QtWidgets>
 
 #include "cwidgets/SaveDetails.hpp"
+#include "cwidgets/USaveFile.hpp"
 
 class UnProfile : public QPushButton
 {
@@ -32,7 +33,7 @@ public:
     QVariant love();
     QVariant time();
     QVariant room();
-    QVariant file0();
+    QString file0();
 
     //TODO Move to SaveDetails
     QVariant getValue(QString file, int line);
@@ -66,6 +67,7 @@ private:
     QVariant        mRoomVariant;
 
     //Objects
+    USaveFile       *mSaveFile0;
     QLabel          *mNameValue;
     QLabel          *mLoveValue;
     QLabel          *mTimeValue;

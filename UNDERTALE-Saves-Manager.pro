@@ -22,6 +22,7 @@ SOURCES +=  main.cpp                        \
             cwidgets/SaveListWidget.cpp     \
             cwidgets/ProgressiveText.cpp    \
             cwidgets/SaveDetails.cpp        \
+            cwidgets/USaveFile.cpp          \
 
 HEADERS  += About.hpp                       \
             Settings.hpp                    \
@@ -33,6 +34,7 @@ HEADERS  += About.hpp                       \
             cwidgets/SaveListWidget.hpp     \
             cwidgets/ProgressiveText.hpp    \
             cwidgets/SaveDetails.hpp        \
+            cwidgets/USaveFile.hpp          \
 
 RESOURCES +=                                \
             assets.qrc
