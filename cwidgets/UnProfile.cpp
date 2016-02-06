@@ -243,7 +243,7 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
         mSaveDetails->setGameWeapVal(mSaveFile0->charWeapon());
         mSaveDetails->setGameArmrVal(mSaveFile0->charArmor());
         mSaveDetails->setGameGoldVal(mSaveFile0->charGold());
-        mSaveDetails->setGameKillVal(mSaveFile0->charGold());
+        mSaveDetails->setGameKillVal(mSaveFile0->charKills());
 
         mSaveDetails->setRoomNumber(mRoomNumber);
         mSaveDetails->exec();

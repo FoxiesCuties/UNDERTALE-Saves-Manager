@@ -112,7 +112,7 @@ void UnSavManager::createObjectName()
 }
 void UnSavManager::createSettings()
 {
-    this->setFixedSize(800, 486);
+    this->setFixedSize(850, 486);
     this->setLayout(mParentVbox);
     this->setWindowTitle("UNDERTALE Save Manager");
     this->setWindowFlags(Qt::FramelessWindowHint);
