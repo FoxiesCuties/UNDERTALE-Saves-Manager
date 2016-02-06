@@ -5,6 +5,7 @@ UnProfile::UnProfile()
     createObjects();
     createConnexions();
     createInterface();
+    createObjectName();
     createSettings();
 }
 
@@ -16,7 +17,7 @@ void UnProfile::createObjects()
     mRoomValue      = new QLabel;
     mDeleteBut      = new QPushButton;
     mProfileGrid    = new QGridLayout;
-    mSaveDetails    = new SaveDetails;
+    mSaveDetails    = new SaveDetails(this);
     mSaveFile0      = new USaveFile;
 }
 void UnProfile::createConnexions()
@@ -30,6 +31,10 @@ void UnProfile::createInterface()
     mProfileGrid->addWidget(mTimeValue, 0,3,1,1, Qt::AlignRight | Qt::AlignTop);
     mProfileGrid->addWidget(mRoomValue, 2,0,1,4, Qt::AlignLeft  | Qt::AlignBottom);
     mProfileGrid->addWidget(mDeleteBut, 2,3,1,1, Qt::AlignRight | Qt::AlignBottom);
+}
+void UnProfile::createObjectName()
+{
+    mDeleteBut->setObjectName("Button_DeleteSave");
 }
 void UnProfile::createSettings()
 {
@@ -239,8 +244,7 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
         mSaveDetails->setGameArmrVal(mSaveFile0->charArmor());
         mSaveDetails->setGameGoldVal(mSaveFile0->charGold());
         mSaveDetails->setGameKillVal(mSaveFile0->charGold());
-        //Get geometry center of UnSavManager
-        mSaveDetails->setPoint(parentWidget()->parentWidget()->parentWidget()->geometry().center());
+
         mSaveDetails->setRoomNumber(mRoomNumber);
         mSaveDetails->exec();
     }

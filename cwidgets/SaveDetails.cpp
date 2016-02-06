@@ -1,6 +1,6 @@
 #include "SaveDetails.hpp"
 
-SaveDetails::SaveDetails()
+SaveDetails::SaveDetails(QWidget *parent) : QDialog(parent)
 {
     createObjects();
     createConnexions();
@@ -132,10 +132,6 @@ void SaveDetails::setRoomNumber(int room)
 
     this->setFixedHeight(this->sizeHint().height());
     this->setFixedWidth(600);
-}
-void SaveDetails::setPoint(QPoint point)
-{
-    move(point - rect().center());
 }
 
 void SaveDetails::setGameNameVal(QString val)

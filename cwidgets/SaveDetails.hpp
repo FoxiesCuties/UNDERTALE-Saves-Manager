@@ -9,7 +9,7 @@ class SaveDetails : public QDialog
 
 public:
 
-    SaveDetails();
+    SaveDetails(QWidget * parent = 0);
 
     void createObjects();
     void createConnexions();
@@ -22,7 +22,6 @@ public:
 public slots:
 
     void setRoomNumber(int room);
-    void setPoint(QPoint point);
 //--
     void setGameNameVal(QString val);
     void setGameLoveVal(QString val);
