@@ -11,7 +11,7 @@ class About : public QDialog
 
 public:
 
-    About();
+    About(QWidget * parent = 0);
 
     void createObjects();
     void createConnexions();

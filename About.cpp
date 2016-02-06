@@ -1,6 +1,6 @@
 #include "About.hpp"
 
-About::About()
+About::About(QWidget *parent) : QDialog(parent)
 {
     createObjects();
     createConnexions();

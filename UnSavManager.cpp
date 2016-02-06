@@ -19,7 +19,7 @@ UnSavManager::~UnSavManager()
 void UnSavManager::createObjects()
 {
     mGameProcess    = new QProcess;
-    mAboutDialog    = new About;
+    mAboutDialog    = new About(this);
     mSetgsDialog    = new Settings(this);
     mMesgsDialog    = new MessageDialog(this);
     mBannerHbox     = new QHBoxLayout;
@@ -71,7 +71,7 @@ void UnSavManager::createInterface()
     mBannerTButton->setContentsMargins(-11, -11, -11, -11);
     //End Header
 
-    mSavListLeft->setFixedHeight(368);
+    mSavListLeft->setFixedHeight(460);
 
     mSavListRight->setFixedHeight(90);
 
@@ -112,7 +112,7 @@ void UnSavManager::createObjectName()
 }
 void UnSavManager::createSettings()
 {
-    this->setFixedSize(850, 486);
+    this->setFixedSize(900, 576);
     this->setLayout(mParentVbox);
     this->setWindowTitle("UNDERTALE Save Manager");
     this->setWindowFlags(Qt::FramelessWindowHint);
