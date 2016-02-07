@@ -99,8 +99,7 @@ void SaveDetails::createInterface()
     mGameKillLab->setText("  KILLS:");
     mDetCloseBut->setText("CLOSE");
 
-    mRoomPixLab->setStyleSheet("border: 1px solid #8ec8fa;"
-                               "border-left:none;");
+    mRoomPixLab->setStyleSheet("border: 2px solid #496;");
 }
 void SaveDetails::createSettings()
 {
