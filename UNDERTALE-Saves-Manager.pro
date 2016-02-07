@@ -8,6 +8,8 @@ TRANSLATIONS =  assets/i18n/fr_FR/lang.ts \
                 assets/i18n/en_US/lang.ts \
 
 VERSION = 0.4
+QMAKE_TARGET_DESCRIPTION = "An Save Manager for the UNDERTALE game"
+QMAKE_TARGET_COPYRIGHT = "FoxiesCuties"
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
