@@ -23,7 +23,7 @@
         <file alias="DTM">assets/fonts/DTM-Mono.otf</file>
     </qresource>
     <qresource prefix="/themes">
-        <file alias="thmD">assets/themes/default.qss</file>
+        <file alias="Default">assets/themes/default.qss</file>
     </qresource>
     <qresource prefix="/imgs/settings">
         <file alias="setBan">assets/imgs/pixmaps/settings/setBan.png</file>
@@ -46,7 +46,7 @@
         <file alias="en_US">assets/i18n/en_US/icon.png</file>
         <file alias="en_US_QM">assets/i18n/en_US/lang.qm</file>
     </qresource>
-    <qresource prefix="/imgs" lang="fr_FR">
+    <qresource lang="fr_FR" prefix="/imgs">
         <file alias="bLch">assets/imgs/gui/fr_FR/BtnLaunch.png</file>
         <file alias="bLch1">assets/imgs/gui/fr_FR/BtnLaunch1.png</file>
         <file alias="bLoad">assets/imgs/gui/fr_FR/BtnLoad.png</file>

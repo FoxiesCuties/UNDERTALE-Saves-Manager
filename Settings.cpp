@@ -14,15 +14,12 @@ Settings::Settings(QWidget *parent) : QDialog(parent)
 //Organizers
 void Settings::createObjects()
 {
-    mTranslator         = new QTranslator;
-    mLangCombo          = new QComboBox;
-    mThemeLabel         = new QLabel;
-    mLangLabel          = new QLabel;
-    mMiscGroup          = new QGroupBox;
-    mCSSFile            = new QFile;
-    mThemeCombo         = new QComboBox;
-    mMiscGrid           = new QGridLayout;
-    mTopGroups          = new QHBoxLayout;
+    //Init
+    mAppDataLocal       = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+    mDocumentsData      = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    mCFGSettings        = new QSettings(qApp->applicationDirPath()+"/config.cfg", QSettings::IniFormat);
+    //End_Init
+
     //SettingsTitle
     mSettingsCButton    = new QPushButton;
     mSettingsTHbox      = new QHBoxLayout;
@@ -31,7 +28,8 @@ void Settings::createObjects()
     mTSettingsVBox      = new QVBoxLayout;
     mSettingsTButton    = new TPushButton(this);
     //End_SettingsTitle
-    //MessageBox
+
+    //SettingsMessageBoxes
     mSoundLab           = new QLabel;
     mSoundChk           = new QCheckBox;
     mSpeedLab           = new QLabel;
@@ -39,32 +37,43 @@ void Settings::createObjects()
     mSpValLab           = new QLabel;
     mMesBoxGrid         = new QGridLayout;
     mMesBoxGroup        = new QGroupBox;
-    //End_MessageBox
-    //PathsDefine
+    //End_SettingsMessageBoxes
+
+    //SettingsMiscs
+    mTranslator         = new QTranslator;
+    mLangLabel          = new QLabel;
+    mLangCombo          = new QComboBox;
+    mCSSFile            = new QFile;
+    mThemeLabel         = new QLabel;
+    mThemeCombo         = new QComboBox;
+    mMiscGrid           = new QGridLayout;
+    mMiscGroup          = new QGroupBox;
+    //End_SettingsMiscs
+
+    //SettingsPaths
     mGameLab            = new QLabel;
-    mExecStm            = new QLabel;
-    mSteamChk           = new QCheckBox;
     mGameLin            = new QLineEdit;
     mGameBut            = new QPushButton;
     mStorLab            = new QLabel;
     mStorLin            = new QLineEdit;
     mStorBut            = new QPushButton;
     mExecLab            = new QLabel;
+    mSteamChk           = new QCheckBox;
+    mExecStm            = new QLabel;
     mExecLin            = new QLineEdit;
     mExecBut            = new QPushButton;
     mSettingsGrid       = new QGridLayout;
     mPathsGroup         = new QGroupBox;
-    //End_PathsDefine
+    //End_SettingsPaths
+
+    //SettingsGeneral
+    mTopGroups          = new QHBoxLayout;
     mGroupsVBox         = new QVBoxLayout;
     mApplyBut           = new QPushButton;
     mCancelBut          = new QPushButton;
     mBotButHBox         = new QHBoxLayout;
     mSettingsVbox       = new QVBoxLayout;
-    //General
-    mAppDataLocal       = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-    mDocumentsData      = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    mCFGSettings        = new QSettings(qApp->applicationDirPath()+"/config.cfg", QSettings::IniFormat);
-    mCSSFile->setFileName(":themes/thmD");
+    //End_SettingsGeneral
 }
 void Settings::createConnexions()
 {
@@ -93,7 +102,7 @@ void Settings::createLangCombo()
 }
 void Settings::createThemCombo()
 {
-    mThemeCombo->addItem(tr("Default"), "native");//Add default value
+    mThemeCombo->addItem(tr("Default"), "Default");//Add default value
 
     QDir themeDir(qApp->applicationDirPath()+"/themes");
 
@@ -111,7 +120,7 @@ void Settings::createInterface()
     mSettingsPixmap->setLayout(mSettingsTHbox);
     mSettingsPixmap->setContentsMargins(0, -15, -7, -25);
 
-    mTSettingsVBox->addWidget(mSettingsPixmap,1);
+    mTSettingsVBox->addWidget(mSettingsPixmap, 1);
     mTSettingsVBox->addWidget(mSettingsTitle, 0, Qt::AlignHCenter);
 
     mSettingsTButton->setLayout(mTSettingsVBox);
@@ -204,20 +213,20 @@ void Settings::createObjectName()
 }
 void Settings::createSettings()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
-    this->setContentsMargins(-8, -8, -8, -8);
-    this->setLayout(mSettingsVbox);
     this->initSettings();
     this->setFixedSize(500, 450);
+    this->setLayout(mSettingsVbox);
+    this->setContentsMargins(-8, -8, -8, -8);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
     this->setWindowTitle("UNDERTALE Save Manager - " + mSettingsTitle->text());
 }
 
 //Methods
 int     Settings::textSpeed()
 {
-    int gTextSpeed = mCFGSettings->value("MessageBox/TextSpeed").toInt();
+    int textSpeed = mCFGSettings->value("MessageBox/TextSpeed").toInt();
 
-    switch (gTextSpeed) {
+    switch (textSpeed) {
     case 0:
         return 30;
         break;
@@ -265,9 +274,9 @@ QString Settings::gameDirectory()
 }
 
 //Slots
-void Settings::setTextSpeed(int speed)
+void Settings::setTextSpeed(int textSpeed)
 {
-    switch (speed) {
+    switch (textSpeed) {
     case 0:
         mSoundChk->setChecked(mTmpSndEnabled);
         mSoundChk->setEnabled(true);
@@ -305,18 +314,18 @@ void Settings::setSteamEnabled(bool isSteam)
 }
 void Settings::setBackupSaves()
 {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your backup saves directory"));
+    QString bSavesPath = QFileDialog::getExistingDirectory(this, tr("Locate your backup saves directory"));
 
-    if (!path.isEmpty()) {
-        mStorLin->setText(path);
+    if (!bSavesPath.isEmpty()) {
+        mStorLin->setText(bSavesPath);
     }
 }
 void Settings::setCurrentSave()
 {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Locate your game save directory"));
+    QString cSavePath = QFileDialog::getExistingDirectory(this, tr("Locate your game save directory"));
 
-    if (!path.isEmpty()) {
-        mGameLin->setText(path);
+    if (!cSavePath.isEmpty()) {
+        mGameLin->setText(cSavePath);
     }
 }
 void Settings::setPathToGame()
@@ -333,6 +342,7 @@ void Settings::setPathToGame()
 
 void Settings::initSettings()
 {
+    //InitDefault
     if (!mCFGSettings->contains("MessageBox/TextSpeed")) {
         mCFGSettings->setValue("MessageBox/TextSpeed", 2);
     }
@@ -358,12 +368,18 @@ void Settings::initSettings()
     }
 
     if (!mCFGSettings->contains("Miscs/Theme")) {
-        mCFGSettings->setValue("Miscs/Theme", "native");
+        mCFGSettings->setValue("Miscs/Theme", "Default");
     }
 
+    //Init
     mCurrentLang = mCFGSettings->value("Miscs/Language").toString();
-
     mCurrentTranslator = qApp->applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+
+    if (mCFGSettings->value("Miscs/Theme").toString() == "Default") {
+        mCSSFile->setFileName(":themes/Default");
+    } else {
+        mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+mCFGSettings->value("Miscs/Theme").toString());
+    }
 
     loadTranslator();
     loadTheme();
@@ -449,14 +465,14 @@ void Settings::slotLanguageChanged(int index)
 }
 void Settings::slotThemeChanged(int index)
 {
-    QString str = mThemeCombo->itemData(index).toString();
+    QString themeName = mThemeCombo->itemData(index).toString();
 
     mCSSFile->close();
 
     if (mThemeCombo->currentIndex() == 0) {
-        mCSSFile->setFileName(":themes/thmD");
+        mCSSFile->setFileName(":themes/Default");
     } else {
-        mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+str);
+        mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+themeName);
     }
 
     if(mCSSFile->open(QIODevice::ReadOnly | QIODevice::Text)) {
