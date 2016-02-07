@@ -165,6 +165,7 @@ void UnSavManager::loadCurrentSave()
             profile->setLove(setting->value("Love"));
             profile->setTime(setting->value("Time"));
             profile->setRoom(setting->value("Room"));
+            profile->setFile0(mSetgsDialog->currentSave()+"/file0");
 
         mSavListRight->addSave(profile);
     }
