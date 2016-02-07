@@ -7,6 +7,10 @@ RC_ICONS = toriel.ico
 TRANSLATIONS =  assets/i18n/fr_FR/lang.ts \
                 assets/i18n/en_US/lang.ts \
 
+VERSION = 0.4
+
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+
 CONFIG += c++11
 
 TARGET = UNDERTALE-Saves-Manager

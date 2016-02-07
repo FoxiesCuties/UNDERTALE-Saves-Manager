@@ -7,6 +7,7 @@ QPixmap splashScreen(QPixmap pix, QString text);
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+        app.setApplicationVersion(APP_VERSION);
 
     //Required for add "Determination Mono" font.
     QFontDatabase::addApplicationFont(":/fonts/DTM");
@@ -15,7 +16,7 @@ int main(int argc, char *argv[])
 
     UnSavManager unSav;
 
-    screen.setPixmap(splashScreen(QPixmap(":imgs/splash"), "Alpha 0.4"));
+    screen.setPixmap(splashScreen(QPixmap(":imgs/splash"), "Alpha " + QString(APP_VERSION)));
     screen.show();
 
     QObject().thread()->sleep(2);//Fake thread for display SplashScreen
