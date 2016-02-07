@@ -120,7 +120,7 @@ void UnProfile::setRoom(QVariant room)
             mRoomValue->setText("Snowdin - Dog House");
                 break;
         case 68:
-            mRoomValue->setText("Snowdin - town");
+            mRoomValue->setText("Snowdin - Town");
                 break;
         case 83:
             mRoomValue->setText("Waterfall - Checkpoint");
@@ -139,6 +139,9 @@ void UnProfile::setRoom(QVariant room)
                 break;
         case 128:
             mRoomValue->setText("Waterfall - Temmie Village");
+                break;
+        case 134:
+            mRoomValue->setText("Waterfall - Undyne Arena");
                 break;
         case 139:
             mRoomValue->setText("Hotland - Laboratory Entrance");
@@ -189,7 +192,7 @@ void UnProfile::setRoom(QVariant room)
             mRoomValue->setText("True Lab - Bedroom");
                 break;
         default:
-            mRoomValue->setText("N/A");
+            mRoomValue->setText("");
                 break;
     }
 }
