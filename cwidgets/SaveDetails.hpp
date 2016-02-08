@@ -14,6 +14,7 @@ public:
     void createObjects();
     void createConnexions();
     void createInterface();
+    void createObjectNames();
     void createSettings();
 
     void keyPressEvent(QKeyEvent *event);
@@ -69,6 +70,10 @@ private:
     QVBoxLayout     *mDetailsVbox;
     QHBoxLayout     *mDetailsHbox;
     QPushButton     *mDetCloseBut;
+    QWidget         *mStatsTab;
+    QWidget         *mBagTab;
+    QHBoxLayout     *mTabWidgetHBox;
+    QTabWidget      *mDetailsTabWidget;
 };
 
 #endif // SAVEDETAILS_HPP

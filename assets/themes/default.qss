@@ -389,4 +389,65 @@
     border: none;
     background: #823;
 }
+
+#Dialog_Details
+{
+    background: black;
+    border: 5px Solid white;
+}
+#Dialog_Details #Label_Details_Room
+{
+    border: 2px solid #25A;
+}
+#Dialog_Details #Button_Details_Close
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/settings/setClo0');
+}
+#Dialog_Details #Button_Details_Close:hover
+{
+    background-image: url(':imgs/settings/setClo1');
+}
+#Dialog_Details QLabel
+{
+    color: white;
+    font-weight: bold;
+    font-family: "Determination Mono";
+    font-size: 12pt;
+    font-weight: bold;
+}
+#Dialog_Details #TabWidget_Details::pane
+{
+    background: black;
+    border: 1px solid white;
+}
+#Dialog_Details #TabWidget_Details::tab-bar
+{
+    alignment: center;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab
+{
+    background: #222;
+    color: white;
+    height: 30px;
+    width: 60px;
+    border: none;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab:hover
+{
+    background: #333;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab:selected
+{
+    background: #25A;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab:disabled
+{
+    width: 5px;
+    background: transparent;
+}
 /* EndSECTION_Externals_Dialogs */
