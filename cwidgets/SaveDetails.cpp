@@ -142,7 +142,7 @@ void SaveDetails::setRoomNumber(int room)
     mRoomPixLab->setPixmap(mRoomPixmap.scaled(380, 300));
 
     this->setFixedHeight(this->sizeHint().height());
-    this->setFixedWidth(680);
+    this->setFixedWidth(660);
 }
 
 void SaveDetails::setGameNameVal(QString val)

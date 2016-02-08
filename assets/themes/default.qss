@@ -397,7 +397,7 @@
 }
 #Dialog_Details #Label_Details_Room
 {
-    border: 2px solid #25A;
+    border: 1px solid white;
 }
 #Dialog_Details #Button_Details_Close
 {
