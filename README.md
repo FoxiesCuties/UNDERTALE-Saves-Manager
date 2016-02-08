@@ -4,22 +4,27 @@
 ### Features :
 
  * Backup your current UNDERTALE save.
- * Load chosen backup save in 1 click.
- * Launch the game form the software.
- * Steam game version support
- * Multiples language support
- * Themes support
+ * Look details of a save on double click on it.
+ * Remove backup or current save in 1 click.
+ * Load and backup save in 1 click.
+ * Launch the game from the Manager.
+ * Steam game version support.
+ * Multiples languages support.
+ * QSS themes support.
 
 
 **Credits :**
 
-That really help me for naming from saveroom numbers
+That really help me for naming from saveroom numbers.
 * https://crumblingstatue.github.io/FloweysTimeMachine/
 
-This site is awesome lots of ressources that helped me
+This site is awesome lots of ressources that helped me.
 * http://rawr.ws/undertale
 
-Thank to DreamsLike for betatesting and minor bug tracking
+This site give give lot of valid save for my test.
+* https://www.reddit.com/r/Undertale/comments/3szvui/my_undertale_save_files/
+
+Thank to DreamsLike for betatesting and minor bug tracking.
 * http://steamcommunity.com/id/DreamsLike/
 
 
