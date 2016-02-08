@@ -110,6 +110,12 @@ QList<QVariant> USaveFile::getWeapon(int idWeapon)
         lst.append("5");
         return lst;
         break;
+    case 25:
+        lst.clear();
+        lst.append("Ballet Shoes");
+        lst.append("7");
+        return lst;
+        break;
     case 45:
         lst.clear();
         lst.append("Torn Notebook");
@@ -141,6 +147,10 @@ QList<QVariant> USaveFile::getWeapon(int idWeapon)
         return lst;
         break;
     default:
+        lst.clear();
+        lst.append("");
+        lst.append("0");
+        return lst;
         break;
     }
 }
