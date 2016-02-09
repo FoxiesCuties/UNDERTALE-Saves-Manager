@@ -234,6 +234,9 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
 
         mSaveFile0->setSaveFile(file0());
 
+        mSaveDetails->setRoomNumber(mRoomNumber);
+
+        //Stats
         mSaveDetails->statsTab()->setCharName(mSaveFile0->charName());
         mSaveDetails->statsTab()->setCharLV(mSaveFile0->charLV());
         mSaveDetails->statsTab()->setCharHP(mSaveFile0->charHP());
@@ -248,6 +251,9 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
         mSaveDetails->statsTab()->setCharGold(mSaveFile0->charGold());
         mSaveDetails->statsTab()->setCharKills(mSaveFile0->charKills());
 
+        //Items
+        mSaveDetails->itemsTab()->itemsList()->clear();
+
         for (int i = 13; i <= 27; i += 2) {
             int itemID = mSaveFile0->charValue(i).toInt();
 
@@ -257,7 +263,6 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
             }
         }
 
-        mSaveDetails->setRoomNumber(mRoomNumber);
         mSaveDetails->exec();
     }
 }
