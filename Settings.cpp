@@ -118,7 +118,7 @@ void Settings::createInterface()
     mSettingsPixmap->setPixmap(QPixmap(":imgs/settings/setBan"));
     mSettingsPixmap->setAlignment(Qt::AlignCenter);
     mSettingsPixmap->setLayout(mSettingsTHbox);
-    mSettingsPixmap->setContentsMargins(0, -15, -7, -25);
+    mSettingsPixmap->setContentsMargins(0, -20, -8, -25);
 
     mTSettingsVBox->addWidget(mSettingsPixmap, 1);
     mTSettingsVBox->addWidget(mSettingsTitle, 0, Qt::AlignHCenter);
@@ -180,7 +180,7 @@ void Settings::createInterface()
 
     mGroupsVBox->addLayout(mTopGroups);
     mGroupsVBox->addWidget(mPathsGroup);
-    mGroupsVBox->setContentsMargins(11, 7, 11, 11);
+    mGroupsVBox->setContentsMargins(11, 7, 11, 4);
 
     mBotButHBox->addWidget(mApplyBut);
     mBotButHBox->addWidget(mCancelBut);
@@ -214,7 +214,7 @@ void Settings::createObjectName()
 void Settings::createSettings()
 {
     this->initSettings();
-    this->setFixedSize(500, 450);
+    this->setFixedSize(500, 400);
     this->setLayout(mSettingsVbox);
     this->setContentsMargins(-8, -8, -8, -8);
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);

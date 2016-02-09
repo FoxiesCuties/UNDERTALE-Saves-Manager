@@ -39,7 +39,7 @@ void About::createInterface()
     mAboutPixmap->setPixmap(QPixmap(":imgs/settings/setBan"));
     mAboutPixmap->setAlignment(Qt::AlignCenter);
     mAboutPixmap->setLayout(mAboutTHbox);
-    mAboutPixmap->setContentsMargins(0, -15, -7, -25);
+    mAboutPixmap->setContentsMargins(0, -20, -8, -25);
 
     mTAboutVBox->addWidget(mAboutPixmap, 1);
     mTAboutVBox->addWidget(mAboutTitle, 0, Qt::AlignHCenter);
