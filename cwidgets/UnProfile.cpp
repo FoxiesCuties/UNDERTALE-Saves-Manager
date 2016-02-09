@@ -234,27 +234,26 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
 
         mSaveFile0->setSaveFile(file0());
 
-        mSaveDetails->setGameNameVal(mSaveFile0->charName());
-        mSaveDetails->setGameLoveVal(mSaveFile0->charLV());
-        mSaveDetails->setGameHealthVal(mSaveFile0->charHP());
-        mSaveDetails->setGameAtkVal(mSaveFile0->charBaseAtk());
-        mSaveDetails->setGameBnxAtkVal(mSaveFile0->charWeaponAtk());
-        mSaveDetails->setGameExpVal(mSaveFile0->charEXP());
-        mSaveDetails->setGameDefVal(mSaveFile0->charBaseDef());
-        mSaveDetails->setGameBnxDefVal(mSaveFile0->charArmorDef());
-        mSaveDetails->setGameNExpVal(mSaveFile0->charNextLV());
-        mSaveDetails->setGameWeapVal(mSaveFile0->charWeapon());
-        mSaveDetails->setGameArmrVal(mSaveFile0->charArmor());
-        mSaveDetails->setGameGoldVal(mSaveFile0->charGold());
-        mSaveDetails->setGameKillVal(mSaveFile0->charKills());
+        mSaveDetails->statsTab()->setCharName(mSaveFile0->charName());
+        mSaveDetails->statsTab()->setCharLV(mSaveFile0->charLV());
+        mSaveDetails->statsTab()->setCharHP(mSaveFile0->charHP());
+        mSaveDetails->statsTab()->setCharBaseAtk(mSaveFile0->charBaseAtk());
+        mSaveDetails->statsTab()->setCharWeaponAtk(mSaveFile0->charWeaponAtk());
+        mSaveDetails->statsTab()->setCharEXP(mSaveFile0->charEXP());
+        mSaveDetails->statsTab()->setCharBaseDef(mSaveFile0->charBaseDef());
+        mSaveDetails->statsTab()->setCharArmorDef(mSaveFile0->charArmorDef());
+        mSaveDetails->statsTab()->setCharNextLV(mSaveFile0->charNextLV());
+        mSaveDetails->statsTab()->setCharWeapon(mSaveFile0->charWeapon());
+        mSaveDetails->statsTab()->setCharArmor(mSaveFile0->charArmor());
+        mSaveDetails->statsTab()->setCharGold(mSaveFile0->charGold());
+        mSaveDetails->statsTab()->setCharKills(mSaveFile0->charKills());
 
-        for (int i = 13; i <= 27; i += 2)
-        {
+        for (int i = 13; i <= 27; i += 2) {
             int itemID = mSaveFile0->charValue(i).toInt();
 
             if (itemID != 0) {
-                mSaveDetails->setUnItem(    mSaveFile0->getItem(itemID).at(0).toString(),
-                                            mSaveFile0->getItem(itemID).at(1).toString());
+                mSaveDetails->itemsTab()->setUnItem(mSaveFile0->getItem(itemID).at(0).toString(),
+                                                    mSaveFile0->getItem(itemID).at(1).toString());
             }
         }
 

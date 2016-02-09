@@ -17,30 +17,34 @@ CONFIG += c++11
 
 TARGET = UNDERTALE-Saves-Manager
 
-SOURCES +=  main.cpp                        \
-            About.cpp                       \
-            Settings.cpp                    \
-            UnSavManager.cpp                \
-            cwidgets/QHSpace.cpp            \
-            cwidgets/UnProfile.cpp          \
-            cwidgets/TPushButton.cpp        \
-            cwidgets/MessageDialog.cpp      \
-            cwidgets/SaveListWidget.cpp     \
-            cwidgets/ProgressiveText.cpp    \
-            cwidgets/SaveDetails.cpp        \
-            cwidgets/USaveFile.cpp          \
+SOURCES +=  main.cpp                            \
+            About.cpp                           \
+            Settings.cpp                        \
+            UnSavManager.cpp                    \
+            cwidgets/QHSpace.cpp                \
+            cwidgets/UnProfile.cpp              \
+            cwidgets/USaveFile.cpp              \
+            cwidgets/SaveDetails.cpp            \
+            cwidgets/TPushButton.cpp            \
+            cwidgets/MessageDialog.cpp          \
+            cwidgets/SaveListWidget.cpp         \
+            cwidgets/ProgressiveText.cpp        \
+            cwidgets/SaveDetails/StatsTab.cpp   \
+            cwidgets/SaveDetails/ItemsTab.cpp   \
 
-HEADERS  += About.hpp                       \
-            Settings.hpp                    \
-            UnSavManager.hpp                \
-            cwidgets/QHSpace.hpp            \
-            cwidgets/UnProfile.hpp          \
-            cwidgets/TPushButton.hpp        \
-            cwidgets/MessageDialog.hpp      \
-            cwidgets/SaveListWidget.hpp     \
-            cwidgets/ProgressiveText.hpp    \
-            cwidgets/SaveDetails.hpp        \
-            cwidgets/USaveFile.hpp          \
+HEADERS  += About.hpp                           \
+            Settings.hpp                        \
+            UnSavManager.hpp                    \
+            cwidgets/QHSpace.hpp                \
+            cwidgets/UnProfile.hpp              \
+            cwidgets/USaveFile.hpp              \
+            cwidgets/SaveDetails.hpp            \
+            cwidgets/TPushButton.hpp            \
+            cwidgets/MessageDialog.hpp          \
+            cwidgets/SaveListWidget.hpp         \
+            cwidgets/ProgressiveText.hpp        \
+            cwidgets/SaveDetails/StatsTab.hpp   \
+            cwidgets/SaveDetails/ItemsTab.hpp   \
 
-RESOURCES +=                                \
-            assets.qrc
+RESOURCES +=                                    \
+            assets.qrc                          \

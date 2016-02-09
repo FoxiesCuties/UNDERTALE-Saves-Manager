@@ -3,6 +3,9 @@
 
 #include <QtWidgets>
 
+#include "cwidgets/SaveDetails/StatsTab.hpp"
+#include "cwidgets/SaveDetails/ItemsTab.hpp"
+
 class SaveDetails : public QDialog
 {
     Q_OBJECT
@@ -11,83 +14,39 @@ public:
 
     SaveDetails(QWidget * parent = 0);
 
+    //Regions
     void createObjects();
     void createConnexions();
-    void createStatsTab();
-    void createBagTab();
     void createInterface();
     void createObjectNames();
     void createSettings();
 
+    //Methods
+    StatsTab*    statsTab();
+    ItemsTab*    itemsTab();
+
+    void setRoomNumber(int room);
+
+    //Events
     void keyPressEvent(QKeyEvent *event);
     void closeEvent(QCloseEvent *event);
 
 public slots:
 
-    void setRoomNumber(int room);
-//--
-    void setGameNameVal(QString val);
-    void setGameLoveVal(QString val);
-    void setGameHealthVal(QString val);
-    void setGameAtkVal(QString val);
-    void setGameBnxAtkVal(QString val);
-    void setGameExpVal(QString val);
-    void setGameDefVal(QString val);
-    void setGameBnxDefVal(QString val);
-    void setGameNExpVal(QString val);
-    void setGameWeapVal(QString val);
-    void setGameArmrVal(QString val);
-    void setGameGoldVal(QString val);
-    void setGameKillVal(QString val);
-
-    void setUnItem(QString name, QString info);
-
-    void curentTab(int);
-    //items
-    void changeUnItem(QListWidgetItem*, QListWidgetItem*);
+    void setCurentTab(int tab);
 
 private:
 
     int                 mRoomInt;
     QPoint              mGamePoint;
     QPixmap             mRoomPixmap;
-
-    QLabel              *mGameNameVal;
-    QLabel              *mGameLoveVal;
-    QLabel              *mGameHealthVal;
-    QLabel              *mGameAtkVal;
-    QLabel              *mGameBnxAtkVal;
-    QLabel              *mGameExpVal;
-    QLabel              *mGameDefVal;
-    QLabel              *mGameBnxDefVal;
-    QLabel              *mGameNExpVal;
-    QLabel              *mGameWeapVal;
-    QLabel              *mGameArmrVal;
-    QLabel              *mGameGoldVal;
-    QLabel              *mGameKillLab;
-    QLabel              *mGameKillVal;
     QLabel              *mRoomPixLab;
-    QHBoxLayout         *mNameHBox;
-    QHBoxLayout         *mLoveHBox;
-    QHBoxLayout         *mHPHBox;
-    QHBoxLayout         *mAtExpHBox;
-    QHBoxLayout         *mDfNxtHBox;
-    QHBoxLayout         *mWeapHBox;
-    QHBoxLayout         *mArmorHBox;
-    QHBoxLayout         *mGoldHBox;
-    QVBoxLayout         *mDetailsVbox;
-    QHBoxLayout         *mDetailsHbox;
-    QPushButton         *mDetCloseBut;
-    QWidget             *mStatsTab;
-    QWidget             *mBagTab;
+    StatsTab            *mStatsTab;
+    ItemsTab            *mItemsTab;
     QHBoxLayout         *mTabWidgetHBox;
     QTabWidget          *mDetailsTabWidget;
-
-    //Items
-    QListWidget         *mItemsList;
-    QTextEdit           *mItemInfoTextEdit;
-    QVBoxLayout         *mDetailsItemsVBox;
-    QList<QStringList>  mItemDetails;
+    QHBoxLayout         *mDetailsHbox;
+    QPushButton         *mDetCloseBut;
 };
 
 #endif // SAVEDETAILS_HPP
