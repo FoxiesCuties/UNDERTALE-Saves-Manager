@@ -18,6 +18,8 @@
         <file alias="bLch1">assets/imgs/gui/BtnLaunch1.png</file>
         <file alias="bDel0">assets/imgs/gui/BtnDelete0.png</file>
         <file alias="bDel1">assets/imgs/gui/BtnDelete1.png</file>
+        <file alias="heart">assets/imgs/gui/heart.png</file>
+        <file alias="noheart">assets/imgs/gui/noheart.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file alias="DTM">assets/fonts/DTM-Mono.otf</file>
@@ -46,7 +48,7 @@
         <file alias="en_US">assets/i18n/en_US/icon.png</file>
         <file alias="en_US_QM">assets/i18n/en_US/lang.qm</file>
     </qresource>
-    <qresource lang="fr_FR" prefix="/imgs">
+    <qresource prefix="/imgs" lang="fr_FR">
         <file alias="bLch">assets/imgs/gui/fr_FR/BtnLaunch.png</file>
         <file alias="bLch1">assets/imgs/gui/fr_FR/BtnLaunch1.png</file>
         <file alias="bLoad">assets/imgs/gui/fr_FR/BtnLoad.png</file>

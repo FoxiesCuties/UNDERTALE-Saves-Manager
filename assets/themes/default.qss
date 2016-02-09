@@ -451,3 +451,33 @@
     background: transparent;
 }
 /* EndSECTION_Externals_Dialogs */
+
+/* -- */
+#ListWidget_Items
+{
+    background: black;
+    color: white;
+    font-family: "Determination Mono";
+    font-size: 12pt;
+    border: none;
+    outline: none;
+}
+#ListWidget_Items::item
+{
+    outline: none;
+    background: transparent;
+}
+#ListWidget_Items::item:selected
+{
+    outline: none;
+    background: transparent;
+}
+#TextEdit_Items
+{
+    background: black;
+    color: white;
+    /*font-family: "Determination Mono";*/
+    font-size: 8pt;
+    border: 1px solid white;
+}
+/* --* /

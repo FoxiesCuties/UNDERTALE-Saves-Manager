@@ -5,6 +5,8 @@ SaveDetails::SaveDetails(QWidget *parent) : QDialog(parent)
     createObjects();
     createConnexions();
     createObjectNames();
+    createStatsTab();
+    createBagTab();
     createInterface();
     createSettings();
 }
@@ -41,12 +43,20 @@ void SaveDetails::createObjects()
     mBagTab             = new QWidget;
     mTabWidgetHBox      = new QHBoxLayout;
     mDetailsTabWidget   = new QTabWidget;
+
+    //items
+    mItemsList          = new QListWidget;
+    mItemInfoTextEdit   = new QTextEdit;
+    mDetailsItemsVBox   = new QVBoxLayout;
 }
 void SaveDetails::createConnexions()
 {
-    connect(mDetCloseBut, SIGNAL(clicked()), this, SLOT(close()));
+    connect(mDetailsTabWidget,  SIGNAL(currentChanged(int)), this, SLOT(curentTab(int)));
+    connect(mDetCloseBut,       SIGNAL(clicked()), this, SLOT(close()));
+    connect(mItemsList,         SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this,
+                                SLOT(changeUnItem(QListWidgetItem*, QListWidgetItem*)));
 }
-void SaveDetails::createInterface()
+void SaveDetails::createStatsTab()
 {
     mNameHBox->addWidget(mGameNameVal);
     mNameHBox->setAlignment(Qt::AlignTop);
@@ -98,7 +108,25 @@ void SaveDetails::createInterface()
     mDetailsVbox->setSpacing(0);
 
     mStatsTab->setLayout(mDetailsVbox);
+}
+void SaveDetails::createBagTab()
+{
+    mItemsList->setFixedHeight(170);
+    mItemsList->setCurrentRow(0);
 
+    mDetailsItemsVBox->addWidget(mItemsList, 1, Qt::AlignTop);
+    mDetailsItemsVBox->addWidget(mItemInfoTextEdit, 0, Qt::AlignBottom);
+
+    mItemInfoTextEdit->setFocusPolicy(Qt::NoFocus);
+    mItemInfoTextEdit->setFixedHeight(50);
+    mItemInfoTextEdit->setReadOnly(true);
+    mItemInfoTextEdit->setTextInteractionFlags(Qt::NoTextInteraction);
+    mItemInfoTextEdit->viewport()->setCursor(Qt::ArrowCursor);
+
+    mBagTab->setLayout(mDetailsItemsVBox);
+}
+void SaveDetails::createInterface()
+{
     mTabWidgetHBox->addWidget(mDetCloseBut,1,Qt::AlignRight | Qt::AlignTop);
     mTabWidgetHBox->setContentsMargins(0,0,0,0);
 
@@ -121,6 +149,8 @@ void SaveDetails::createObjectNames()
     mDetCloseBut->setObjectName("Button_Details_Close");
     mRoomPixLab->setObjectName("Label_Details_Room");
     mDetailsTabWidget->setObjectName("TabWidget_Details");
+    mItemsList->setObjectName("ListWidget_Items");
+    mItemInfoTextEdit->setObjectName("TextEdit_Items");
 }
 
 void SaveDetails::createSettings()
@@ -131,6 +161,39 @@ void SaveDetails::createSettings()
 }
 
 //Slots
+void SaveDetails::setUnItem(QString name, QString info)
+{
+    if (mItemsList->count() == 0) {
+        mItemsList->addItem(new QListWidgetItem(QIcon(":imgs/heart"),""));
+    } else {
+        mItemsList->addItem(new QListWidgetItem(QIcon(":imgs/noheart"),""));
+    }
+
+    QStringList strList;
+        strList.append(name);
+        strList.append(info);
+
+    mItemDetails.append(strList);
+
+    mItemsList->item(mItemsList->count() - 1)->setText(name);
+}
+void SaveDetails::curentTab(int tab)
+{
+    if(tab == 2) {
+        mItemsList->setFocus();
+    }
+}
+void SaveDetails::changeUnItem(QListWidgetItem* cur, QListWidgetItem* pre)
+{
+    if (cur != 0) {
+        cur->setIcon(QIcon(":imgs/heart"));
+        mItemInfoTextEdit->setText(mItemDetails.at(mItemsList->currentRow()).at(1));
+    }
+
+    if (pre != 0) {
+        pre->setIcon(QIcon(":imgs/noheart"));
+    }
+}
 void SaveDetails::setRoomNumber(int room)
 {
     mRoomInt = room;

@@ -28,6 +28,7 @@ public:
     QString charGold();
     QString charKills();
 
+    QList<QVariant> getItem(int idItem);
     QList<QVariant> getWeapon(int idWeapon);
     QList<QVariant> getArmor(int idArmor);
     QList<QVariant> getStats(int lvlChar);

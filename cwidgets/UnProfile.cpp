@@ -248,6 +248,16 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
         mSaveDetails->setGameGoldVal(mSaveFile0->charGold());
         mSaveDetails->setGameKillVal(mSaveFile0->charKills());
 
+        for (int i = 13; i <= 27; i += 2)
+        {
+            int itemID = mSaveFile0->charValue(i).toInt();
+
+            if (itemID != 0) {
+                mSaveDetails->setUnItem(    mSaveFile0->getItem(itemID).at(0).toString(),
+                                            mSaveFile0->getItem(itemID).at(1).toString());
+            }
+        }
+
         mSaveDetails->setRoomNumber(mRoomNumber);
         mSaveDetails->exec();
     }
