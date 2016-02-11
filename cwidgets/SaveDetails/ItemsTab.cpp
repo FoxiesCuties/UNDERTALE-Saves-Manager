@@ -29,7 +29,7 @@ void ItemsTab::createInterface()
     mDetailsItemsVBox->addWidget(mItemInfoTextEdit, 0, Qt::AlignBottom);
 
     mItemInfoTextEdit->setFocusPolicy(Qt::NoFocus);
-    mItemInfoTextEdit->setFixedHeight(50);
+    mItemInfoTextEdit->setFixedHeight(90);
     mItemInfoTextEdit->setReadOnly(true);
     mItemInfoTextEdit->setTextInteractionFlags(Qt::NoTextInteraction);
     mItemInfoTextEdit->viewport()->setCursor(Qt::ArrowCursor);

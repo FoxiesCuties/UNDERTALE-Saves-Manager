@@ -81,10 +81,10 @@ void SaveDetails::setRoomNumber(int room)
 
     mRoomPixmap.load(":imgs/rooms/" + QString::number(mRoomInt));
 
-    mRoomPixLab->setPixmap(mRoomPixmap.scaled(380, 300));
+    mRoomPixLab->setPixmap(mRoomPixmap.scaled(440, 330));
 
     this->setFixedHeight(this->sizeHint().height());
-    this->setFixedWidth(660);
+    this->setFixedWidth(700);
 }
 
 //Events
