@@ -382,7 +382,7 @@
 }
 #Dialog_Settings #Button_Settings_Apply
 {
-    margin-left: 100px;
+    max-width: 100px;
     color: white;
     font-weight: bold;
     border: none;
@@ -396,7 +396,7 @@
 }
 #Dialog_Settings #Button_Settings_Cancel
 {
-    margin-right: 100px;
+    max-width: 100px;
     color: white;
     font-weight: bold;
     border: none;
