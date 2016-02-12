@@ -59,15 +59,19 @@
 }
 #ListWidget_Saves QScrollBar:vertical
 {
-    width: 5px;
+    width: 10px;
     border: none;
     background: transparent;
     margin: 0px 0px 2px 2px;
 }
 #ListWidget_Saves QScrollBar::handle:vertical
 {
-    background: white;
+    background: #444;
     min-height: 20px;
+}
+#ListWidget_Saves QScrollBar::handle:vertical:hover
+{
+    background: white;
 }
 #ListWidget_Saves QScrollBar::add-line:vertical,
 #ListWidget_Saves QScrollBar::sub-line:vertical,
