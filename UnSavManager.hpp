@@ -17,6 +17,16 @@ class UnSavManager : public QWidget
 
 public:
 
+    enum class MessType : int {
+        EmptyPath       = 0,
+        DeleteSave      = 1,
+        AccessError     = 2,
+        CurSaveExist    = 3,
+        NoCurSave       = 4,
+        ForceOverwrite  = 5,
+        AlreadyLoaded   = 6
+    };
+
     UnSavManager();
     ~UnSavManager();
 
@@ -32,6 +42,8 @@ public:
     void loadCurrentSave();
     bool copySave(QString from, QString dest);
     bool alreadyExist(QString from, QString dest);
+
+    MessageDialog* messageBox(MessType type);
 
     //Events
     void changeEvent(QEvent *event);

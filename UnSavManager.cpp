@@ -217,6 +217,87 @@ bool UnSavManager::alreadyExist(QString from, QString dest)
     }
 }
 
+MessageDialog* UnSavManager::messageBox(MessType type)
+{
+    if (type == MessType::EmptyPath) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
+        mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
+        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogText( tr("* Path to the game not initialised.\n\n"
+                                        "* Please define it in 'SETTINGS'\n\n"
+                                        "  ENTER for closing this box"), mSetgsDialog->textSpeed());
+        return mMesgsDialog;
+
+    } else if (type == MessType::DeleteSave) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
+        mMesgsDialog->setDialogSize(QSize(640, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
+        mMesgsDialog->setType(MessageDialog::BoxType::Choice);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogText( tr("* This awesome save will be removed.\n\n"
+                                        "* Are you really sure you want do this ?\n\n"
+                                        "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
+        return mMesgsDialog;
+
+    } else if (type == MessType::AccessError) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/papyrus"));
+        mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
+        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogText( tr("* Impossible to doing this.\n\n"
+                                        "* Verify you're write rights.\n\n"
+                                        "  ENTER for closing this box"), mSetgsDialog->textSpeed());
+        return mMesgsDialog;
+
+    } else if (type == MessType::CurSaveExist) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
+        mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
+        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
+                                        "* You can't backup this save\n\n"
+                                        "  ENTER for closing this box"), mSetgsDialog->textSpeed());
+        return mMesgsDialog;
+
+    } else if (type == MessType::NoCurSave) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
+        mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
+        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogText( tr("* None current save to backup.\n\n"
+                                        "* You can't backup nothing\n\n"
+                                        "  ENTER for closing this box"), mSetgsDialog->textSpeed());
+        return mMesgsDialog;
+
+    } else if (type == MessType::ForceOverwrite) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
+        mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
+        mMesgsDialog->setType(MessageDialog::BoxType::Choice);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogText( tr("* This save are no backup.\n\n"
+                                        "* Do you really want replacing ?\n\n"
+                                        "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
+        return mMesgsDialog;
+
+    } else if (type == MessType::AlreadyLoaded) {
+        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
+        mMesgsDialog->setDialogSize(QSize(600, 140));
+        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
+        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
+        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
+                                        "* You can't load this save\n\n"
+                                        "  ENTER for closing this box"), mSetgsDialog->textSpeed());
+        return mMesgsDialog;
+    }
+}
+
 //Slots
 void UnSavManager::moveRight()
 {
@@ -240,37 +321,26 @@ void UnSavManager::moveRight()
         }
 
         if (saveExist && !isBackup) {//If current save 'exist' AND 'doesn't backup'
-                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
-                mMesgsDialog->setDialogSize(QSize(600, 140));
-                mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
-                mMesgsDialog->setType(MessageDialog::BoxType::Choice);
-                mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
-                mMesgsDialog->setDialogText( tr("* This save are no backup.\n\n"
-                                                "* Do you really want replacing ?\n\n"
-                                                "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
-                mMesgsDialog->exec();
 
-                if (mMesgsDialog->isAccepted()) {
-                    QDir dir(mSetgsDialog->currentSave());
+            this->messageBox(MessType::ForceOverwrite)->exec();
 
-                    if (dir.removeRecursively()) {
-                        mSavListRight->clearAll();
-                    }
+            if (this->messageBox(MessType::ForceOverwrite)->isAccepted()) {
+                QDir dir(mSetgsDialog->currentSave());
 
-                    copySave(fromString, destString);
-                    loadCurrentSave();
+                if (dir.removeRecursively()) {
+                    mSavListRight->clearAll();
                 }
+
+                if (copySave(fromString, destString)) {
+                    loadCurrentSave();
+                } else {
+                    this->messageBox(MessType::AccessError)->exec();
+                }
+            }
+
         } else {
             if (alreadyExist(fromString, destString)) {
-                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
-                mMesgsDialog->setDialogSize(QSize(600, 140));
-                mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
-                mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-                mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
-                mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
-                                                "* You can't load this save\n\n"
-                                                "  ENTER for closing this box"), mSetgsDialog->textSpeed());
-                mMesgsDialog->exec();
+                this->messageBox(MessType::AlreadyLoaded)->exec();
             } else {
                 QDir dir(mSetgsDialog->currentSave());
 
@@ -278,9 +348,11 @@ void UnSavManager::moveRight()
                     mSavListRight->clearAll();
                 }
 
-                copySave(fromString, destString);
-
-                loadCurrentSave();
+                if (copySave(fromString, destString)) {
+                    loadCurrentSave();
+                } else {
+                    this->messageBox(MessType::AccessError)->exec();
+                }
             }
         }
     }
@@ -303,31 +375,20 @@ void UnSavManager::moveLeft()
         }
 
         if (exist) {//If current save already exist
-                mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
-                mMesgsDialog->setDialogSize(QSize(600, 140));
-                mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
-                mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-                mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
-                mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
-                                                "* You can't backup this save\n\n"
-                                                "  ENTER for closing this box"), mSetgsDialog->textSpeed());
-                mMesgsDialog->exec();
+                this->messageBox(MessType::CurSaveExist)->exec();
         } else {
-            copySave(mSetgsDialog->currentSave(), mSetgsDialog->backupSaves()+"/UNDERTALE_"+QString::number(mSavListLeft->count()+1));
 
-            loadBackupSaves();
+            QString timeStamp = QString::number(QDateTime::currentMSecsSinceEpoch());
+
+            if (copySave(mSetgsDialog->currentSave(), mSetgsDialog->backupSaves()+"/UNDERTALE_"+timeStamp)) {
+                loadBackupSaves();
+            } else {
+                this->messageBox(MessType::AccessError)->exec();
+            }
         }
 
     } else {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
-        mMesgsDialog->setDialogSize(QSize(600, 140));
-        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
-        mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
-        mMesgsDialog->setDialogText( tr("* None current save to backup.\n\n"
-                                        "* You can't backup nothing\n\n"
-                                        "  ENTER for closing this box"), mSetgsDialog->textSpeed());
-        mMesgsDialog->exec();
+        this->messageBox(MessType::NoCurSave)->exec();
     }
 }
 void UnSavManager::minimiseManager()
@@ -340,15 +401,7 @@ void UnSavManager::launchGame()
         mGameProcess->startDetached("explorer.exe", QStringList() <<"steam://rungameid/391540");
     } else {//If DRM-Free version
         if (mSetgsDialog->gameDirectory().isEmpty()) {
-            mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
-            mMesgsDialog->setDialogSize(QSize(600, 140));
-            mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
-            mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-            mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
-            mMesgsDialog->setDialogText( tr("* Path to the game not initialised.\n\n"
-                                            "* Please define it in 'SETTINGS'\n\n"
-                                            "  ENTER for closing this box"), mSetgsDialog->textSpeed());
-            mMesgsDialog->exec();
+            this->messageBox(MessType::EmptyPath)->exec();
         } else {
             mGameProcess->startDetached(mSetgsDialog->gameDirectory());
         }
@@ -357,17 +410,9 @@ void UnSavManager::launchGame()
 void UnSavManager::deleteSave(QString folder)
 {
     if (!folder.isEmpty()) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
-        mMesgsDialog->setDialogSize(QSize(640, 140));
-        mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
-        mMesgsDialog->setType(MessageDialog::BoxType::Choice);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
-        mMesgsDialog->setDialogText( tr("* This awesome save will be removed.\n\n"
-                                        "* Are you really sure you want do this ?\n\n"
-                                        "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
-        mMesgsDialog->exec();
+        this->messageBox(MessType::DeleteSave)->exec();
 
-        if (mMesgsDialog->isAccepted()) {
+        if (this->messageBox(MessType::DeleteSave)->isAccepted()) {
             if (folder == mSetgsDialog->currentSave()) {
                 QDir currentSave(mSetgsDialog->currentSave());
                     currentSave.removeRecursively();
