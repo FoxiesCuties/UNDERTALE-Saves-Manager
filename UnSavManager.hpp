@@ -38,8 +38,6 @@ public:
     void createSettings();
 
     //Functions
-    void loadBackupSaves();
-    void loadCurrentSave();
     bool copySave(QString from, QString dest);
     bool alreadyExist(QString from, QString dest);
 
@@ -54,7 +52,10 @@ public slots:
     void moveLeft();
     void minimiseManager();
     void launchGame();
+    void loadBackupSaves();
+    void loadCurrentSave();
     void deleteSave(QString folder);
+    void openBackupFolder();
 
 private:
 
@@ -74,6 +75,10 @@ private:
     QPushButton     *mMinButton;
     QPushButton     *mClozButton;
     QVBoxLayout     *mParentVbox;
+    QPushButton     *mLRefreshBut;
+    QPushButton     *mOpnBckFolBut;
+    QPushButton     *mRRefreshBut;
+    QHBoxLayout     *mControlsHBox;
     SaveListWidget  *mSavListLeft;
     SaveListWidget  *mSavListRight;
 

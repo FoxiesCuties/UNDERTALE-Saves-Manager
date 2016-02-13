@@ -20,6 +20,10 @@
         <file alias="bDel1">assets/imgs/gui/BtnDelete1.png</file>
         <file alias="heart">assets/imgs/gui/heart.png</file>
         <file alias="noheart">assets/imgs/gui/noheart.png</file>
+        <file alias="fol0">assets/imgs/gui/fol0.png</file>
+        <file alias="fol1">assets/imgs/gui/fol1.png</file>
+        <file alias="ref0">assets/imgs/gui/ref0.png</file>
+        <file alias="ref1">assets/imgs/gui/ref1.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file alias="DTM">assets/fonts/DTM-Mono.otf</file>

@@ -51,6 +51,44 @@
 }
 /* EndSECTION_Header */
 
+/* SECTION_Controls */
+#ButtonLRefresh
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/ref0');
+}
+#ButtonLRefresh:hover
+{
+    background-image: url(':imgs/ref1');
+}
+
+#ButtonOpenBackupFolder
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/fol0');
+}
+#ButtonOpenBackupFolder:hover
+{
+    background-image: url(':imgs/fol1');
+}
+
+#ButtonRRefresh
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/ref0');
+}
+#ButtonRRefresh:hover
+{
+    background-image: url(':imgs/ref1');
+}
+/* EndSECTION_Controls */
+
 /* SECTION_Center */
 #ListWidget_Saves
 {

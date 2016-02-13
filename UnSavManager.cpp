@@ -36,6 +36,10 @@ void UnSavManager::createObjects()
     mSaveButton     = new QPushButton;
     mStigButton     = new QPushButton;
     mLachButton     = new QPushButton;
+    mLRefreshBut    = new QPushButton;
+    mOpnBckFolBut   = new QPushButton;
+    mRRefreshBut    = new QPushButton;
+    mControlsHBox   = new QHBoxLayout;
     mSavListLeft    = new SaveListWidget;
     mParentVbox     = new QVBoxLayout;
     mSavListRight   = new SaveListWidget;
@@ -49,6 +53,9 @@ void UnSavManager::createConnexions()
     connect(mLoadButton,    SIGNAL(clicked()),                  this,           SLOT(moveRight()));
     connect(mStigButton,    SIGNAL(clicked()),                  mSetgsDialog,   SLOT(exec()));
     connect(mLachButton,    SIGNAL(clicked()),                  this,           SLOT(launchGame()));
+    connect(mLRefreshBut,   SIGNAL(clicked()),                  this,           SLOT(loadBackupSaves()));
+    connect(mRRefreshBut,   SIGNAL(clicked()),                  this,           SLOT(loadCurrentSave()));
+    connect(mOpnBckFolBut,  SIGNAL(clicked()),                  this,           SLOT(openBackupFolder()));
     connect(mSavListLeft,   SIGNAL(saveFolderDelete(QString)),  this,           SLOT(deleteSave(QString)));
     connect(mSavListRight,  SIGNAL(saveFolderDelete(QString)),  this,           SLOT(deleteSave(QString)));
 }
@@ -89,7 +96,12 @@ void UnSavManager::createInterface()
     mSavListHBox->addWidget(new QHSpace(10));
     mSavListHBox->addLayout(mRightVBox);
 
+    mControlsHBox->addWidget(mLRefreshBut, 0, Qt::AlignLeft);
+    mControlsHBox->addWidget(mOpnBckFolBut, 1, Qt::AlignLeft);
+    mControlsHBox->addWidget(mRRefreshBut, 0, Qt::AlignRight);
+
     mParentVbox->addWidget(mBannerTButton);
+    mParentVbox->addLayout(mControlsHBox);
     mParentVbox->addLayout(mSavListHBox);
 }
 void UnSavManager::createObjectName()
@@ -108,11 +120,14 @@ void UnSavManager::createObjectName()
     mMesgsDialog->setObjectName("Dialog_MessBox");
     mAboutDialog->setObjectName("Dialog_About");
     mSetgsDialog->setObjectName("Dialog_Settings");
+    mLRefreshBut->setObjectName("ButtonLRefresh");
+    mOpnBckFolBut->setObjectName("ButtonOpenBackupFolder");
+    mRRefreshBut->setObjectName("ButtonRRefresh");
     this->setObjectName("Widget_Parent");
 }
 void UnSavManager::createSettings()
 {
-    this->setFixedSize(900, 576);
+    this->setFixedSize(900, 622);
     this->setLayout(mParentVbox);
     this->setWindowTitle("UNDERTALE Save Manager");
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -123,53 +138,6 @@ void UnSavManager::createSettings()
 }
 
 //Methods
-void UnSavManager::loadBackupSaves()
-{
-    mSavListLeft->clearAll();
-
-    QDir storDir (mSetgsDialog->backupSaves());
-
-    foreach (QString folder, storDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs))
-    {
-        mSavListLeft->setSaveFolder(mSavListLeft->count(), folder);
-
-        QSettings *settings = new QSettings(storDir.path()+"/"+folder+"/undertale.ini", QSettings::IniFormat);
-
-        //Check if ini contains values
-        if( settings->contains("Name") && settings->contains("Love") &&
-            settings->contains("Time") && settings->contains("Room"))
-        {
-            UnProfile *profile = new UnProfile;
-                profile->setName(settings->value("Name"));
-                profile->setLove(settings->value("Love"));
-                profile->setTime(settings->value("Time"));
-                profile->setRoom(settings->value("Room"));
-                profile->setFile0(storDir.path()+"/"+folder+"/file0");
-
-            mSavListLeft->addSave(profile);
-        }
-    }
-}
-void UnSavManager::loadCurrentSave()
-{
-    mSavListRight->clearAll();
-
-    mSavListRight->setSaveFolder(mSavListRight->count(), mSetgsDialog->currentSave());
-
-    QSettings  *setting = new QSettings(mSetgsDialog->currentSave()+"/undertale.ini", QSettings::IniFormat);
-
-    //Check if ini contains values
-    if (setting->contains("Name") && setting->contains("Love") && setting->contains("Time") && setting->contains("Room")) {
-        UnProfile *profile = new UnProfile;
-            profile->setName(setting->value("Name"));
-            profile->setLove(setting->value("Love"));
-            profile->setTime(setting->value("Time"));
-            profile->setRoom(setting->value("Room"));
-            profile->setFile0(mSetgsDialog->currentSave()+"/file0");
-
-        mSavListRight->addSave(profile);
-    }
-}
 bool UnSavManager::copySave(QString from, QString dest)
 {
     QDir dirF (from);
@@ -299,6 +267,53 @@ MessageDialog* UnSavManager::messageBox(MessType type)
 }
 
 //Slots
+void UnSavManager::loadBackupSaves()
+{
+    mSavListLeft->clearAll();
+
+    QDir storDir (mSetgsDialog->backupSaves());
+
+    foreach (QString folder, storDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs))
+    {
+        mSavListLeft->setSaveFolder(mSavListLeft->count(), folder);
+
+        QSettings *settings = new QSettings(storDir.path()+"/"+folder+"/undertale.ini", QSettings::IniFormat);
+
+        //Check if ini contains values
+        if( settings->contains("Name") && settings->contains("Love") &&
+            settings->contains("Time") && settings->contains("Room"))
+        {
+            UnProfile *profile = new UnProfile;
+                profile->setName(settings->value("Name"));
+                profile->setLove(settings->value("Love"));
+                profile->setTime(settings->value("Time"));
+                profile->setRoom(settings->value("Room"));
+                profile->setFile0(storDir.path()+"/"+folder+"/file0");
+
+            mSavListLeft->addSave(profile);
+        }
+    }
+}
+void UnSavManager::loadCurrentSave()
+{
+    mSavListRight->clearAll();
+
+    mSavListRight->setSaveFolder(mSavListRight->count(), mSetgsDialog->currentSave());
+
+    QSettings  *setting = new QSettings(mSetgsDialog->currentSave()+"/undertale.ini", QSettings::IniFormat);
+
+    //Check if ini contains values
+    if (setting->contains("Name") && setting->contains("Love") && setting->contains("Time") && setting->contains("Room")) {
+        UnProfile *profile = new UnProfile;
+            profile->setName(setting->value("Name"));
+            profile->setLove(setting->value("Love"));
+            profile->setTime(setting->value("Time"));
+            profile->setRoom(setting->value("Room"));
+            profile->setFile0(mSetgsDialog->currentSave()+"/file0");
+
+        mSavListRight->addSave(profile);
+    }
+}
 void UnSavManager::moveRight()
 {
     QString fromString = mSetgsDialog->backupSaves()+"/"+mSavListLeft->currentSaveFolder();
@@ -424,6 +439,10 @@ void UnSavManager::deleteSave(QString folder)
             }
         }
     }
+}
+void UnSavManager::openBackupFolder()
+{
+    QDesktopServices::openUrl(QUrl(mSetgsDialog->backupSaves(), QUrl::StrictMode));
 }
 
 //Events
