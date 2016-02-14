@@ -21,6 +21,10 @@ int SaveListWidget::currentSaveID()
 {
     return mSavesGroup->checkedId();
 }
+void SaveListWidget::setCurrentSave(int id)
+{
+    mSavesGroup->button(id)->setChecked(true);
+}
 QString SaveListWidget::currentSaveFolder()
 {
     return mSavesFolder.value(mSavesGroup->checkedId());
@@ -35,9 +39,13 @@ void SaveListWidget::setSaveFolder(int lID, QString lFolder)
 }
 void SaveListWidget::clearAll()
 {
-    this->clear();
-
     mProfileSavesList.clear();
+
+    foreach (QAbstractButton* button, mSavesGroup->buttons()) {
+        mSavesGroup->removeButton(button);
+    }
+
+    this->clear();
 }
 void SaveListWidget::addSave(UnProfile *save)
 {

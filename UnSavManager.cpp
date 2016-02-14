@@ -313,6 +313,10 @@ void UnSavManager::loadCurrentSave()
 
         mSavListRight->addSave(profile);
     }
+
+    if (mSavListRight->count() > 0) {
+        mSavListRight->setCurrentSave(0);
+    }
 }
 void UnSavManager::moveRight()
 {

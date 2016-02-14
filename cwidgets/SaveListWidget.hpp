@@ -17,6 +17,7 @@ public:
     void createSettings();
 
     int currentSaveID();
+    void setCurrentSave(int id);
     QString currentSaveFolder();
     QString saveFolder(int lID);
     void setSaveFolder(int lID, QString lFolder);
