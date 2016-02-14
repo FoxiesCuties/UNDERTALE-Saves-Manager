@@ -214,7 +214,7 @@ void Settings::createObjectName()
 void Settings::createSettings()
 {
     this->initSettings();
-    this->setFixedSize(500, 400);
+    this->setFixedSize(500, 410);
     this->setLayout(mSettingsVbox);
     this->setContentsMargins(-8, -8, -8, -8);
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
