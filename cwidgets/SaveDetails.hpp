@@ -34,12 +34,14 @@ public:
 public slots:
 
     void setCurentTab(int tab);
+    void openSaveDetails();
+    void closeSaveDetails();
 
 private:
 
     int                 mRoomInt;
     QPoint              mGamePoint;
-    QPixmap             mRoomPixmap;
+    QMovie              *mRoomPixMovie;
     QLabel              *mRoomPixLab;
     StatsTab            *mStatsTab;
     ItemsTab            *mItemsTab;

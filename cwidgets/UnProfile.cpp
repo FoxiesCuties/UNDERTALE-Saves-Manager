@@ -263,7 +263,7 @@ void UnProfile::mouseDoubleClickEvent(QMouseEvent *event)
             }
         }
 
-        mSaveDetails->exec();
+        mSaveDetails->openSaveDetails();
     }
 }
 

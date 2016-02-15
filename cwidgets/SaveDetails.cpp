@@ -19,12 +19,13 @@ void SaveDetails::createObjects()
     mDetCloseBut        = new QPushButton;
 
     mDetailsHbox        = new QHBoxLayout;
+    mRoomPixMovie       = new QMovie;
     mRoomPixLab         = new QLabel;
 }
 void SaveDetails::createConnexions()
 {
     connect(mDetailsTabWidget,  SIGNAL(currentChanged(int)), this, SLOT(setCurentTab(int)));
-    connect(mDetCloseBut,       SIGNAL(clicked()), this, SLOT(close()));
+    connect(mDetCloseBut,       SIGNAL(clicked()), this, SLOT(closeSaveDetails()));
 }
 void SaveDetails::createInterface()
 {
@@ -66,6 +67,25 @@ ItemsTab*   SaveDetails::itemsTab()
     return mItemsTab;
 }
 
+void SaveDetails::setRoomNumber(int room)
+{
+    mRoomInt = room;
+
+    this->setWindowTitle("Save Details - Room " + QString::number(mRoomInt));
+
+    if (QFile::exists(":imgs/rooms/" + QString::number(mRoomInt))) {
+        mRoomPixMovie->setFileName(":imgs/rooms/" + QString::number(mRoomInt));
+    } else {
+        mRoomPixMovie->setFileName(":imgs/rooms/" + QString::number(0));
+    }
+
+    mRoomPixMovie->setScaledSize(QSize(440, 330));
+
+    mRoomPixLab->setMovie(mRoomPixMovie);
+
+    this->setFixedSize(700, 364);
+}
+
 //Slots
 void SaveDetails::setCurentTab(int tab)
 {
@@ -73,18 +93,15 @@ void SaveDetails::setCurentTab(int tab)
         mItemsTab->itemsList()->setFocus();
     }
 }
-void SaveDetails::setRoomNumber(int room)
+void SaveDetails::openSaveDetails()
 {
-    mRoomInt = room;
-
-    this->setWindowTitle("Save Details - Room " + QString::number(mRoomInt));
-
-    mRoomPixmap.load(":imgs/rooms/" + QString::number(mRoomInt));
-
-    mRoomPixLab->setPixmap(mRoomPixmap.scaled(440, 330));
-
-    this->setFixedHeight(this->sizeHint().height());
-    this->setFixedWidth(700);
+    mRoomPixMovie->start();
+    this->exec();
+}
+void SaveDetails::closeSaveDetails()
+{
+    mRoomPixMovie->stop();
+    this->close();
 }
 
 //Events
