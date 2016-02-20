@@ -3,7 +3,7 @@
 {
     background: #111;
     min-width: 900px;
-    height: 622px;
+    height: 612px;
 }
 
 #Button_About
@@ -494,6 +494,7 @@
     height: 30px;
     width: 30px;
     background-image: url(':imgs/settings/setClo0');
+	background-color: transparent;
 }
 #Dialog_Details #Button_Details_Close:hover
 {
@@ -505,7 +506,6 @@
     font-weight: bold;
     font-family: "Determination Mono";
     font-size: 12pt;
-    font-weight: bold;
 }
 #Dialog_Details #TabWidget_Details::pane
 {

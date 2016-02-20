@@ -481,8 +481,8 @@
 
 #Dialog_Details
 {
-    background: black;
-    border: 5px Solid white;
+    background: #EEE;
+    border: 5px Solid #444;
 }
 #Dialog_Details #Label_Details_Room
 {
@@ -493,24 +493,24 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/settings/setClo0');
+    background-image: url(':imgs/gui/light/tclo0');
+	background-color: transparent;
 }
 #Dialog_Details #Button_Details_Close:hover
 {
-    background-image: url(':imgs/settings/setClo1');
+    background-image: url(':imgs/gui/light/tclo1');
 }
 #Dialog_Details QLabel
 {
-    color: white;
+    color: #444;
     font-weight: bold;
     font-family: "Determination Mono";
     font-size: 12pt;
-    font-weight: bold;
 }
 #Dialog_Details #TabWidget_Details::pane
 {
-    background: black;
-    border: 1px solid white;
+    background: white;
+    border: 1px solid #0cc4e9;
 }
 #Dialog_Details #TabWidget_Details::tab-bar
 {
@@ -544,8 +544,8 @@
 /* -- */
 #ListWidget_Items
 {
-    background: black;
-    color: white;
+    background: transparent;
+    color: black;
     font-family: "Determination Mono";
     font-size: 12pt;
     border: none;
@@ -559,16 +559,16 @@
 #ListWidget_Items::item:selected
 {
     outline: none;
-    background: transparent;
+    background: #0cc4e9;
 }
 #TextEdit_Items
 {
-    background: black;
-    color: white;
+    background: transparent;
+    color: black;
     font-family: "Determination Mono";
     font-size: 9pt;
     border: none;
-    border-top: 1px solid white;
+    border-top: 1px solid #444;
     padding-top: 10px;
 }
 /* --* /
