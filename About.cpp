@@ -36,8 +36,6 @@ void About::createInterface()
     mAboutTHbox->addWidget(mAboutCButton, 1, Qt::AlignRight | Qt::AlignTop);
     mAboutTHbox->setContentsMargins(0, 22, 9, 0);
 
-    mAboutPixmap->setPixmap(QPixmap(":imgs/settings/setBan"));
-    mAboutPixmap->setAlignment(Qt::AlignCenter);
     mAboutPixmap->setLayout(mAboutTHbox);
     mAboutPixmap->setContentsMargins(0, -20, -8, -25);
 
@@ -66,6 +64,7 @@ void About::createInterface()
 }
 void About::createObjectName()
 {
+    mAboutPixmap->setObjectName("About_Banner");
     mAboutTitle->setObjectName("Label_About_Title");
     mAboutTButton->setObjectName("Button_About_Title");
     mAboutCButton->setObjectName("Button_About_Close");

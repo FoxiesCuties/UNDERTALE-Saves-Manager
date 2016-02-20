@@ -102,7 +102,8 @@ void Settings::createLangCombo()
 }
 void Settings::createThemCombo()
 {
-    mThemeCombo->addItem(tr("Default"), "Default");//Add default value
+    mThemeCombo->addItem(tr("Dark"), "Default");//Add default value
+    mThemeCombo->addItem(tr("Light"), "Light");
 
     QDir themeDir(qApp->applicationDirPath()+"/themes");
 
@@ -115,8 +116,6 @@ void Settings::createInterface()
     mSettingsTHbox->addWidget(mSettingsCButton, 1, Qt::AlignRight | Qt::AlignTop);
     mSettingsTHbox->setContentsMargins(0, 22, 9, 0);
 
-    mSettingsPixmap->setPixmap(QPixmap(":imgs/settings/setBan"));
-    mSettingsPixmap->setAlignment(Qt::AlignCenter);
     mSettingsPixmap->setLayout(mSettingsTHbox);
     mSettingsPixmap->setContentsMargins(0, -20, -8, -25);
 
@@ -192,8 +191,9 @@ void Settings::createInterface()
 }
 void Settings::createObjectName()
 {
-    mSoundLab->setObjectName("Label_Settings_Header");
-    mSpeedLab->setObjectName("Label_Settings_Header");
+    mSettingsPixmap->setObjectName("Settings_Banner");
+    mSoundLab->setObjectName("Label_Settings_Tip");
+    mSpeedLab->setObjectName("Label_Settings_Tip");
     mSpeedSld->setObjectName("Slider_Settings");
     mSpValLab->setObjectName("Label_Settings_Value");
     mSettingsTitle->setObjectName("Label_Settings_Title");
@@ -377,6 +377,8 @@ void Settings::initSettings()
 
     if (mCFGSettings->value("Miscs/Theme").toString() == "Default") {
         mCSSFile->setFileName(":themes/Default");
+    } else if (mCFGSettings->value("Miscs/Theme").toString() == "Light") {
+        mCSSFile->setFileName(":themes/Light");
     } else {
         mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+mCFGSettings->value("Miscs/Theme").toString());
     }
@@ -469,8 +471,10 @@ void Settings::slotThemeChanged(int index)
 
     mCSSFile->close();
 
-    if (mThemeCombo->currentIndex() == 0) {
+    if (mThemeCombo->currentIndex() == mThemeCombo->findData("Default")) {
         mCSSFile->setFileName(":themes/Default");
+    } else if (mThemeCombo->currentIndex() == mThemeCombo->findData("Light")) {
+        mCSSFile->setFileName(":themes/Light");
     } else {
         mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+themeName);
     }

@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/imgs">
         <file alias="splash">assets/imgs/pixmaps/splash.png</file>
-        <file alias="ban">assets/imgs/pixmaps/banner.png</file>
         <file alias="bLoad">assets/imgs/gui/BtnLoad.png</file>
         <file alias="bSave">assets/imgs/gui/BtnSave.png</file>
         <file alias="bSet">assets/imgs/gui/BtnSet.png</file>
@@ -29,7 +28,8 @@
         <file alias="DTM">assets/fonts/DTM-Mono.otf</file>
     </qresource>
     <qresource prefix="/themes">
-        <file alias="Default">assets/themes/default.qss</file>
+        <file alias="Default">assets/themes/dark.qss</file>
+        <file alias="Light">assets/themes/light.qss</file>
     </qresource>
     <qresource prefix="/imgs/settings">
         <file alias="setBan">assets/imgs/pixmaps/settings/setBan.png</file>
@@ -39,6 +39,7 @@
     <qresource prefix="/imgs/about">
         <file alias="abtWtm">assets/imgs/pixmaps/about/back.png</file>
         <file alias="abtGit">assets/imgs/pixmaps/about/github.png</file>
+        <file alias="lAbtWtm">assets/imgs/pixmaps/about/lback.png</file>
     </qresource>
     <qresource prefix="/snds">
         <file alias="chat">assets/snds/chat.wav</file>
@@ -97,5 +98,35 @@
         <file alias="236">assets/imgs/pixmaps/rooms/236.mng</file>
         <file alias="246">assets/imgs/pixmaps/rooms/246.mng</file>
         <file alias="251">assets/imgs/pixmaps/rooms/251.mng</file>
+    </qresource>
+    <qresource prefix="/imgs/pixmaps/dark">
+        <file alias="ban">assets/imgs/pixmaps/dark/banner.png</file>
+        <file alias="sBan">assets/imgs/pixmaps/dark/setBan.png</file>
+    </qresource>
+    <qresource prefix="/imgs/pixmaps/light">
+        <file alias="ban">assets/imgs/pixmaps/light/banner.png</file>
+        <file alias="sBan">assets/imgs/pixmaps/light/setBan.png</file>
+    </qresource>
+    <qresource prefix="/imgs/gui/light">
+        <file alias="clo0">assets/imgs/gui/light/close0.png</file>
+        <file alias="clo1">assets/imgs/gui/light/close1.png</file>
+        <file alias="abt0">assets/imgs/gui/light/about0.png</file>
+        <file alias="abt1">assets/imgs/gui/light/about1.png</file>
+        <file alias="min0">assets/imgs/gui/light/min0.png</file>
+        <file alias="min1">assets/imgs/gui/light/min1.png</file>
+        <file alias="fol0">assets/imgs/gui/light/fol0.png</file>
+        <file alias="fol1">assets/imgs/gui/light/fol1.png</file>
+        <file alias="ref0">assets/imgs/gui/light/ref0.png</file>
+        <file alias="ref1">assets/imgs/gui/light/ref1.png</file>
+        <file alias="bLch">assets/imgs/gui/light/BtnLaunch.png</file>
+        <file alias="bLch1">assets/imgs/gui/light/BtnLaunch1.png</file>
+        <file alias="bLoad">assets/imgs/gui/light/BtnLoad.png</file>
+        <file alias="bLoad1">assets/imgs/gui/light/BtnLoad1.png</file>
+        <file alias="bSave">assets/imgs/gui/light/BtnSave.png</file>
+        <file alias="bSave1">assets/imgs/gui/light/BtnSave1.png</file>
+        <file alias="bSet">assets/imgs/gui/light/BtnSet.png</file>
+        <file alias="bSet1">assets/imgs/gui/light/BtnSet1.png</file>
+        <file alias="tclo0">assets/imgs/gui/light/tclose0.png</file>
+        <file alias="tclo1">assets/imgs/gui/light/tclose1.png</file>
     </qresource>
 </RCC>

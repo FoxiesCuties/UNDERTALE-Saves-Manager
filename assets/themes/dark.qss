@@ -1,0 +1,574 @@
+/* SECTION_Header */
+#Widget_Parent
+{
+    background: #111;
+    min-width: 900px;
+    height: 622px;
+}
+
+#Button_About
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/abt0');
+}
+#Button_About:hover
+{
+    background-image: url(':imgs/abt1');
+}
+
+#Button_Minimize
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/min0');
+}
+#Button_Minimize:hover
+{
+    background-image: url(':imgs/min1');
+}
+
+#Button_Close
+{
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(':imgs/clo0');
+}
+#Button_Close:hover
+{
+    background-image: url(':imgs/clo1');
+}
+
+#Label_Banner
+{
+    border: none;
+    height: 75px;
+    width: 350px;
+    background-image: url(':imgs/pixmaps/dark/ban');
+    background-repeat: no-repeat;
+    margin-left: 250px;
+}
+
+#Button_Banner
+{
+    border: none;
+}
+/* EndSECTION_Header */
+
+/* SECTION_Controls */
+#ButtonLRefresh
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/ref0');
+}
+#ButtonLRefresh:hover
+{
+    background-image: url(':imgs/ref1');
+}
+
+#ButtonOpenBackupFolder
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/fol0');
+}
+#ButtonOpenBackupFolder:hover
+{
+    background-image: url(':imgs/fol1');
+}
+
+#ButtonRRefresh
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/ref0');
+}
+#ButtonRRefresh:hover
+{
+    background-image: url(':imgs/ref1');
+}
+/* EndSECTION_Controls */
+
+/* SECTION_Center */
+#ListWidget_Saves
+{
+    border: none;
+    background: transparent;
+}
+#ListWidget_Saves QScrollBar:vertical
+{
+    width: 10px;
+    border: none;
+    background: transparent;
+    margin: 0px 0px 2px 2px;
+}
+#ListWidget_Saves QScrollBar::handle:vertical
+{
+    background: #444;
+    min-height: 20px;
+}
+#ListWidget_Saves QScrollBar::handle:vertical:hover
+{
+    background: white;
+}
+#ListWidget_Saves QScrollBar::add-line:vertical,
+#ListWidget_Saves QScrollBar::sub-line:vertical,
+#ListWidget_Saves QScrollBar::add-page:vertical,
+#ListWidget_Saves QScrollBar::sub-page:vertical
+{
+    background: none;
+}
+#ListWidget_Saves QPushButton #Button_DeleteSave
+{
+    border: none;
+    height: 20px;
+    width: 20px;
+    background: transparent;
+    background-image: url(':imgs/bDel0');
+}
+#ListWidget_Saves QPushButton #Button_DeleteSave:hover
+{
+    border: none;
+    height: 20px;
+    width: 20px;
+    background-image: url(':imgs/bDel1');
+}
+#ListWidget_Saves QLabel
+{
+    color: white;
+}
+#ListWidget_Saves QPushButton QLabel[Title="1"]/*CF HTML*/
+{
+    font-family: "Determination Mono";
+    font-size: 18pt;
+    font-weight: bold;
+}
+#ListWidget_Saves QPushButton QLabel[Title="2"]/*CF HTML*/
+{
+    font-family: "Determination Mono";
+    font-size: 13pt;
+    font-weight: bold;
+}
+#ListWidget_Saves QPushButton
+{
+    background: black;
+    border: 5px solid #e61;
+}
+#ListWidget_Saves QPushButton:hover
+{
+    border: 5px solid #ff1;
+}
+#ListWidget_Saves QPushButton:checked
+{
+    border: 5px solid #fff;
+}
+/* EndSECTION_Center */
+
+/* SECTION_ActionsButttons */
+#Button_LOAD
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bLoad');
+}
+#Button_LOAD:hover
+{
+    background-image: url(':imgs/bLoad1');
+}
+
+#Button_SAVE
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bSave');
+}
+#Button_SAVE:hover
+{
+    background-image: url(':imgs/bSave1');
+}
+
+#Button_SETTINGS
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bSet');
+}
+#Button_SETTINGS:hover
+{
+    background-image: url(':imgs/bSet1');
+}
+
+#Button_LAUNCH
+{
+    border: none;
+    height: 40px;
+    width: 150px;
+    background-image: url(':imgs/bLch');
+}
+#Button_LAUNCH:hover
+{
+    background-image: url(':imgs/bLch1');
+}
+/* EndSECTION_ActionsButttons */
+
+/* SECTION_Externals_Dialogs */
+#Dialog_MessBox
+{
+    background: black;
+    border: 5px solid white;
+}
+#Dialog_MessBox QTextEdit
+{
+    background: black;
+    border: none;
+    font-family: "Determination Mono";
+    color: white;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+#Dialog_About
+{
+    background: #111;
+    border: 3px solid white;
+    background-image: url(':imgs/about/abtWtm');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+#Dialog_About #About_Banner
+{
+    border: none;
+    height: 50px;
+    width: 233px;
+    background-image: url(':imgs/pixmaps/dark/sBan');
+    background-repeat: no-repeat;
+    margin-left: 70px;
+}
+#Dialog_About QLabel
+{
+    font-family: "Determination Mono";
+    font-size: 10pt;
+    color: white;
+    font-weight: normal;
+}
+#Dialog_About #Button_About_Github
+{
+    border: none;
+    height: 70px;
+    width: 70px;
+    background-image: url(':imgs/about/abtGit');
+}
+#Dialog_About #Button_About_Title
+{
+    border: none;
+    background: #050505;
+}
+#Dialog_About #Label_About_Title
+{
+    font-family: "Determination Mono";
+    font-size: 10pt;
+    color: lightgrey;
+}
+#Dialog_About #Label_About_Header
+{
+    font-family: "Determination Mono";
+    font-size: 15pt;
+    color: lightgrey;
+}
+#Dialog_About #Button_About_TipLabel
+{
+    font-family: "Arial";
+    color: white;
+    font-size: 9pt;
+    font-weight: bold;
+}
+#Dialog_About #Button_About_Close
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/settings/setClo0');
+}
+#Dialog_About #Button_About_Close:hover
+{
+    background-image: url(':imgs/settings/setClo1');
+}
+
+#Dialog_Settings
+{
+    background: #111;
+    border: 3px solid white;
+}
+#Dialog_Settings #Settings_Banner
+{
+    border: none;
+    height: 50px;
+    width: 233px;
+    background-image: url(':imgs/pixmaps/dark/sBan');
+    background-repeat: no-repeat;
+    margin-left: 130px;
+}
+#Dialog_Settings #Button_Settings_Title
+{
+    border: none;
+    background: transparent;
+}
+#Dialog_Settings #Label_Settings_Title
+{
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 10pt;
+}
+#Dialog_Settings QGroupBox
+{
+    border: 1px solid #e61;
+    padding-top: 8px;
+    background-color: black;
+}
+#Dialog_Settings QGroupBox::title
+{
+    background: #e61;
+    color: white;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: bold;
+}
+#Dialog_Settings #Label_Settings_Header
+{
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 10pt;
+}
+#Dialog_Settings QComboBox
+{
+    border: none;
+    background-color: #111;
+    color: white;
+    padding: 1px;
+    padding-left: 4px;
+    height: 15px;
+}
+#Dialog_Settings QComboBox::drop-down
+{
+    border: 3px solid #111;
+    background-color: #e61;
+}
+#Dialog_Settings QComboBox::drop-down:hover
+{
+    background-color: #ff1;
+}
+#Dialog_Settings QComboBox QAbstractItemView
+{
+    color: white;
+    border: none;
+    outline: none;
+    background-color: #111;
+    selection-background-color: #333;
+}
+#Dialog_Settings QCheckBox
+{
+    border: none;
+}
+#Dialog_Settings QCheckBox::indicator:checked
+{
+    background: #263;
+}
+#Dialog_Settings QCheckBox::indicator:checked:hover
+{
+    background: #283;
+}
+#Dialog_Settings QCheckBox::indicator:unchecked
+{
+    background: #623;
+}
+#Dialog_Settings QCheckBox::indicator:unchecked:hover
+{
+    background: #823;
+}
+#Dialog_Settings #Slider_Settings
+{
+
+}
+#Dialog_Settings #Label_Settings_Value
+{
+    font-family: "Arial";
+    color: white;
+    font-size: 9pt;
+}
+#Dialog_Settings QLineEdit
+{
+    height: 20px;
+    background: #111;
+    border: none;
+    font-family: "Determination Mono";
+    color: lightgrey;
+    font-size: 10pt;
+}
+#Dialog_Settings #Label_Settings_Tip
+{
+    font-family: "Arial";
+    color: white;
+    font-size: 9pt;
+    font-weight: bold;
+}
+#Dialog_Settings #Button_Settings_Close
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/settings/setClo0');
+}
+#Dialog_Settings #Button_Settings_Close:hover
+{
+    background-image: url(':imgs/settings/setClo1');
+}
+#Dialog_Settings #Button_Settings_FileDialog
+{
+    padding: 0px;
+    height: 13px;
+    width: 35px;
+    padding-bottom: 7px;
+    border: none;
+    background: #e61;
+    color: white;
+    font-weight: bold;
+    font-size: 12pt;
+}
+#Dialog_Settings #Button_Settings_FileDialog:hover
+{
+    background: #ff1;
+}
+#Dialog_Settings #Button_Settings_Apply
+{
+    max-width: 100px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    background: #263;
+    height: 25px;
+}
+#Dialog_Settings #Button_Settings_Apply:hover
+{
+    border: none;
+    background: #283;
+}
+#Dialog_Settings #Button_Settings_Cancel
+{
+    max-width: 100px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    background: #623;
+    height: 25px;
+}
+#Dialog_Settings #Button_Settings_Cancel:hover
+{
+    border: none;
+    background: #823;
+}
+
+#Dialog_Details
+{
+    background: black;
+    border: 5px Solid white;
+}
+#Dialog_Details #Label_Details_Room
+{
+    border: 1px solid white;
+}
+#Dialog_Details #Button_Details_Close
+{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/settings/setClo0');
+}
+#Dialog_Details #Button_Details_Close:hover
+{
+    background-image: url(':imgs/settings/setClo1');
+}
+#Dialog_Details QLabel
+{
+    color: white;
+    font-weight: bold;
+    font-family: "Determination Mono";
+    font-size: 12pt;
+    font-weight: bold;
+}
+#Dialog_Details #TabWidget_Details::pane
+{
+    background: black;
+    border: 1px solid white;
+}
+#Dialog_Details #TabWidget_Details::tab-bar
+{
+    alignment: center;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab
+{
+    background: #222;
+    color: white;
+    height: 30px;
+    width: 60px;
+    border: none;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab:hover
+{
+    background: #333;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab:selected
+{
+    background: #25A;
+}
+#Dialog_Details #TabWidget_Details QTabBar::tab:disabled
+{
+    width: 5px;
+    background: transparent;
+}
+/* EndSECTION_Externals_Dialogs */
+
+/* -- */
+#ListWidget_Items
+{
+    background: black;
+    color: white;
+    font-family: "Determination Mono";
+    font-size: 12pt;
+    border: none;
+    outline: none;
+}
+#ListWidget_Items::item
+{
+    outline: none;
+    background: transparent;
+}
+#ListWidget_Items::item:selected
+{
+    outline: none;
+    background: transparent;
+}
+#TextEdit_Items
+{
+    background: black;
+    color: white;
+    font-family: "Determination Mono";
+    font-size: 9pt;
+    border: none;
+    border-top: 1px solid white;
+    padding-top: 10px;
+}
+/* --* /

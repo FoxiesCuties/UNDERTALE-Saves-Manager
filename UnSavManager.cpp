@@ -66,12 +66,10 @@ void UnSavManager::createInterface()
     mBannerHbox->addWidget(mMinButton,  0, Qt::AlignRight | Qt::AlignTop);
     mBannerHbox->addWidget(mClozButton, 0, Qt::AlignRight | Qt::AlignTop);
 
-    mBannerPixmap->setPixmap(QPixmap(":imgs/ban"));
-    mBannerPixmap->setAlignment(Qt::AlignCenter);
     mBannerPixmap->setLayout(mBannerHbox);
     mBannerPixmap->setContentsMargins(-7, -7, -7, -7);
 
-    mTButtonHBox->addWidget(mBannerPixmap,1);
+    mTButtonHBox->addWidget(mBannerPixmap, 1);
 
     mBannerTButton->setLayout(mTButtonHBox);
     mBannerTButton->setFixedHeight(90);
@@ -127,7 +125,6 @@ void UnSavManager::createObjectName()
 }
 void UnSavManager::createSettings()
 {
-    this->setFixedSize(900, 622);
     this->setLayout(mParentVbox);
     this->setWindowTitle("UNDERTALE Save Manager");
     this->setWindowFlags(Qt::FramelessWindowHint);

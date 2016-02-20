@@ -1,7 +1,9 @@
 /* SECTION_Header */
 #Widget_Parent
 {
-    background: #111;
+    background: #EEE;
+    min-width: 900px;
+    max-height: 612px;
 }
 
 #Button_About
@@ -9,11 +11,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/abt0');
+    background-image: url(':imgs/gui/light/abt0');
 }
 #Button_About:hover
 {
-    background-image: url(':imgs/abt1');
+    background-image: url(':imgs/gui/light/abt1');
 }
 
 #Button_Minimize
@@ -21,11 +23,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/min0');
+    background-image: url(':imgs/gui/light/min0');
 }
 #Button_Minimize:hover
 {
-    background-image: url(':imgs/min1');
+    background-image: url(':imgs/gui/light/min1');
 }
 
 #Button_Close
@@ -33,16 +35,21 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/clo0');
+    background-image: url(':imgs/gui/light/clo0');
 }
 #Button_Close:hover
 {
-    background-image: url(':imgs/clo1');
+    background-image: url(':imgs/gui/light/clo1');
 }
 
 #Label_Banner
 {
-    background: transparent;
+    border: none;
+    height: 75px;
+    width: 350px;
+    background-image: url(':imgs/pixmaps/light/ban');
+    background-repeat: no-repeat;
+    margin-left: 250px;
 }
 
 #Button_Banner
@@ -55,37 +62,37 @@
 #ButtonLRefresh
 {
     border: none;
-    height: 40px;
-    width: 40px;
-    background-image: url(':imgs/ref0');
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/gui/light/ref0');
 }
 #ButtonLRefresh:hover
 {
-    background-image: url(':imgs/ref1');
+    background-image: url(':imgs/gui/light/ref1');
 }
 
 #ButtonOpenBackupFolder
 {
     border: none;
-    height: 40px;
-    width: 40px;
-    background-image: url(':imgs/fol0');
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/gui/light/fol0');
 }
 #ButtonOpenBackupFolder:hover
 {
-    background-image: url(':imgs/fol1');
+    background-image: url(':imgs/gui/light/fol1');
 }
 
 #ButtonRRefresh
 {
     border: none;
-    height: 40px;
-    width: 40px;
-    background-image: url(':imgs/ref0');
+    height: 30px;
+    width: 30px;
+    background-image: url(':imgs/gui/light/ref0');
 }
 #ButtonRRefresh:hover
 {
-    background-image: url(':imgs/ref1');
+    background-image: url(':imgs/gui/light/ref1');
 }
 /* EndSECTION_Controls */
 
@@ -135,7 +142,7 @@
 }
 #ListWidget_Saves QLabel
 {
-    color: white;
+    color: #444;
 }
 #ListWidget_Saves QPushButton QLabel[Title="1"]/*CF HTML*/
 {
@@ -151,18 +158,16 @@
 }
 #ListWidget_Saves QPushButton
 {
-    background: black;
-    border: 5px solid #e61;
+    background: #fff;
+    border: 5px solid #0cc4e9;
 }
 #ListWidget_Saves QPushButton:hover
 {
-    background: black;
-    border: 5px solid #ff1;
+    border: 5px solid #e31818;
 }
 #ListWidget_Saves QPushButton:checked
 {
-    background: black;
-    border: 5px solid #fff;
+    border: 5px solid #444;
 }
 /* EndSECTION_Center */
 
@@ -172,11 +177,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bLoad');
+    background-image: url(':imgs/gui/light/bLoad');
 }
 #Button_LOAD:hover
 {
-    background-image: url(':imgs/bLoad1');
+    background-image: url(':imgs/gui/light/bLoad1');
 }
 
 #Button_SAVE
@@ -184,11 +189,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bSave');
+    background-image: url(':imgs/gui/light/bSave');
 }
 #Button_SAVE:hover
 {
-    background-image: url(':imgs/bSave1');
+    background-image: url(':imgs/gui/light/bSave1');
 }
 
 #Button_SETTINGS
@@ -196,11 +201,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bSet');
+    background-image: url(':imgs/gui/light/bSet');
 }
 #Button_SETTINGS:hover
 {
-    background-image: url(':imgs/bSet1');
+    background-image: url(':imgs/gui/light/bSet1');
 }
 
 #Button_LAUNCH
@@ -208,44 +213,52 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bLch');
+    background-image: url(':imgs/gui/light/bLch');
 }
 #Button_LAUNCH:hover
 {
-    background-image: url(':imgs/bLch1');
+    background-image: url(':imgs/gui/light/bLch1');
 }
 /* EndSECTION_ActionsButttons */
 
 /* SECTION_Externals_Dialogs */
 #Dialog_MessBox
 {
-    background: black;
-    border: 5px solid white;
+    background: #EEE;
+    border: 5px solid #444;
 }
 #Dialog_MessBox QTextEdit
 {
-    background: black;
+    background: #EEE;
     border: none;
     font-family: "Determination Mono";
-    color: white;
+    color: #444;
     font-size: 13pt;
     font-weight: bold;
 }
 
 #Dialog_About
 {
-    background: #111;
-    border: 3px solid white;
-    background-image: url(':imgs/about/abtWtm');
+    background: #EEE;
+    border: 3px solid #444;
+    background-image: url(':imgs/about/lAbtWtm');
     background-repeat: no-repeat;
     background-position: bottom right;
+}
+#Dialog_About #About_Banner
+{
+    border: none;
+    height: 50px;
+    width: 233px;
+    background-image: url(':imgs/pixmaps/light/sBan');
+    background-repeat: no-repeat;
+    margin-left: 70px;
 }
 #Dialog_About QLabel
 {
     font-family: "Determination Mono";
-    color: lightgrey;
     font-size: 10pt;
-    color: white;
+    color: #444;
     font-weight: normal;
 }
 #Dialog_About #Button_About_Github
@@ -258,19 +271,19 @@
 #Dialog_About #Button_About_Title
 {
     border: none;
-    background: #050505;
+    background: #EEE;
 }
 #Dialog_About #Label_About_Title
 {
     font-family: "Determination Mono";
-    color: lightgrey;
     font-size: 10pt;
+    color: #444;
 }
 #Dialog_About #Label_About_Header
 {
     font-family: "Determination Mono";
-    color: lightgrey;
     font-size: 15pt;
+    color: #444;
 }
 #Dialog_About #Button_About_TipLabel
 {
@@ -284,22 +297,48 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/settings/setClo0');
+    background-image: url(':imgs/gui/light/tclo0');
 }
 #Dialog_About #Button_About_Close:hover
 {
-    background-image: url(':imgs/settings/setClo1');
+    background-image: url(':imgs/gui/light/tclo1');
 }
 
 #Dialog_Settings
 {
-    background: #111;
-    border: 3px solid white;
+    background: #EEE;
+    border: 3px solid #444;
+}
+#Dialog_Settings #Settings_Banner
+{
+    border: none;
+    height: 50px;
+    width: 233px;
+    background-image: url(':imgs/pixmaps/light/sBan');
+    background-repeat: no-repeat;
+    margin-left: 130px;
+}
+#Dialog_Settings #Button_Settings_Title
+{
+    border: none;
+    background: transparent;
+}
+#Dialog_Settings #Label_Settings_Title
+{
+    font-family: "Determination Mono";
+    color: #444;
+    font-size: 10pt;
+}
+#Dialog_Settings QGroupBox
+{
+    border: 1px solid #0cc4e9;
+    padding-top: 8px;
+    background-color: white;
 }
 #Dialog_Settings QGroupBox::title
 {
-    background: white;
-    color: black;
+    background: #0cc4e9;
+    color: white;
     padding-left: 6px;
     padding-right: 6px;
     padding-top: 3px;
@@ -315,27 +354,27 @@
 #Dialog_Settings QComboBox
 {
     border: none;
-    background-color: black;
-    color: white;
+    background-color: #EEE;
+    color: #444;
     padding: 1px;
     padding-left: 4px;
     height: 15px;
 }
 #Dialog_Settings QComboBox::drop-down
 {
-    border: 3px solid black;
-    background-color: #333;;
+    border: 3px solid #EEE;
+    background-color: #0cc4e9;
 }
 #Dialog_Settings QComboBox::drop-down:hover
 {
-    background-color: #373;;
+    background-color: #e31818;
 }
 #Dialog_Settings QComboBox QAbstractItemView
 {
-    color: white;
+    color: #444;
     border: none;
     outline: none;
-    background-color: black;
+    background-color: #EEE;
     selection-background-color: #333;
 }
 #Dialog_Settings QCheckBox
@@ -365,33 +404,22 @@
 #Dialog_Settings #Label_Settings_Value
 {
     font-family: "Arial";
-    color: white;
+    color: black;
     font-size: 9pt;
 }
 #Dialog_Settings QLineEdit
 {
     height: 20px;
-    background: black;
+    background: #EEE;
     border: none;
     font-family: "Determination Mono";
-    color: white;
-    font-size: 10pt;
-}
-#Dialog_Settings #Button_Settings_Title
-{
-    border: none;
-    background: #050505;
-}
-#Dialog_Settings #Label_Settings_Title
-{
-    font-family: "Determination Mono";
-    color: lightgrey;
+    color: #444;
     font-size: 10pt;
 }
 #Dialog_Settings #Label_Settings_Tip
 {
     font-family: "Arial";
-    color: white;
+    color: black;
     font-size: 9pt;
     font-weight: bold;
 }
@@ -400,11 +428,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/settings/setClo0');
+    background-image: url(':imgs/gui/light/tclo0');
 }
 #Dialog_Settings #Button_Settings_Close:hover
 {
-    background-image: url(':imgs/settings/setClo1');
+    background-image: url(':imgs/gui/light/tclo1');
 }
 #Dialog_Settings #Button_Settings_FileDialog
 {
@@ -413,14 +441,14 @@
     width: 35px;
     padding-bottom: 7px;
     border: none;
-    background: #000;
+    background: #0cc4e9;
     color: white;
     font-weight: bold;
     font-size: 12pt;
 }
 #Dialog_Settings #Button_Settings_FileDialog:hover
 {
-    color: yellow;
+    background: #e31818;
 }
 #Dialog_Settings #Button_Settings_Apply
 {
