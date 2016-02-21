@@ -338,9 +338,7 @@ void UnSavManager::moveRight()
 
         if (saveExist && !isBackup) {//If current save 'exist' AND 'doesn't backup'
 
-            this->messageBox(MessType::ForceOverwrite)->exec();
-
-            if (this->messageBox(MessType::ForceOverwrite)->isAccepted()) {
+            if (this->messageBox(MessType::ForceOverwrite)->exec()) {
                 QDir dir(mSetgsDialog->currentSave());
 
                 if (dir.removeRecursively()) {
@@ -426,9 +424,7 @@ void UnSavManager::launchGame()
 void UnSavManager::deleteSave(QString folder)
 {
     if (!folder.isEmpty()) {
-        this->messageBox(MessType::DeleteSave)->exec();
-
-        if (this->messageBox(MessType::DeleteSave)->isAccepted()) {
+        if (this->messageBox(MessType::DeleteSave)->exec()) {
             if (folder == mSetgsDialog->currentSave()) {
                 QDir currentSave(mSetgsDialog->currentSave());
                     currentSave.removeRecursively();

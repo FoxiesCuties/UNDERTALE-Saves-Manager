@@ -20,7 +20,6 @@ public:
     void createInterface();
     void createSettings();
 
-    bool isAccepted();
     void setDialogSize(QSize size);
     void setDialogText(QString text, int speed);
     void setDialogSound(QUrl url, bool play);
@@ -35,7 +34,6 @@ public:
 private:
 
     BoxType         mType;
-    bool            mValue;
 
     QLabel          *mMessageLabel;
     ProgressiveText *mMessageTextEdit;

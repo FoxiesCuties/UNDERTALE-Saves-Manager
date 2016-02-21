@@ -32,10 +32,6 @@ void MessageDialog::createSettings()
 }
 
 //Methods
-bool MessageDialog::isAccepted()
-{
-    return mValue;
-}
 void MessageDialog::setType(BoxType type)
 {
     mType = type;
@@ -63,15 +59,16 @@ void MessageDialog::keyPressEvent(QKeyEvent *event)
     if (mMessageTextEdit->isFinish()) {
         if (mType == BoxType::Choice) {
             if (event->key() == Qt::Key_Y) {
-                mValue = true;
+                accept();
                 close();
             }
             if (event->key() == Qt::Key_N) {
-                mValue = false;
+                reject();
                 close();
             }
         } else if (mType == BoxType::Confirm) {
             if (event->key() == Qt::Key_Return) {
+                accept();
                 close();
             }
         }
