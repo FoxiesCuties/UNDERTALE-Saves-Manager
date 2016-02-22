@@ -47,3 +47,13 @@ HEADERS  += About.hpp                           \
 
 RESOURCES +=                                    \
             assets.qrc                          \
+
+
+#------------------------------------------------#
+#   You need to add "install" arg to make step   #
+#------------------------------------------------#
+
+assets.path = $$OUT_PWD/release/assets/imgs/pixmaps/rooms/
+assets.files += $$PWD/assets/imgs/pixmaps/rooms/*
+
+INSTALLS += assets

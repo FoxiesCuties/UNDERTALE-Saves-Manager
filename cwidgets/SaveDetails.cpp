@@ -54,7 +54,8 @@ void SaveDetails::createSettings()
 {
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
     this->setLayout(mDetailsHbox);
-    this->setContentsMargins(5,5,0,5);
+    this->setContentsMargins(5, 5, 0, 5);
+    this->setFixedSize(720, 364);
 }
 
 //Methods
@@ -73,8 +74,10 @@ void SaveDetails::setRoomNumber(int room)
 
     this->setWindowTitle("Save Details - Room " + QString::number(mRoomInt));
 
-    if (QFile::exists(":imgs/rooms/" + QString::number(mRoomInt))) {
-        mRoomPixMovie->setFileName(":imgs/rooms/" + QString::number(mRoomInt));
+    QString mngPath = qApp->applicationDirPath()+"/assets/imgs/pixmaps/rooms/"+QString::number(mRoomInt)+".mng";
+
+    if (QFile::exists(mngPath)) {
+        mRoomPixMovie->setFileName(mngPath);
     } else {
         mRoomPixMovie->setFileName(":imgs/rooms/" + QString::number(0));
     }
@@ -82,8 +85,6 @@ void SaveDetails::setRoomNumber(int room)
     mRoomPixMovie->setScaledSize(QSize(440, 330));
 
     mRoomPixLab->setMovie(mRoomPixMovie);
-
-    this->setFixedSize(700, 364);
 }
 
 //Slots
