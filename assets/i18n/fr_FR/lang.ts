@@ -4,10 +4,6 @@
 <context>
     <name>Settings</name>
     <message>
-        <source>Default</source>
-        <translation type="vanished">Défaut</translation>
-    </message>
-    <message>
         <location filename="../../../Settings.cpp" line="105"/>
         <source>Dark</source>
         <translation>Sombre</translation>
