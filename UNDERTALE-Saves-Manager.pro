@@ -6,7 +6,7 @@ RC_ICONS = toriel.ico
 
 TRANSLATIONS =  assets/i18n/fr_FR/lang.ts \
 
-VERSION = 0.6
+VERSION = 0.7
 QMAKE_TARGET_DESCRIPTION = "UNDERTALE Save Manager"
 QMAKE_TARGET_COPYRIGHT = "FoxiesCuties"
 
