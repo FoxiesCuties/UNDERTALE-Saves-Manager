@@ -52,7 +52,6 @@
     </qresource>
     <qresource prefix="/i18n">
         <file alias="en_US">assets/i18n/en_US/icon.png</file>
-        <file alias="en_US_QM">assets/i18n/en_US/lang.qm</file>
     </qresource>
     <qresource prefix="/imgs" lang="fr_FR">
         <file alias="bLch">assets/imgs/gui/fr_FR/BtnLaunch.png</file>
