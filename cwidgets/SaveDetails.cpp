@@ -79,7 +79,7 @@ void SaveDetails::setRoomNumber(int room)
     if (QFile::exists(mngPath)) {
         mRoomPixMovie->setFileName(mngPath);
     } else {
-        mRoomPixMovie->setFileName(":imgs/rooms/" + QString::number(0));
+        mRoomPixMovie->setFileName(":rooms/unknow");
     }
 
     mRoomPixMovie->setScaledSize(QSize(440, 330));

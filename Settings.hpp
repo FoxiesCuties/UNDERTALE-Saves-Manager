@@ -24,6 +24,7 @@ public:
     int     textSpeed();
     bool    soundEnabled();
     bool    steamEnabled();
+    QString themeName();
     QString backupSaves();
     QString currentSave();
     QString currentTheme();

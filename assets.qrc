@@ -25,11 +25,7 @@
         <file alias="ref1">assets/imgs/gui/ref1.png</file>
     </qresource>
     <qresource prefix="/fonts">
-        <file alias="DTM">assets/fonts/DTM-Mono.otf</file>
-    </qresource>
-    <qresource prefix="/themes">
-        <file alias="Default">assets/themes/dark.qss</file>
-        <file alias="Light">assets/themes/light.qss</file>
+        <file alias="DTM">qrc/fonts/DTM-Mono.otf</file>
     </qresource>
     <qresource prefix="/imgs/settings">
         <file alias="setBan">assets/imgs/pixmaps/settings/setBan.png</file>
@@ -41,19 +37,13 @@
         <file alias="abtGit">assets/imgs/pixmaps/about/github.png</file>
         <file alias="lAbtWtm">assets/imgs/pixmaps/about/lback.png</file>
     </qresource>
-    <qresource prefix="/snds">
-        <file alias="chat">assets/snds/chat.wav</file>
-    </qresource>
     <qresource prefix="/imgs/avatars">
-        <file alias="flowey">assets/imgs/avatars/flowey.png</file>
-        <file alias="sans">assets/imgs/avatars/sans.png</file>
-        <file alias="toriel">assets/imgs/avatars/toriel.png</file>
-        <file alias="papyrus">assets/imgs/avatars/papyrus.png</file>
+        <file alias="flowey">qrc/avatars/flowey.png</file>
+        <file alias="sans">qrc/avatars/sans.png</file>
+        <file alias="toriel">qrc/avatars/toriel.png</file>
+        <file alias="papyrus">qrc/avatars/papyrus.png</file>
     </qresource>
-    <qresource prefix="/i18n">
-        <file alias="en_US">assets/i18n/en_US/icon.png</file>
-    </qresource>
-    <qresource prefix="/imgs" lang="fr_FR">
+    <qresource lang="fr_FR" prefix="/imgs">
         <file alias="bLch">assets/imgs/gui/fr_FR/BtnLaunch.png</file>
         <file alias="bLch1">assets/imgs/gui/fr_FR/BtnLaunch1.png</file>
         <file alias="bLoad">assets/imgs/gui/fr_FR/BtnLoad.png</file>
@@ -63,9 +53,6 @@
         <file alias="bSet">assets/imgs/gui/fr_FR/BtnSet.png</file>
         <file alias="bSet1">assets/imgs/gui/fr_FR/BtnSet1.png</file>
     </qresource>
-    <qresource prefix="/imgs/rooms">
-        <file alias="0">assets/imgs/pixmaps/rooms/0.mng</file>
-    </qresource>
     <qresource prefix="/imgs/pixmaps/dark">
         <file alias="ban">assets/imgs/pixmaps/dark/banner.png</file>
         <file alias="sBan">assets/imgs/pixmaps/dark/setBan.png</file>
@@ -74,26 +61,16 @@
         <file alias="ban">assets/imgs/pixmaps/light/banner.png</file>
         <file alias="sBan">assets/imgs/pixmaps/light/setBan.png</file>
     </qresource>
-    <qresource prefix="/imgs/gui/light">
-        <file alias="clo0">assets/imgs/gui/light/close0.png</file>
-        <file alias="clo1">assets/imgs/gui/light/close1.png</file>
-        <file alias="abt0">assets/imgs/gui/light/about0.png</file>
-        <file alias="abt1">assets/imgs/gui/light/about1.png</file>
-        <file alias="min0">assets/imgs/gui/light/min0.png</file>
-        <file alias="min1">assets/imgs/gui/light/min1.png</file>
-        <file alias="fol0">assets/imgs/gui/light/fol0.png</file>
-        <file alias="fol1">assets/imgs/gui/light/fol1.png</file>
-        <file alias="ref0">assets/imgs/gui/light/ref0.png</file>
-        <file alias="ref1">assets/imgs/gui/light/ref1.png</file>
-        <file alias="bLch">assets/imgs/gui/light/BtnLaunch.png</file>
-        <file alias="bLch1">assets/imgs/gui/light/BtnLaunch1.png</file>
-        <file alias="bLoad">assets/imgs/gui/light/BtnLoad.png</file>
-        <file alias="bLoad1">assets/imgs/gui/light/BtnLoad1.png</file>
-        <file alias="bSave">assets/imgs/gui/light/BtnSave.png</file>
-        <file alias="bSave1">assets/imgs/gui/light/BtnSave1.png</file>
-        <file alias="bSet">assets/imgs/gui/light/BtnSet.png</file>
-        <file alias="bSet1">assets/imgs/gui/light/BtnSet1.png</file>
-        <file alias="tclo0">assets/imgs/gui/light/tclose0.png</file>
-        <file alias="tclo1">assets/imgs/gui/light/tclose1.png</file>
+    <qresource prefix="/i18n">
+        <file alias="en_US">qrc/i18n/en_US/icon.png</file>
+    </qresource>
+    <qresource prefix="/rooms">
+        <file alias="unknow">qrc/pixmaps/rooms/unknow.mng</file>
+    </qresource>
+    <qresource prefix="/snds">
+        <file alias="chat">qrc/sounds/chat.wav</file>
+    </qresource>
+    <qresource prefix="/themes">
+        <file alias="Default">qrc/themes/dark.qss</file>
     </qresource>
 </RCC>

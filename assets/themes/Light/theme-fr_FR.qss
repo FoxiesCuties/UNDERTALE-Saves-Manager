@@ -11,11 +11,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/gui/light/abt0');
+    background-image: url(assets/themes/light/res/about0.png);
 }
 #Button_About:hover
 {
-    background-image: url(':imgs/gui/light/abt1');
+    background-image: url(assets/themes/light/res/about1.png);
 }
 
 #Button_Minimize
@@ -23,11 +23,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/gui/light/min0');
+    background-image: url(assets/themes/light/res/min0.png);
 }
 #Button_Minimize:hover
 {
-    background-image: url(':imgs/gui/light/min1');
+    background-image: url(assets/themes/light/res/min1.png);
 }
 
 #Button_Close
@@ -35,11 +35,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/gui/light/clo0');
+    background-image: url(assets/themes/light/res/close0.png);
 }
 #Button_Close:hover
 {
-    background-image: url(':imgs/gui/light/clo1');
+    background-image: url(assets/themes/light/res/close1.png);
 }
 
 #Label_Banner
@@ -47,7 +47,7 @@
     border: none;
     height: 75px;
     width: 350px;
-    background-image: url(':imgs/pixmaps/light/ban');
+    background-image: url(assets/themes/light/res/banner.png);
     background-repeat: no-repeat;
     margin-left: 250px;
 }
@@ -64,11 +64,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/gui/light/ref0');
+    background-image: url(assets/themes/light/res/ref0.png);
 }
 #ButtonLRefresh:hover
 {
-    background-image: url(':imgs/gui/light/ref1');
+    background-image: url(assets/themes/light/res/ref1.png);
 }
 
 #ButtonOpenBackupFolder
@@ -76,11 +76,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/gui/light/fol0');
+    background-image: url(assets/themes/light/res/fol0.png);
 }
 #ButtonOpenBackupFolder:hover
 {
-    background-image: url(':imgs/gui/light/fol1');
+    background-image: url(assets/themes/light/res/fol1.png);
 }
 
 #ButtonRRefresh
@@ -88,11 +88,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/gui/light/ref0');
+    background-image: url(assets/themes/light/res/ref0.png);
 }
 #ButtonRRefresh:hover
 {
-    background-image: url(':imgs/gui/light/ref1');
+    background-image: url(assets/themes/light/res/ref1.png);
 }
 /* EndSECTION_Controls */
 
@@ -131,14 +131,14 @@
     height: 20px;
     width: 20px;
     background: transparent;
-    background-image: url(':imgs/bDel0');
+    background-image: url(assets/themes/light/res/BtnDelete0.png);
 }
 #ListWidget_Saves QPushButton #Button_DeleteSave:hover
 {
     border: none;
     height: 20px;
     width: 20px;
-    background-image: url(':imgs/bDel1');
+    background-image: url(assets/themes/light/res/BtnDelete1.png);
 }
 #ListWidget_Saves QLabel
 {
@@ -177,11 +177,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/gui/light/bLoad');
+    background-image: url(assets/themes/light/res/fr_FR/BtnLoad.png);
 }
 #Button_LOAD:hover
 {
-    background-image: url(':imgs/gui/light/bLoad1');
+    background-image: url(assets/themes/light/res/fr_FR/BtnLoad1.png);
 }
 
 #Button_SAVE
@@ -189,11 +189,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/gui/light/bSave');
+    background-image: url(assets/themes/light/res/fr_FR/BtnSave.png);
 }
 #Button_SAVE:hover
 {
-    background-image: url(':imgs/gui/light/bSave1');
+    background-image: url(assets/themes/light/res/fr_FR/BtnSave1.png);
 }
 
 #Button_SETTINGS
@@ -201,11 +201,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/gui/light/bSet');
+    background-image: url(assets/themes/light/res/fr_FR/BtnSet.png);
 }
 #Button_SETTINGS:hover
 {
-    background-image: url(':imgs/gui/light/bSet1');
+    background-image: url(assets/themes/light/res/fr_FR/BtnSet1.png);
 }
 
 #Button_LAUNCH
@@ -213,11 +213,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/gui/light/bLch');
+    background-image: url(assets/themes/light/res/fr_FR/BtnLaunch.png);
 }
 #Button_LAUNCH:hover
 {
-    background-image: url(':imgs/gui/light/bLch1');
+    background-image: url(assets/themes/light/res/fr_FR/BtnLaunch1.png);
 }
 /* EndSECTION_ActionsButttons */
 
@@ -250,7 +250,7 @@
     border: none;
     height: 50px;
     width: 233px;
-    background-image: url(':imgs/pixmaps/light/sBan');
+    background-image: url(assets/themes/light/res/setBan.png);
     background-repeat: no-repeat;
     margin-left: 70px;
 }
@@ -297,11 +297,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/gui/light/tclo0');
+    background-image: url(assets/themes/light/res/tclose0.png);
 }
 #Dialog_About #Button_About_Close:hover
 {
-    background-image: url(':imgs/gui/light/tclo1');
+    background-image: url(assets/themes/light/res/tclose1.png);
 }
 
 #Dialog_Settings
@@ -314,7 +314,7 @@
     border: none;
     height: 50px;
     width: 233px;
-    background-image: url(':imgs/pixmaps/light/sBan');
+    background-image: url(assets/themes/light/res/setBan.png);
     background-repeat: no-repeat;
     margin-left: 130px;
 }
@@ -428,11 +428,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/gui/light/tclo0');
+    background-image: url(assets/themes/light/res/tclose0.png);
 }
 #Dialog_Settings #Button_Settings_Close:hover
 {
-    background-image: url(':imgs/gui/light/tclo1');
+    background-image: url(assets/themes/light/res/tclose1.png);
 }
 #Dialog_Settings #Button_Settings_FileDialog
 {
@@ -493,12 +493,12 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/gui/light/tclo0');
+    background-image: url(assets/themes/light/res/tclose0.png);
 	background-color: transparent;
 }
 #Dialog_Details #Button_Details_Close:hover
 {
-    background-image: url(':imgs/gui/light/tclo1');
+    background-image: url(assets/themes/light/res/tclose1.png);
 }
 #Dialog_Details QLabel
 {

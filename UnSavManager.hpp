@@ -59,6 +59,8 @@ public slots:
 
 private:
 
+    QString         avatarsPath;
+
     QProcess        *mGameProcess;
     QLabel          *mBannerPixmap;
     QHBoxLayout     *mTButtonHBox;

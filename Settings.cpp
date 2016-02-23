@@ -93,7 +93,7 @@ void Settings::createLangCombo()
 {
     mLangCombo->addItem(QIcon(":i18n/en_US"), "en_US", "");//Add default value
 
-    QString i18nPath = qApp->applicationDirPath()+"/i18n";
+    QString i18nPath = qApp->applicationDirPath()+"/assets/i18n";
     QDir i18nDir(i18nPath);
 
     foreach (QString lang, i18nDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
@@ -103,11 +103,10 @@ void Settings::createLangCombo()
 void Settings::createThemCombo()
 {
     mThemeCombo->addItem(tr("Dark"), "Default");//Add default value
-    mThemeCombo->addItem(tr("Light"), "Light");
 
-    QDir themeDir(qApp->applicationDirPath()+"/themes");
+    QDir themeDir(qApp->applicationDirPath()+"/assets/themes");
 
-    foreach (QString them, themeDir.entryList(QDir::Files)) {
+    foreach (QString them, themeDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
         mThemeCombo->addItem(them.section(".", 0, 0), them);
     }
 }
@@ -252,6 +251,10 @@ bool    Settings::steamEnabled()
 {
     return mCFGSettings->value("Paths/SteamVersion").toBool();
 }
+QString Settings::themeName()
+{
+    return mCFGSettings->value("Miscs/Theme").toString();
+}
 QString Settings::backupSaves()
 {
     return mCFGSettings->value("Paths/BackupsSaves").toString();
@@ -373,14 +376,18 @@ void Settings::initSettings()
 
     //Init
     mCurrentLang = mCFGSettings->value("Miscs/Language").toString();
-    mCurrentTranslator = qApp->applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+    mCurrentTranslator = qApp->applicationDirPath()+"/assets/i18n/"+mCurrentLang+"/lang.qm";
 
-    if (mCFGSettings->value("Miscs/Theme").toString() == "Default") {
+    QString mCurTName = mCFGSettings->value("Miscs/Theme").toString();
+
+    if (mCurTName == "Default") {
         mCSSFile->setFileName(":themes/Default");
-    } else if (mCFGSettings->value("Miscs/Theme").toString() == "Light") {
-        mCSSFile->setFileName(":themes/Light");
     } else {
-        mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+mCFGSettings->value("Miscs/Theme").toString());
+        if(mCurrentLang == "en_US") {
+            mCSSFile->setFileName(qApp->applicationDirPath()+"/assets/themes/"+mCurTName+"/theme.qss");
+        } else {
+            mCSSFile->setFileName(qApp->applicationDirPath()+"/assets/themes/"+mCurTName+"/theme-"+mCurrentLang+".qss");
+        }
     }
 
     loadTranslator();
@@ -462,8 +469,10 @@ void Settings::slotLanguageChanged(int index)
     if (mLangCombo->currentIndex() == 0) {
         mCurrentTranslator = "";
     } else {
-        mCurrentTranslator = qApp->applicationDirPath()+"/i18n/"+mCurrentLang+"/lang.qm";
+        mCurrentTranslator = qApp->applicationDirPath()+"/assets/i18n/"+mCurrentLang+"/lang.qm";
     }
+
+    //slotThemeChanged(mThemeCombo->currentIndex());
 }
 void Settings::slotThemeChanged(int index)
 {
@@ -473,10 +482,12 @@ void Settings::slotThemeChanged(int index)
 
     if (mThemeCombo->currentIndex() == mThemeCombo->findData("Default")) {
         mCSSFile->setFileName(":themes/Default");
-    } else if (mThemeCombo->currentIndex() == mThemeCombo->findData("Light")) {
-        mCSSFile->setFileName(":themes/Light");
     } else {
-        mCSSFile->setFileName(qApp->applicationDirPath()+"/themes/"+themeName);
+        if(mCurrentLang == "en_US") {
+            mCSSFile->setFileName(qApp->applicationDirPath()+"/assets/themes/"+themeName+"/theme.qss");
+        } else {
+            mCSSFile->setFileName(qApp->applicationDirPath()+"/assets/themes/"+themeName+"/theme-"+mCurrentLang+".qss");
+        }
     }
 
     if(mCSSFile->open(QIODevice::ReadOnly | QIODevice::Text)) {

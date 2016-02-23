@@ -53,7 +53,41 @@ RESOURCES +=                                    \
 #   You need to add "install" arg to make step   #
 #------------------------------------------------#
 
-assets.path = $$OUT_PWD/release/assets/imgs/pixmaps/rooms/
-assets.files += $$PWD/assets/imgs/pixmaps/rooms/*
+#Assets
+roomsmng.path       =   $$OUT_PWD/release/assets/imgs/pixmaps/rooms/
+    roomsmng.files  +=  $$PWD/assets/imgs/pixmaps/rooms/*.mng
 
-INSTALLS += assets
+themes.path         =   $$OUT_PWD/release/assets/themes/
+    themes.files    +=  $$PWD/assets/themes/*
+
+sounds.path         =   $$OUT_PWD/release/assets/sounds/
+    sounds.files    +=  $$PWD/assets/sounds/*
+
+i18n.path           =   $$OUT_PWD/release/assets/i18n/fr_FR/
+    i18n.files      +=  $$PWD/assets/i18n/fr_FR/lang.qm
+    i18n.files      +=  $$PWD/assets/i18n/fr_FR/icon.png
+
+#Library
+mnglib.path         =   $$OUT_PWD/release/imageformats/
+    mnglib.files    +=  $$[QT_INSTALL_DATA]/plugins/imageformats/qmng.dll
+
+qtlib.path          =   $$OUT_PWD/release/
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/Qt5Core.dll
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/Qt5Gui.dll
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/Qt5Multimedia.dll
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/Qt5Network.dll
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/Qt5Widgets.dll
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/libgcc_s_dw2-1.dll
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/libwinpthread-1.dll
+    qtlib.files     +=  $$[QT_INSTALL_BINS]/libstd~1.dll#CF libstdc++-6.dll
+
+qwindows.path       =   $$OUT_PWD/release/platforms/
+    qwindows.files  +=  $$[QT_INSTALL_DATA]/plugins/platforms/qwindows.dll
+
+INSTALLS += roomsmng    \
+            themes      \
+            sounds      \
+            i18n        \
+            mnglib      \
+            qtlib       \
+            qwindows    \

@@ -184,78 +184,86 @@ bool UnSavManager::alreadyExist(QString from, QString dest)
 
 MessageDialog* UnSavManager::messageBox(MessType type)
 {
+    QUrl soundUrl = QUrl::fromLocalFile(qApp->applicationDirPath()+"/assets/sounds/chat.wav");
+
+    if (mSetgsDialog->themeName() == "Default") {
+        avatarsPath = ":imgs/avatars/";
+    } else {
+        avatarsPath = qApp->applicationDirPath()+"/assets/themes/"+mSetgsDialog->themeName()+"/avatars/";
+    }
+
     if (type == MessType::EmptyPath) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
+        mMesgsDialog->setDialogPixmap(QPixmap(avatarsPath+"flowey"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogSound(soundUrl, mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* Path to the game not initialised.\n\n"
                                         "* Please define it in 'SETTINGS'\n\n"
                                         "  ENTER for closing this box"), mSetgsDialog->textSpeed());
         return mMesgsDialog;
 
     } else if (type == MessType::DeleteSave) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
+        mMesgsDialog->setDialogPixmap(QPixmap(avatarsPath+"sans"));
         mMesgsDialog->setDialogSize(QSize(640, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Choice);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogSound(soundUrl, mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* This awesome save will be removed.\n\n"
                                         "* Are you really sure you want do this ?\n\n"
                                         "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
         return mMesgsDialog;
 
     } else if (type == MessType::AccessError) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/papyrus"));
+        mMesgsDialog->setDialogPixmap(QPixmap(avatarsPath+"papyrus"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogSound(soundUrl, mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* Impossible to doing this.\n\n"
                                         "* Verify you're write rights.\n\n"
                                         "  ENTER for closing this box"), mSetgsDialog->textSpeed());
         return mMesgsDialog;
 
     } else if (type == MessType::CurSaveExist) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
+        mMesgsDialog->setDialogPixmap(QPixmap(avatarsPath+"toriel"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogSound(soundUrl, mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
                                         "* You can't backup this save\n\n"
                                         "  ENTER for closing this box"), mSetgsDialog->textSpeed());
         return mMesgsDialog;
 
     } else if (type == MessType::NoCurSave) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/flowey"));
+        mMesgsDialog->setDialogPixmap(QPixmap(avatarsPath+"flowey"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogSound(soundUrl, mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* None current save to backup.\n\n"
                                         "* You can't backup nothing\n\n"
                                         "  ENTER for closing this box"), mSetgsDialog->textSpeed());
         return mMesgsDialog;
 
     } else if (type == MessType::ForceOverwrite) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/sans"));
+        mMesgsDialog->setDialogPixmap(QPixmap(avatarsPath+"sans"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Choice);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogSound(soundUrl, mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* This save are no backup.\n\n"
                                         "* Do you really want replacing ?\n\n"
                                         "  Y for Yes / N for No"), mSetgsDialog->textSpeed());
         return mMesgsDialog;
 
     } else if (type == MessType::AlreadyLoaded) {
-        mMesgsDialog->setDialogPixmap(QPixmap(":imgs/avatars/toriel"));
+        mMesgsDialog->setDialogPixmap(QPixmap(avatarsPath+"toriel"));
         mMesgsDialog->setDialogSize(QSize(600, 140));
         mMesgsDialog->move(geometry().center() - mMesgsDialog->rect().center());
         mMesgsDialog->setType(MessageDialog::BoxType::Confirm);
-        mMesgsDialog->setDialogSound(QUrl("qrc:snds/chat"), mSetgsDialog->soundEnabled());
+        mMesgsDialog->setDialogSound(soundUrl, mSetgsDialog->soundEnabled());
         mMesgsDialog->setDialogText( tr("* This save aready exist.\n\n"
                                         "* You can't load this save\n\n"
                                         "  ENTER for closing this box"), mSetgsDialog->textSpeed());
