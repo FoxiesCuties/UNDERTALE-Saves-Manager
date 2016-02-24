@@ -91,7 +91,7 @@ void Settings::createConnexions()
 }
 void Settings::createLangCombo()
 {
-    mLangCombo->addItem(QIcon(":i18n/en_US"), "en_US", "");//Add default value
+    mLangCombo->addItem(QIcon(":i18n/en_US"), "en_US", "en_US");//Add default value
 
     QString i18nPath = qApp->applicationDirPath()+"/assets/i18n";
     QDir i18nDir(i18nPath);
@@ -472,7 +472,7 @@ void Settings::slotLanguageChanged(int index)
         mCurrentTranslator = qApp->applicationDirPath()+"/assets/i18n/"+mCurrentLang+"/lang.qm";
     }
 
-    //slotThemeChanged(mThemeCombo->currentIndex());
+    emit mThemeCombo->activated(mThemeCombo->currentIndex());
 }
 void Settings::slotThemeChanged(int index)
 {
