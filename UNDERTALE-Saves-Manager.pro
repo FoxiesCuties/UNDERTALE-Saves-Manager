@@ -2,13 +2,9 @@ QT       += core gui widgets multimedia
 
 TEMPLATE = app
 
-RC_ICONS = toriel.ico
-
 TRANSLATIONS =  assets/i18n/fr_FR/lang.ts \
 
 VERSION = 0.7
-QMAKE_TARGET_DESCRIPTION = "UNDERTALE Save Manager"
-QMAKE_TARGET_COPYRIGHT = "FoxiesCuties"
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
@@ -48,6 +44,11 @@ HEADERS  += About.hpp                           \
 RESOURCES +=                                    \
             assets.qrc                          \
 
+
+RC_ICONS = toriel.ico
+
+QMAKE_TARGET_DESCRIPTION = "UNDERTALE Save Manager"
+QMAKE_TARGET_COPYRIGHT = "FoxiesCuties"
 
 #------------------------------------------------#
 #   You need to add "install" arg to make step   #
