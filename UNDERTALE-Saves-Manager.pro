@@ -10,6 +10,8 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 CONFIG += c++11
 
+QMAKE_CXXFLAGS_WARN_ON += -Werror
+
 TARGET = UNDERTALE-Saves-Manager
 
 SOURCES +=  main.cpp                            \

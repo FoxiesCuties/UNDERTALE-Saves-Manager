@@ -32,6 +32,7 @@ QVariant USaveFile::charValue(int line)
             mSaveStream.readLine();
         }
     }
+    return "";
 }
 
 QString USaveFile::charName()
@@ -553,220 +554,194 @@ QList<QVariant> USaveFile::getWeapon(int idWeapon)
 QList<QVariant> USaveFile::getArmor(int idArmor)
 {
     QList<QVariant> lst;
+        lst.clear();
 
     switch (idArmor) {
     case 4:
-        lst.clear();
         lst.append("Bandage");
         lst.append("0");
         return lst;
         break;
     case 12:
-        lst.clear();
         lst.append("Faded Ribbon");
         lst.append("3");
         return lst;
         break;
     case 15:
-        lst.clear();
         lst.append("Manly Bandanna");
         lst.append("7");
         return lst;
         break;
     case 24:
-        lst.clear();
         lst.append("Old Tutu");
         lst.append("10");
         return lst;
         break;
     case 44:
-        lst.clear();
         lst.append("Butty Glasses");
         lst.append("6");
         return lst;
         break;
     case 46:
-        lst.clear();
         lst.append("Stained Apron");
         lst.append("11");
         return lst;
         break;
     case 48:
-        lst.clear();
         lst.append("Cowboy Hat");
         lst.append("12");
         return lst;
         break;
     case 50:
-        lst.clear();
         lst.append("Heart Locket");
         lst.append("15");
         return lst;
         break;
     case 53:
-        lst.clear();
         lst.append("The Locket");
         lst.append("99");
         return lst;
         break;
     case 64:
-        lst.clear();
         lst.append("Temy Armor");
         lst.append("20");
         return lst;
         break;
     default:
+        return lst;
         break;
     }
 }
 QList<QVariant> USaveFile::getStats(int lvlChar)
 {
-    QList<QVariant> lst;
-
     int curEXP = charValue(10).toInt();
+
+    QList<QVariant> lst;
+        lst.clear();
 
     switch (lvlChar) {
     case 1:
-        lst.clear();
         lst.append("0");
         lst.append("0");
         lst.append(QString::number(10 - curEXP));
         return lst;
         break;
     case 2:
-        lst.clear();
         lst.append("2");
         lst.append("0");
         lst.append(QString::number(30 - curEXP));
         return lst;
         break;
     case 3:
-        lst.clear();
         lst.append("4");
         lst.append("0");
         lst.append(QString::number(70 - curEXP));
         return lst;
         break;
     case 4:
-        lst.clear();
         lst.append("6");
         lst.append("0");
         lst.append(QString::number(120 - curEXP));
         return lst;
         break;
     case 5:
-        lst.clear();
         lst.append("8");
         lst.append("1");
         lst.append(QString::number(200 - curEXP));
         return lst;
         break;
     case 6:
-        lst.clear();
         lst.append("10");
         lst.append("1");
         lst.append(QString::number(300 - curEXP));
         return lst;
         break;
     case 7:
-        lst.clear();
         lst.append("12");
         lst.append("1");
         lst.append(QString::number(500 - curEXP));
         return lst;
         break;
     case 8:
-        lst.clear();
         lst.append("14");
         lst.append("1");
         lst.append(QString::number(800 - curEXP));
         return lst;
         break;
     case 9:
-        lst.clear();
         lst.append("16");
         lst.append("2");
         lst.append(QString::number(1200 - curEXP));
         return lst;
         break;
     case 10:
-        lst.clear();
         lst.append("18");
         lst.append("2");
         lst.append(QString::number(1700 - curEXP));
         return lst;
         break;
     case 11:
-        lst.clear();
         lst.append("20");
         lst.append("2");
         lst.append(QString::number(2500 - curEXP));
         return lst;
         break;
     case 12:
-        lst.clear();
         lst.append("22");
         lst.append("2");
         lst.append(QString::number(3500 - curEXP));
         return lst;
         break;
     case 13:
-        lst.clear();
         lst.append("24");
         lst.append("3");
         lst.append(QString::number(5000 - curEXP));
         return lst;
         break;
     case 14:
-        lst.clear();
         lst.append("26");
         lst.append("3");
         lst.append(QString::number(7000 - curEXP));
         return lst;
         break;
     case 15:
-        lst.clear();
         lst.append("28");
         lst.append("3");
         lst.append(QString::number(10000 - curEXP));
         return lst;
         break;
     case 16:
-        lst.clear();
         lst.append("30");
         lst.append("3");
         lst.append(QString::number(15000 - curEXP));
         return lst;
         break;
     case 17:
-        lst.clear();
         lst.append("32");
         lst.append("4");
         lst.append(QString::number(25000 - curEXP));
         return lst;
         break;
     case 18:
-        lst.clear();
         lst.append("34");
         lst.append("4");
         lst.append(QString::number(50000 - curEXP));
         return lst;
         break;
     case 19:
-        lst.clear();
         lst.append("36");
         lst.append("4");
         lst.append(QString::number(99999 - curEXP));
         return lst;
         break;
     case 20:
-        lst.clear();
         lst.append("38");
         lst.append("4");
         lst.append(QString::number(0));
         return lst;
         break;
     default:
+        return lst;
         break;
     }
 }

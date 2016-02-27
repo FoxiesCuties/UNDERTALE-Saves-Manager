@@ -269,6 +269,7 @@ MessageDialog* UnSavManager::messageBox(MessType type)
                                         "  ENTER for closing this box"), mSetgsDialog->textSpeed());
         return mMesgsDialog;
     }
+    return 0;
 }
 
 //Slots
