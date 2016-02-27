@@ -187,7 +187,7 @@ MessageDialog* UnSavManager::messageBox(MessType type)
     QUrl soundUrl = QUrl::fromLocalFile(qApp->applicationDirPath()+"/assets/sounds/chat.wav");
 
     if (mSetgsDialog->themeName() == "Default") {
-        avatarsPath = ":imgs/avatars/";
+        avatarsPath = ":themes/avatars/";
     } else {
         avatarsPath = qApp->applicationDirPath()+"/assets/themes/"+mSetgsDialog->themeName()+"/avatars/";
     }

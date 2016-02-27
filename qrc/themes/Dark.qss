@@ -11,11 +11,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/abt0');
+    background-image: url(':themes/res/abt0');
 }
 #Button_About:hover
 {
-    background-image: url(':imgs/abt1');
+    background-image: url(':themes/res/abt1');
 }
 
 #Button_Minimize
@@ -23,11 +23,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/min0');
+    background-image: url(':themes/res/min0');
 }
 #Button_Minimize:hover
 {
-    background-image: url(':imgs/min1');
+    background-image: url(':themes/res/min1');
 }
 
 #Button_Close
@@ -35,11 +35,11 @@
     border: none;
     height: 40px;
     width: 40px;
-    background-image: url(':imgs/clo0');
+    background-image: url(':themes/res/clo0');
 }
 #Button_Close:hover
 {
-    background-image: url(':imgs/clo1');
+    background-image: url(':themes/res/clo1');
 }
 
 #Label_Banner
@@ -47,7 +47,7 @@
     border: none;
     height: 75px;
     width: 350px;
-    background-image: url(':imgs/pixmaps/dark/ban');
+    background-image: url(':themes/res/ban');
     background-repeat: no-repeat;
     margin-left: 250px;
 }
@@ -64,11 +64,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/ref0');
+    background-image: url(':themes/res/ref0');
 }
 #ButtonLRefresh:hover
 {
-    background-image: url(':imgs/ref1');
+    background-image: url(':themes/res/ref1');
 }
 
 #ButtonOpenBackupFolder
@@ -76,11 +76,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/fol0');
+    background-image: url(':themes/res/fol0');
 }
 #ButtonOpenBackupFolder:hover
 {
-    background-image: url(':imgs/fol1');
+    background-image: url(':themes/res/fol1');
 }
 
 #ButtonRRefresh
@@ -88,11 +88,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/ref0');
+    background-image: url(':themes/res/ref0');
 }
 #ButtonRRefresh:hover
 {
-    background-image: url(':imgs/ref1');
+    background-image: url(':themes/res/ref1');
 }
 /* EndSECTION_Controls */
 
@@ -131,14 +131,14 @@
     height: 20px;
     width: 20px;
     background: transparent;
-    background-image: url(':imgs/bDel0');
+    background-image: url(':themes/res/bDel0');
 }
 #ListWidget_Saves QPushButton #Button_DeleteSave:hover
 {
     border: none;
     height: 20px;
     width: 20px;
-    background-image: url(':imgs/bDel1');
+    background-image: url(':themes/res/bDel1');
 }
 #ListWidget_Saves QLabel
 {
@@ -177,11 +177,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bLoad');
+    background-image: url(':themes/res/bLoad');
 }
 #Button_LOAD:hover
 {
-    background-image: url(':imgs/bLoad1');
+    background-image: url(':themes/res/bLoad1');
 }
 
 #Button_SAVE
@@ -189,11 +189,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bSave');
+    background-image: url(':themes/res/bSave');
 }
 #Button_SAVE:hover
 {
-    background-image: url(':imgs/bSave1');
+    background-image: url(':themes/res/bSave1');
 }
 
 #Button_SETTINGS
@@ -201,11 +201,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bSet');
+    background-image: url(':themes/res/bSet');
 }
 #Button_SETTINGS:hover
 {
-    background-image: url(':imgs/bSet1');
+    background-image: url(':themes/res/bSet1');
 }
 
 #Button_LAUNCH
@@ -213,11 +213,11 @@
     border: none;
     height: 40px;
     width: 150px;
-    background-image: url(':imgs/bLch');
+    background-image: url(':themes/res/bLch');
 }
 #Button_LAUNCH:hover
 {
-    background-image: url(':imgs/bLch1');
+    background-image: url(':themes/res/bLch1');
 }
 /* EndSECTION_ActionsButttons */
 
@@ -241,7 +241,7 @@
 {
     background: #111;
     border: 3px solid white;
-    background-image: url(':imgs/about/abtWtm');
+    background-image: url(':themes/res/back');
     background-repeat: no-repeat;
     background-position: bottom right;
 }
@@ -250,7 +250,7 @@
     border: none;
     height: 50px;
     width: 233px;
-    background-image: url(':imgs/pixmaps/dark/sBan');
+    background-image: url(':themes/res/sBan');
     background-repeat: no-repeat;
     margin-left: 70px;
 }
@@ -266,7 +266,11 @@
     border: none;
     height: 70px;
     width: 70px;
-    background-image: url(':imgs/about/abtGit');
+    background-image: url(':themes/res/github');
+}
+#Dialog_About #Button_About_Github:hover
+{
+    background-image: url(':themes/res/hgithub');
 }
 #Dialog_About #Button_About_Title
 {
@@ -297,11 +301,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/settings/setClo0');
+    background-image: url(':themes/res/tClo0');
 }
 #Dialog_About #Button_About_Close:hover
 {
-    background-image: url(':imgs/settings/setClo1');
+    background-image: url(':themes/res/tClo1');
 }
 
 #Dialog_Settings
@@ -314,7 +318,7 @@
     border: none;
     height: 50px;
     width: 233px;
-    background-image: url(':imgs/pixmaps/dark/sBan');
+    background-image: url(':themes/res/sBan');
     background-repeat: no-repeat;
     margin-left: 130px;
 }
@@ -428,11 +432,11 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/settings/setClo0');
+    background-image: url(':themes/res/tClo0');
 }
 #Dialog_Settings #Button_Settings_Close:hover
 {
-    background-image: url(':imgs/settings/setClo1');
+    background-image: url(':themes/res/tClo1');
 }
 #Dialog_Settings #Button_Settings_FileDialog
 {
@@ -493,12 +497,12 @@
     border: none;
     height: 30px;
     width: 30px;
-    background-image: url(':imgs/settings/setClo0');
+    background-image: url(':themes/res/tClo0');
 	background-color: transparent;
 }
 #Dialog_Details #Button_Details_Close:hover
 {
-    background-image: url(':imgs/settings/setClo1');
+    background-image: url(':themes/res/tClo1');
 }
 #Dialog_Details QLabel
 {

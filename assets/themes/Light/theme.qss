@@ -241,7 +241,7 @@
 {
     background: #EEE;
     border: 3px solid #444;
-    background-image: url(':imgs/about/lAbtWtm');
+    background-image: url(assets/themes/light/res/back.png);
     background-repeat: no-repeat;
     background-position: bottom right;
 }
@@ -266,7 +266,11 @@
     border: none;
     height: 70px;
     width: 70px;
-    background-image: url(':imgs/about/abtGit');
+    background-image: url(assets/themes/light/res/github.png);
+}
+#Dialog_About #Button_About_Github:hover
+{
+    background-image: url(assets/themes/light/res/hgithub.png);
 }
 #Dialog_About #Button_About_Title
 {

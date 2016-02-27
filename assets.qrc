@@ -1,65 +1,6 @@
 <RCC>
-    <qresource prefix="/imgs">
-        <file alias="splash">assets/imgs/pixmaps/splash.png</file>
-        <file alias="bLoad">assets/imgs/gui/BtnLoad.png</file>
-        <file alias="bSave">assets/imgs/gui/BtnSave.png</file>
-        <file alias="bSet">assets/imgs/gui/BtnSet.png</file>
-        <file alias="clo0">assets/imgs/gui/close0.png</file>
-        <file alias="clo1">assets/imgs/gui/close1.png</file>
-        <file alias="min0">assets/imgs/gui/min0.png</file>
-        <file alias="min1">assets/imgs/gui/min1.png</file>
-        <file alias="bLoad1">assets/imgs/gui/BtnLoad1.png</file>
-        <file alias="bSave1">assets/imgs/gui/BtnSave1.png</file>
-        <file alias="bSet1">assets/imgs/gui/BtnSet1.png</file>
-        <file alias="abt0">assets/imgs/gui/about0.png</file>
-        <file alias="abt1">assets/imgs/gui/about1.png</file>
-        <file alias="bLch">assets/imgs/gui/BtnLaunch.png</file>
-        <file alias="bLch1">assets/imgs/gui/BtnLaunch1.png</file>
-        <file alias="bDel0">assets/imgs/gui/BtnDelete0.png</file>
-        <file alias="bDel1">assets/imgs/gui/BtnDelete1.png</file>
-        <file alias="heart">assets/imgs/gui/heart.png</file>
-        <file alias="noheart">assets/imgs/gui/noheart.png</file>
-        <file alias="fol0">assets/imgs/gui/fol0.png</file>
-        <file alias="fol1">assets/imgs/gui/fol1.png</file>
-        <file alias="ref0">assets/imgs/gui/ref0.png</file>
-        <file alias="ref1">assets/imgs/gui/ref1.png</file>
-    </qresource>
     <qresource prefix="/fonts">
         <file alias="DTM">qrc/fonts/DTM-Mono.otf</file>
-    </qresource>
-    <qresource prefix="/imgs/settings">
-        <file alias="setBan">assets/imgs/pixmaps/settings/setBan.png</file>
-        <file alias="setClo0">assets/imgs/gui/settings/setClo0.png</file>
-        <file alias="setClo1">assets/imgs/gui/settings/setClo1.png</file>
-    </qresource>
-    <qresource prefix="/imgs/about">
-        <file alias="abtWtm">assets/imgs/pixmaps/about/back.png</file>
-        <file alias="abtGit">assets/imgs/pixmaps/about/github.png</file>
-        <file alias="lAbtWtm">assets/imgs/pixmaps/about/lback.png</file>
-    </qresource>
-    <qresource prefix="/imgs/avatars">
-        <file alias="flowey">qrc/avatars/flowey.png</file>
-        <file alias="sans">qrc/avatars/sans.png</file>
-        <file alias="toriel">qrc/avatars/toriel.png</file>
-        <file alias="papyrus">qrc/avatars/papyrus.png</file>
-    </qresource>
-    <qresource lang="fr_FR" prefix="/imgs">
-        <file alias="bLch">assets/imgs/gui/fr_FR/BtnLaunch.png</file>
-        <file alias="bLch1">assets/imgs/gui/fr_FR/BtnLaunch1.png</file>
-        <file alias="bLoad">assets/imgs/gui/fr_FR/BtnLoad.png</file>
-        <file alias="bLoad1">assets/imgs/gui/fr_FR/BtnLoad1.png</file>
-        <file alias="bSave">assets/imgs/gui/fr_FR/BtnSave.png</file>
-        <file alias="bSave1">assets/imgs/gui/fr_FR/BtnSave1.png</file>
-        <file alias="bSet">assets/imgs/gui/fr_FR/BtnSet.png</file>
-        <file alias="bSet1">assets/imgs/gui/fr_FR/BtnSet1.png</file>
-    </qresource>
-    <qresource prefix="/imgs/pixmaps/dark">
-        <file alias="ban">assets/imgs/pixmaps/dark/banner.png</file>
-        <file alias="sBan">assets/imgs/pixmaps/dark/setBan.png</file>
-    </qresource>
-    <qresource prefix="/imgs/pixmaps/light">
-        <file alias="ban">assets/imgs/pixmaps/light/banner.png</file>
-        <file alias="sBan">assets/imgs/pixmaps/light/setBan.png</file>
     </qresource>
     <qresource prefix="/i18n">
         <file alias="en_US">qrc/i18n/en_US/icon.png</file>
@@ -72,5 +13,52 @@
     </qresource>
     <qresource prefix="/themes">
         <file alias="Default">qrc/themes/dark.qss</file>
+    </qresource>
+    <qresource prefix="/themes/res">
+        <file alias="bLoad">qrc/themes/res/BtnLoad.png</file>
+        <file alias="bSave">qrc/themes/res/BtnSave.png</file>
+        <file alias="bSet">qrc/themes/res/BtnSet.png</file>
+        <file alias="clo0">qrc/themes/res/close0.png</file>
+        <file alias="clo1">qrc/themes/res/close1.png</file>
+        <file alias="min0">qrc/themes/res/min0.png</file>
+        <file alias="min1">qrc/themes/res/min1.png</file>
+        <file alias="bLoad1">qrc/themes/res/BtnLoad1.png</file>
+        <file alias="bSave1">qrc/themes/res/BtnSave1.png</file>
+        <file alias="bSet1">qrc/themes/res/BtnSet1.png</file>
+        <file alias="abt0">qrc/themes/res/about0.png</file>
+        <file alias="abt1">qrc/themes/res/about1.png</file>
+        <file alias="bLch">qrc/themes/res/BtnLaunch.png</file>
+        <file alias="bLch1">qrc/themes/res/BtnLaunch1.png</file>
+        <file alias="bDel0">qrc/themes/res/BtnDelete0.png</file>
+        <file alias="bDel1">qrc/themes/res/BtnDelete1.png</file>
+        <file alias="heart">qrc/themes/res/heart.png</file>
+        <file alias="noheart">qrc/themes/res/noheart.png</file>
+        <file alias="fol0">qrc/themes/res/fol0.png</file>
+        <file alias="fol1">qrc/themes/res/fol1.png</file>
+        <file alias="ref0">qrc/themes/res/ref0.png</file>
+        <file alias="ref1">qrc/themes/res/ref1.png</file>
+        <file alias="ban">qrc/themes/res/banner.png</file>
+        <file alias="sBan">qrc/themes/res/setBan.png</file>
+        <file alias="tClo0">qrc/themes/res/tClo0.png</file>
+        <file alias="tClo1">qrc/themes/res/tClo1.png</file>
+        <file alias="back">qrc/themes/res/back.png</file>
+        <file alias="github">qrc/themes/res/github.png</file>
+        <file alias="hgithub">qrc/themes/res/hgithub.png</file>
+    </qresource>
+    <qresource prefix="/themes/res" lang="fr_FR">
+        <file alias="bLch">qrc/themes/res/fr_FR/BtnLaunch.png</file>
+        <file alias="bLch1">qrc/themes/res/fr_FR/BtnLaunch1.png</file>
+        <file alias="bLoad">qrc/themes/res/fr_FR/BtnLoad.png</file>
+        <file alias="bLoad1">qrc/themes/res/fr_FR/BtnLoad1.png</file>
+        <file alias="bSave">qrc/themes/res/fr_FR/BtnSave.png</file>
+        <file alias="bSave1">qrc/themes/res/fr_FR/BtnSave1.png</file>
+        <file alias="bSet">qrc/themes/res/fr_FR/BtnSet.png</file>
+        <file alias="bSet1">qrc/themes/res/fr_FR/BtnSet1.png</file>
+    </qresource>
+    <qresource prefix="/themes/avatars">
+        <file alias="flowey">qrc/themes/avatars/flowey.png</file>
+        <file alias="papyrus">qrc/themes/avatars/papyrus.png</file>
+        <file alias="sans">qrc/themes/avatars/sans.png</file>
+        <file alias="toriel">qrc/themes/avatars/toriel.png</file>
     </qresource>
 </RCC>
