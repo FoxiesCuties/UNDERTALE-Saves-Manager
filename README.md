@@ -1,4 +1,10 @@
-[**DOWNLOAD LATEST BUILD** (Alpha 0.6)](https://github.com/FoxiesCuties/UNDERTALE-Saves-Manager/releases/download/v0.6-alpha/UNDERTALE-Save-Manager_Alpha_0.6.zip)
+INFORMATION : I standby this project for the momment, maybe i continue if have more time.
+
+
+- [**LATEST BUILD DOWNLOAD** (Alpha 0.8)](https://github.com/FoxiesCuties/UNDERTALE-Saves-Manager/releases/download/v0.8-alpha/UNDERTALE-Save-Manager_Alpha_0.8.zip)
+- [**LATEST BUILD CHANGELOG** (Alpha 0.8)](https://github.com/FoxiesCuties/UNDERTALE-Saves-Manager/releases/tag/v0.8-alpha)
+
+.
 
 # **Description**
 
@@ -13,6 +19,7 @@
 * Multiples languages support.
 * QSS themes support.
 
+.
 
 # **Screenshots**
 
@@ -21,38 +28,32 @@
 ![Main Manager](http://i.imgur.com/HslLOst.jpg)
 
 
-
 **Stats Dialog**
 
 ![Stats Dialog](http://i.imgur.com/W165BFr.jpg)
  
-
 
 **Items Dialog**
 
 ![Items Dialog](http://i.imgur.com/MdKD3I7.jpg)
 
 
-
 **About Dialog**
 
 ![About Dialog](http://i.imgur.com/835kpUJ.jpg)
-
-
-
 
 **Settings Dialog**
 
 ![Settings Dialog](http://i.imgur.com/lxAvWrM.jpg)
 
-
-
-
+.
 
 # **Authors of this project**
 
 * [FoxiesCuties](https://github.com/FoxiesCuties) Designer / Developer
 * [DreamsLike](http://steamcommunity.com/id/DreamsLike) Designer Assitant / Tester
+
+.
 
 # **Credits**
 * [HylianAngel](https://www.reddit.com/r/Undertale/comments/3szvui/my_undertale_save_files/) For his amazing list of saves / Tech mechanic description.
