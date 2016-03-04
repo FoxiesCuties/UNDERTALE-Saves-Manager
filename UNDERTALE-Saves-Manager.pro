@@ -57,8 +57,8 @@ QMAKE_TARGET_COPYRIGHT = "FoxiesCuties"
 #------------------------------------------------#
 
 #Assets
-roomsmng.path       =   $$OUT_PWD/release/assets/imgs/pixmaps/rooms/
-    roomsmng.files  +=  $$PWD/assets/imgs/pixmaps/rooms/*.mng
+roomsmng.path       =   $$OUT_PWD/release/assets/pixmaps/rooms/
+    roomsmng.files  +=  $$PWD/assets/pixmaps/rooms/*.mng
 
 themes.path         =   $$OUT_PWD/release/assets/themes/
     themes.files    +=  $$PWD/assets/themes/*

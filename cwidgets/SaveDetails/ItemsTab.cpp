@@ -52,9 +52,9 @@ QListWidget* ItemsTab::itemsList()
 void ItemsTab::setUnItem(QString name, QString info)
 {
     if (mItemsList->count() == 0) {
-        mItemsList->addItem(new QListWidgetItem(QIcon(":imgs/heart"),""));
+        mItemsList->addItem(new QListWidgetItem(QIcon(":themes/res/heart"),""));
     } else {
-        mItemsList->addItem(new QListWidgetItem(QIcon(":imgs/noheart"),""));
+        mItemsList->addItem(new QListWidgetItem(QIcon(":themes/res/noheart"),""));
     }
 
     QStringList strList;
@@ -68,11 +68,11 @@ void ItemsTab::setUnItem(QString name, QString info)
 void ItemsTab::changeUnItem(QListWidgetItem* cur, QListWidgetItem* pre)
 {
     if (cur != 0) {
-        cur->setIcon(QIcon(":imgs/heart"));
+        cur->setIcon(QIcon(":themes/res/heart"));
         mItemInfoTextEdit->setText(mItemDetails.at(mItemsList->currentRow()).at(1));
     }
 
     if (pre != 0) {
-        pre->setIcon(QIcon(":imgs/noheart"));
+        pre->setIcon(QIcon(":themes/res/noheart"));
     }
 }

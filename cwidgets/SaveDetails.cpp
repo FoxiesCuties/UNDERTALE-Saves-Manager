@@ -74,7 +74,7 @@ void SaveDetails::setRoomNumber(int room)
 
     this->setWindowTitle("Save Details - Room " + QString::number(mRoomInt));
 
-    QString mngPath = qApp->applicationDirPath()+"/assets/imgs/pixmaps/rooms/"+QString::number(mRoomInt)+".mng";
+    QString mngPath = qApp->applicationDirPath()+"/assets/pixmaps/rooms/"+QString::number(mRoomInt)+".mng";
 
     if (QFile::exists(mngPath)) {
         mRoomPixMovie->setFileName(mngPath);
